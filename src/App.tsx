@@ -42,7 +42,7 @@ const GlobeApp = () => {
   };
 
   return (
-    <div className="relative w-full h-[90vh] overflow-hidden bg-ink">
+    <div className="relative w-full h-[100dvh] overflow-hidden bg-ink">
       <GlobeViewer 
         onEntityClick={handleEntityClick} 
         onGlobeClick={handleGlobeClick}
@@ -51,7 +51,7 @@ const GlobeApp = () => {
         flyTo={flyTo}
       />
       
-      <div className="pt-24 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none z-10">
         <ControlsUI 
           rulerMode={rulerMode}
           setRulerMode={(val) => {
@@ -74,18 +74,22 @@ const GlobeApp = () => {
   );
 };
 
+import { ThemeProvider } from './components/ThemeProvider';
+
 export default function App() {
   return (
-    <div className="flex flex-col min-h-screen bg-ink font-body text-fog">
-      <Navbar />
-      <div className="flex-grow pt-16">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/globe" element={<GlobeApp />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
+    <ThemeProvider>
+      <div className="min-h-screen bg-ink text-fog overflow-x-hidden">
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/globe" element={<GlobeApp />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </main>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </ThemeProvider>
   );
 }

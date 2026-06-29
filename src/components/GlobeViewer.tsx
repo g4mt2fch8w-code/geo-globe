@@ -157,6 +157,13 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
             backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
             
+            onGlobeReady={() => {
+              if (globeRef.current) {
+                // Auto zoom out initially so users can see the stars and universe
+                globeRef.current.pointOfView({ altitude: 3.5 }, 2000);
+              }
+            }}
+            
             onGlobeClick={({ lat, lng }) => onGlobeClick(lat, lng)}
             
             pathsData={pathsData}
@@ -217,7 +224,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
       </div>
 
       <div className="absolute bottom-8 left-8 p-6 glass-card rounded-2xl pointer-events-none z-10 hidden md:block">
-        <h3 className="text-sm font-display uppercase tracking-widest text-gold mb-4">UPSC IFoS Legend</h3>
+        <h3 className="text-sm font-display uppercase tracking-widest text-gold mb-4">Legend</h3>
         <ul className="space-y-3">
           <li className="flex items-center gap-3 text-sm text-fog/80">
             <span>🐅</span> Tiger Reserves

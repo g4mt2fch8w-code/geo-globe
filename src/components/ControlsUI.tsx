@@ -80,10 +80,10 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
 
   return (
     <>
-      <div className="absolute top-28 left-6 pointer-events-auto flex flex-col gap-4 z-40 font-body">
+      <div className="absolute top-20 left-4 right-4 md:top-28 md:left-6 md:right-auto pointer-events-auto flex flex-col gap-4 z-40 font-body">
         
-        <div className="relative">
-          <div className="relative glass-card rounded-full flex items-center px-4 py-2 border border-white/10 shadow-emerald w-80">
+        <div className="relative w-full">
+          <div className="relative glass-card rounded-full flex items-center px-4 py-2 border border-white/10 shadow-emerald w-full md:w-80">
             <Search className="w-4 h-4 text-gold mr-3" />
             <input 
               type="text" 
@@ -95,7 +95,7 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
           </div>
           
           {results.length > 0 && (
-            <div className="absolute top-full left-0 mt-2 w-full glass-card rounded-2xl border border-white/10 overflow-hidden shadow-emerald">
+            <div className="absolute top-full left-0 mt-2 w-full glass-card rounded-2xl border border-white/10 overflow-hidden shadow-emerald max-h-64 overflow-y-auto">
               {results.map(r => (
                 <button 
                   key={r.id}
@@ -111,27 +111,27 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
         </div>
       </div>
 
-      <div className="absolute top-28 right-6 pointer-events-auto flex flex-col items-end gap-4 z-40 font-body">
-        <div className="flex gap-4">
+      <div className="absolute bottom-8 left-4 right-4 md:bottom-auto md:top-28 md:right-6 md:left-auto pointer-events-auto flex flex-col md:items-end gap-4 z-30 font-body">
+        <div className="flex gap-2 sm:gap-4 w-full md:w-auto">
           <button 
             onClick={() => setRulerMode(!rulerMode)}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all ${
-              rulerMode ? 'bg-gold text-ink shadow-glow' : 'glass-card text-fog border border-white/10 hover:border-gold/30 hover:text-white'
+            className={`flex-1 md:flex-none flex items-center justify-center gap-2 px-4 md:px-6 py-3 rounded-full text-xs sm:text-sm font-bold transition-all border backdrop-blur-md ${
+              rulerMode ? 'border-gold text-gold bg-gold/10 shadow-[0_0_15px_rgba(255,215,0,0.2)]' : 'bg-transparent text-fog/90 border-white/20 hover:border-gold/50 hover:text-white'
             }`}
           >
-            📏 {rulerMode ? 'Cancel Measure' : 'Measure Displacement'}
+            📏 {rulerMode ? 'Cancel' : 'Measure Displacement'}
           </button>
 
           <button 
             onClick={() => setIsAutoRotate(!isAutoRotate)}
-            className={`flex items-center gap-2 px-6 py-3 rounded-full text-sm font-bold transition-all glass-card text-fog border border-white/10 hover:border-gold/30 hover:text-white`}
+            className={`flex-1 md:flex-none flex items-center justify-center gap-2 px-4 md:px-6 py-3 rounded-full text-xs sm:text-sm font-bold transition-all bg-transparent backdrop-blur-md text-fog/90 border border-white/20 hover:border-gold/50 hover:text-white`}
           >
             {isAutoRotate ? '⏸ Pause Earth' : '▶ Resume Earth'}
           </button>
         </div>
 
         {rulerMode && (
-          <div className="glass-card p-4 rounded-2xl border border-gold/30 mt-2 w-80 shadow-emerald text-left">
+          <div className="bg-ink/40 backdrop-blur-md w-full md:w-80 p-4 rounded-2xl border border-gold/30 mt-2 shadow-emerald text-left">
             <h4 className="text-xs font-display uppercase tracking-widest text-gold mb-2">Displacement Data</h4>
             {rulerPoints.length === 0 && <p className="text-xs text-fog/60 leading-relaxed">Search for a reserve or click on the globe for <strong>Point A</strong></p>}
             {rulerPoints.length === 1 && <p className="text-xs text-fog/60 leading-relaxed">Search for a reserve or click on the globe for <strong>Point B</strong></p>}
