@@ -40,7 +40,8 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
             
             const pages = extractData.query?.pages;
             if (pages) {
-              extract = Object.values(pages)[0]?.extract || null;
+              const firstPage = Object.values(pages)[0] as any;
+              extract = firstPage?.extract || null;
               if (extract) break; // Found a good extract, stop trying fallback queries
             }
           }
@@ -101,7 +102,7 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
       // Metadata
       pdf.setTextColor(16, 185, 129); // Emerald
       pdf.setFontSize(12);
-      pdf.text(`${entity.type.toUpperCase()} • ${entity.country.toUpperCase()}`, 20, 60);
+      pdf.text(`${entity.type?.toUpperCase() || 'UNKNOWN TYPE'} • ${entity.country?.toUpperCase() || 'UNKNOWN COUNTRY'}`, 20, 60);
       
       pdf.setTextColor(200, 200, 200);
       pdf.setFontSize(10);
