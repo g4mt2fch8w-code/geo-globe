@@ -1,0 +1,251 @@
+import React, { useEffect, useRef, useState } from 'react';
+import forestsData from '../data/forestsData.json';
+
+const Globe = React.lazy(() => import('react-globe.gl'));
+
+const generateLatLine = (lat: number, points = 64) => {
+  const line = [];
+  for (let i = 0; i <= points; i++) {
+    const lng = -180 + (i * 360) / points;
+    line.push([lat, lng]);
+  }
+  return line;
+};
+
+const generateLngLine = (lng: number, points = 64) => {
+  const line = [];
+  for (let i = 0; i <= points; i++) {
+    // We go from -90 to 90 and back to -90 on the other side to complete a full 360 loop
+    // But react-globe.gl paths are just lines. A full meridian loop goes down one side, up the other.
+    const lat = 90 - (i * 360) / points; 
+    const currentLng = lat < -90 || lat > 90 ? lng + 180 : lng;
+    
+    let normalizedLat = lat;
+    if (lat > 90) normalizedLat = 180 - lat;
+    if (lat < -90) normalizedLat = -180 - lat;
+    
+    line.push([normalizedLat, currentLng > 180 ? currentLng - 360 : currentLng]);
+  }
+  return line;
+};
+
+const pathsData = [
+  { name: 'Equator', coords: generateLatLine(0), color: 'rgba(255, 255, 255, 0.4)' },
+  { name: 'Tropic of Cancer', coords: generateLatLine(23.5), color: 'rgba(255, 215, 0, 0.4)' },
+  { name: 'Tropic of Capricorn', coords: generateLatLine(-23.5), color: 'rgba(255, 215, 0, 0.4)' },
+  { name: 'Prime Meridian', coords: generateLngLine(0), color: 'rgba(200, 200, 255, 0.4)' },
+];
+
+export interface GeoEntity {
+  id: string;
+  name: string;
+  subtitle?: string;
+  lat: number;
+  lng: number;
+  color?: string;
+  type?: string;
+  size?: number;
+  alt?: number;
+  areaOrElevation?: string;
+  facts?: string[];
+  country?: string;
+}
+
+interface GlobeViewerProps {
+  onEntityClick: (entity: GeoEntity) => void;
+  onGlobeClick: (lat: number, lng: number) => void;
+  rulerPoints: { lat: number, lng: number }[];
+  isAutoRotate: boolean;
+  flyTo?: {lat: number, lng: number} | null;
+}
+
+const getEntityEmoji = (type?: string) => {
+  if (!type) return '📍';
+  const t = type.toLowerCase();
+  if (t.includes('tiger')) return '🐅';
+  if (t.includes('biosphere')) return '🌿';
+  if (t.includes('national park')) return '🌲';
+  if (t.includes('elephant')) return '🐘';
+  if (t.includes('ramsar')) return '💧';
+  if (t.includes('global')) return '🌎';
+  return '📍';
+};
+
+export const GlobeViewer: React.FC<GlobeViewerProps> = ({ 
+  onEntityClick, onGlobeClick, rulerPoints, isAutoRotate, flyTo
+}) => {
+  const globeRef = useRef<any>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
+
+  useEffect(() => {
+    const updateSize = () => {
+      if (containerRef.current) {
+        setDimensions({
+          width: containerRef.current.clientWidth,
+          height: containerRef.current.clientHeight
+        });
+      }
+    };
+    
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
+  useEffect(() => {
+    if (flyTo && globeRef.current) {
+      globeRef.current.pointOfView({ lat: flyTo.lat, lng: flyTo.lng, altitude: 1.5 }, 1200);
+    }
+  }, [flyTo]);
+
+  useEffect(() => {
+    let frameId: number;
+    const animate = () => {
+      if (globeRef.current) {
+        const scene = globeRef.current.scene();
+        if (scene && scene.rotation.z === 0) {
+          scene.rotation.z = (23.5 * Math.PI) / 180;
+        }
+        
+        const controls = globeRef.current.controls();
+        if (controls) {
+          controls.autoRotate = isAutoRotate;
+          controls.autoRotateSpeed = 0.5;
+        }
+      }
+      frameId = requestAnimationFrame(animate);
+    };
+    animate();
+    
+    return () => cancelAnimationFrame(frameId);
+  }, [isAutoRotate]);
+
+  const handleEntityClick = (entity: GeoEntity) => {
+    if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(50);
+    if (globeRef.current) {
+      globeRef.current.pointOfView({ lat: entity.lat, lng: entity.lng, altitude: 1.5 }, 1200);
+    }
+    onEntityClick(entity);
+  };
+
+  const rulerHtmlData = rulerPoints.map((pt, i) => ({
+    lat: pt.lat,
+    lng: pt.lng,
+    label: i === 0 ? 'A' : 'B'
+  }));
+
+  const arcs = rulerPoints.length === 2 ? [{
+    startLat: rulerPoints[0].lat,
+    startLng: rulerPoints[0].lng,
+    endLat: rulerPoints[1].lat,
+    endLng: rulerPoints[1].lng,
+    color: '#FF9500'
+  }] : [];
+
+  return (
+    <div className="w-full h-full flex flex-col relative bg-black">
+      <div ref={containerRef} className="w-full h-full relative">
+        <React.Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/50">Loading Globe...</div>}>
+          <Globe
+            ref={globeRef}
+            width={dimensions.width}
+            height={dimensions.height}
+            
+            globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+            bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
+            backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
+            
+            onGlobeClick={({ lat, lng }) => onGlobeClick(lat, lng)}
+            
+            pathsData={pathsData}
+            pathPoints="coords"
+            pathPointLat={(p: any) => p[0]}
+            pathPointLng={(p: any) => p[1]}
+            pathColor="color"
+            pathDashAnimateTime={10000}
+            pathStroke={2}
+            
+            htmlElementsData={[...forestsData, ...rulerHtmlData]}
+            htmlLat="lat"
+            htmlLng="lng"
+            htmlElement={(d: any) => {
+              const el = document.createElement('div');
+              // Ensure wrapper can receive pointer events
+              el.className = "group pointer-events-auto cursor-pointer";
+              
+              if (d.label) {
+                el.innerHTML = `
+                  <div style="position: relative; width: 28px; height: 38px; transform: translate(-50%, -100%);">
+                    <svg width="28" height="38" viewBox="0 0 24 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));">
+                      <path d="M12 0C5.37258 0 0 5.37258 0 12C0 21 12 34 12 34C12 34 24 21 24 12C24 5.37258 18.6274 0 12 0Z" fill="#FF9500"/>
+                      <circle cx="12" cy="12" r="5" fill="white"/>
+                    </svg>
+                    <div style="position: absolute; top: 5px; left: 0; width: 100%; text-align: center; color: #FF9500; font-weight: bold; font-size: 10px; font-family: sans-serif;">${d.label}</div>
+                  </div>
+                `;
+              } else {
+                const emoji = getEntityEmoji(d.type);
+                // Use Tailwind group-hover for pure CSS hover
+                el.innerHTML = `
+                  <div class="flex flex-col items-center justify-center transition-transform duration-200 group-hover:scale-125 relative">
+                    <div style="font-size: 20px; text-shadow: 0 0 10px rgba(255,255,255,0.5);">${emoji}</div>
+                    <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute top-[25px] pointer-events-none whitespace-nowrap z-50">
+                      <div style="background: rgba(10, 26, 16, 0.9); border: 1px solid rgba(201, 161, 59, 0.4); padding: 4px 8px; border-radius: 6px; color: #F0D87A; font-family: sans-serif; font-size: 10px; backdrop-filter: blur(4px);">
+                        ${d.name}
+                      </div>
+                    </div>
+                  </div>
+                `;
+                el.onclick = () => handleEntityClick(d as GeoEntity);
+              }
+              return el;
+            }}
+
+            arcsData={arcs}
+            arcColor="color"
+            arcDashLength={1}
+            arcDashGap={0}
+            arcDashAnimateTime={0}
+            arcAltitudeAutoScale={0.2}
+            
+            atmosphereColor="#3b82f6"
+            atmosphereAltitude={0.25}
+          />
+        </React.Suspense>
+      </div>
+
+      <div className="absolute bottom-8 left-8 p-6 glass-card rounded-2xl pointer-events-none z-10 hidden md:block">
+        <h3 className="text-sm font-display uppercase tracking-widest text-gold mb-4">UPSC IFoS Legend</h3>
+        <ul className="space-y-3">
+          <li className="flex items-center gap-3 text-sm text-fog/80">
+            <span>🐅</span> Tiger Reserves
+          </li>
+          <li className="flex items-center gap-3 text-sm text-fog/80">
+            <span>🌲</span> National Parks
+          </li>
+          <li className="flex items-center gap-3 text-sm text-fog/80">
+            <span>🐘</span> Elephant Reserves
+          </li>
+          <li className="flex items-center gap-3 text-sm text-fog/80">
+            <span>🌿</span> Biosphere Reserves
+          </li>
+          <li className="flex items-center gap-3 text-sm text-fog/80">
+            <span>💧</span> Ramsar Sites
+          </li>
+          <li className="flex items-center gap-3 text-sm text-fog/80">
+            <span>🌎</span> Global Main Reserves
+          </li>
+        </ul>
+        <div className="mt-6 pt-4 border-t border-white/10 text-xs text-fog/50 pointer-events-auto">
+          <p>Tilted at 23.5° (Earth's natural axis).</p>
+        </div>
+      </div>
+
+      <div className="absolute bottom-2 w-full text-center text-[10px] text-fog/40 pointer-events-none z-10">
+        Note: Some forests may not be fully available as this is an early stage of the new Geo-Globe project.
+      </div>
+    </div>
+  );
+};
