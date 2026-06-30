@@ -77,6 +77,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
   const globeRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     const updateSize = () => {
@@ -85,6 +86,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
           width: containerRef.current.clientWidth,
           height: containerRef.current.clientHeight
         });
+        setIsMobile(window.innerWidth < 768);
       }
     };
     
@@ -154,13 +156,29 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             height={dimensions.height}
             
             globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-            bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
+            bumpImageUrl={isMobile ? undefined : "//unpkg.com/three-globe/example/img/earth-topology.png"}
             backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
             
             onGlobeReady={() => {
               if (globeRef.current) {
                 // Auto zoom out initially so users can see the stars and universe
                 globeRef.current.pointOfView({ altitude: 3.5 }, 2000);
+                
+                // Optimize Renderer for Mobile (limit Pixel Ratio)
+                const renderer = globeRef.current.renderer();
+                if (renderer) {
+                  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+                }
+
+                // Apple Maps style buttery smooth controls
+                const controls = globeRef.current.controls();
+                if (controls) {
+                  controls.enableDamping = true;
+                  controls.dampingFactor = 0.05;
+                  controls.zoomSpeed = 0.6;
+                  controls.rotateSpeed = 0.5;
+                  controls.panSpeed = 0.5;
+                }
               }
             }}
             
@@ -226,27 +244,39 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
       <div className="absolute bottom-8 left-8 p-6 glass-card rounded-2xl pointer-events-none z-10 hidden md:block">
         <h3 className="text-sm font-display uppercase tracking-widest text-gold mb-4">Legend</h3>
         <ul className="space-y-3">
-          <li className="flex items-center gap-3 text-sm text-fog/80">
-            <span>🐅</span> Tiger Reserves
-          </li>
-          <li className="flex items-center gap-3 text-sm text-fog/80">
-            <span>🌲</span> National Parks
-          </li>
-          <li className="flex items-center gap-3 text-sm text-fog/80">
-            <span>🐘</span> Elephant Reserves
-          </li>
-          <li className="flex items-center gap-3 text-sm text-fog/80">
-            <span>🌿</span> Biosphere Reserves
-          </li>
-          <li className="flex items-center gap-3 text-sm text-fog/80">
-            <span>💧</span> Ramsar Sites
-          </li>
-          <li className="flex items-center gap-3 text-sm text-fog/80">
-            <span>🌎</span> Global Main Reserves
-          </li>
+          <li className="flex items-center gap-3 text-sm text-fog/80"><span>🐅</span> Tiger Reserves</li>
+          <li className="flex items-center gap-3 text-sm text-fog/80"><span>🌲</span> National Parks</li>
+          <li className="flex items-center gap-3 text-sm text-fog/80"><span>🐘</span> Elephant Reserves</li>
+          <li className="flex items-center gap-3 text-sm text-fog/80"><span>🌿</span> Biosphere Reserves</li>
+          <li className="flex items-center gap-3 text-sm text-fog/80"><span>💧</span> Ramsar Sites</li>
+          <li className="flex items-center gap-3 text-sm text-fog/80"><span>🌎</span> Global Main Reserves</li>
         </ul>
         <div className="mt-6 pt-4 border-t border-white/10 text-xs text-fog/50 pointer-events-auto">
           <p>Tilted at 23.5° (Earth's natural axis).</p>
+        </div>
+      </div>
+
+      {/* Mobile Compact Horizontal Legend */}
+      <div 
+        className="absolute bottom-24 w-full px-4 z-10 md:hidden pointer-events-auto flex gap-2 overflow-x-auto pb-1"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        <div className="flex gap-2 min-w-max">
+          <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
+            <span className="text-sm">🐅</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Tiger</span>
+          </div>
+          <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
+            <span className="text-sm">🌲</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Nat. Park</span>
+          </div>
+          <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
+            <span className="text-sm">🐘</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Elephant</span>
+          </div>
+          <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
+            <span className="text-sm">🌿</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Biosphere</span>
+          </div>
+          <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
+            <span className="text-sm">💧</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Ramsar</span>
+          </div>
         </div>
       </div>
 
