@@ -1,7 +1,12 @@
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { BetaTesterFeedback } from './BetaTesterFeedback';
+import { ChevronDown, ChevronUp, Clock, Layers, Ruler } from 'lucide-react';
 
 export const Home = () => {
+  const [isTutorialExpanded, setIsTutorialExpanded] = useState(false);
+
   return (
     <div className="relative w-full min-h-screen overflow-x-hidden bg-ink text-fog font-body pb-24 pt-16">
       {/* Background with noise overlay */}
@@ -14,7 +19,8 @@ export const Home = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center w-full max-w-5xl mx-auto px-4 sm:px-6 text-center mt-6">
+      <div className="relative z-20 flex flex-col items-center justify-center w-full max-w-5xl mx-auto px-4 sm:px-6 text-center mt-2 sm:mt-6">
+        <BetaTesterFeedback />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -108,6 +114,69 @@ export const Home = () => {
                 </p>
               </div>
             </div>
+
+            {/* Expandable Tutorial Button */}
+            <div className="mt-10 text-center border-t border-ink/10 dark:border-[#34d399]/20 pt-8">
+              <button
+                onClick={() => setIsTutorialExpanded(!isTutorialExpanded)}
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-white shadow-[0_0_20px_rgba(251,191,36,0.6)] hover:shadow-[0_0_35px_rgba(251,191,36,0.8)] hover:-translate-y-1 transition-all animate-bounce font-extrabold text-base tracking-wide uppercase"
+              >
+                {isTutorialExpanded ? 'Hide Full Tutorial' : 'Read Full Tutorial'}
+                {isTutorialExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+            </div>
+
+            {/* Accordion Content */}
+            <AnimatePresence>
+              {isTutorialExpanded && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  className="overflow-hidden mt-6"
+                >
+                  <div className="space-y-6 bg-white/60 dark:bg-[#04120e]/60 border border-ink/10 dark:border-[#34d399]/20 rounded-2xl p-6 sm:p-8">
+                    
+                    <div className="flex gap-4 items-start">
+                      <div className="shrink-0 w-10 h-10 rounded-full bg-ink/5 dark:bg-[#fbbf24]/10 border border-ink/20 dark:border-[#fbbf24]/30 flex items-center justify-center text-ink dark:text-[#fbbf24]">
+                        <Clock className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold text-ink dark:text-white mb-2">1. The Timeline Mode</h4>
+                        <p className="text-sm text-ink/80 dark:text-[#d1fae5]/80 leading-relaxed">
+                          Click <strong>"Interactive Modes"</strong> in the top menu and select <strong>"Timeline"</strong>. A slider will appear at the bottom of the screen. Drag it from 1973 to 2024 to watch Tiger Reserves physically populate on the globe exactly as they were notified historically by the NTCA. Click any red marker to open its full wildlife journal.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4 items-start">
+                      <div className="shrink-0 w-10 h-10 rounded-full bg-ink/5 dark:bg-[#34d399]/10 border border-ink/20 dark:border-[#34d399]/30 flex items-center justify-center text-ink dark:text-[#34d399]">
+                        <Layers className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold text-ink dark:text-white mb-2">2. Environmental Overlays</h4>
+                        <p className="text-sm text-ink/80 dark:text-[#d1fae5]/80 leading-relaxed">
+                          Open the <strong>"Map Overlays"</strong> menu. Here you can drape scientific data directly onto the 3D terrain. The <em>Champion & Seth</em> overlay maps out vegetation types, while the <em>Invasive Species Threat</em> layer visualizes areas highly susceptible to flora like Lantana Camara. Active overlays will display an information card on the screen.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-4 items-start">
+                      <div className="shrink-0 w-10 h-10 rounded-full bg-ink/5 dark:bg-blue-500/10 border border-ink/20 dark:border-blue-500/30 flex items-center justify-center text-ink dark:text-blue-500">
+                        <Ruler className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold text-ink dark:text-white mb-2">3. Pro Tools: Measurement</h4>
+                        <p className="text-sm text-ink/80 dark:text-[#d1fae5]/80 leading-relaxed">
+                          Enable <strong>"Measure"</strong> (the ruler icon). Click anywhere on the globe to drop points. Once you drop 3 or more points, it forms a polygon and calculates the geodesic area in square kilometers. The tool automatically accounts for the Earth's curvature. Click the same button to exit and clear the points.
+                        </p>
+                      </div>
+                    </div>
+
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </motion.div>
       </div>

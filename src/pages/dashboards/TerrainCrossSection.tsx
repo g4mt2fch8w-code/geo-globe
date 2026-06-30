@@ -47,6 +47,48 @@ export const TerrainCrossSection = () => {
         { dist: 120, alt: 750, label: 'Pench Corridor (750m)', eco: 'Southern Moist Deciduous Tiger Habitat' },
         { dist: 150, alt: 450, label: 'Nagpur Plains (450m)', eco: 'Dry Thorn Scrub' }
       ]
+    },
+    {
+      id: 'northeast-india',
+      name: 'Northeast India (Brahmaputra Floodplains → Eastern Himalayas)',
+      desc: 'Showcases the transition from the marshy grasslands of Kaziranga (Rhino habitat) up through the incredibly biodiverse, hyper-wet evergreen forests of Namdapha.',
+      totalDistanceKm: 250,
+      maxAltMeters: 4500, // Dapha Bum area
+      points: [
+        { dist: 0, alt: 80, label: 'Brahmaputra Floodplains (80m)', eco: 'Wet Alluvial Grasslands (Kaziranga)' },
+        { dist: 60, alt: 400, label: 'Mishmi Hills Foothills (400m)', eco: 'Tropical Wet Evergreen (Dipterocarpus)' },
+        { dist: 130, alt: 1800, label: 'Lower Namdapha (1800m)', eco: 'Sub-tropical Broadleaved Forest' },
+        { dist: 190, alt: 3200, label: 'Upper Namdapha (3200m)', eco: 'Temperate Coniferous (Rhododendrons)' },
+        { dist: 250, alt: 4500, label: 'Dapha Bum Ridge (4500m)', eco: 'Alpine Scrub & Snow' }
+      ]
+    },
+    {
+      id: 'aravalli-thar',
+      name: 'Aravalli Range & Thar Desert Transect (Jaisalmer → Mount Abu)',
+      desc: 'Demonstrates the stark ecological shift from the hyper-arid sand dunes of the Thar desert up to the cooler, moist microclimate of the Aravalli peaks.',
+      totalDistanceKm: 400,
+      maxAltMeters: 1722, // Guru Shikhar
+      points: [
+        { dist: 0, alt: 220, label: 'Thar Desert (220m)', eco: 'Arid Sand Dunes (Great Indian Bustard)' },
+        { dist: 150, alt: 350, label: 'Semi-Arid Tract (350m)', eco: 'Tropical Thorn Forest (Khejri)' },
+        { dist: 280, alt: 500, label: 'Aravalli Foothills (500m)', eco: 'Dry Deciduous Scrub' },
+        { dist: 370, alt: 1100, label: 'Lower Aravallis (1100m)', eco: 'Anogeissus pendula Forest' },
+        { dist: 400, alt: 1722, label: 'Guru Shikhar Peak (1722m)', eco: 'Sub-tropical Hill Forest (Mount Abu)' }
+      ]
+    },
+    {
+      id: 'eastern-ghats',
+      name: 'Eastern Ghats Transect (Coromandel Coast → Nallamala Hills)',
+      desc: 'Profiles the gradual rise from the eastern coastal plains into the fragmented, ancient Nallamala range, a critical dry deciduous habitat for the Bengal Tiger.',
+      totalDistanceKm: 180,
+      maxAltMeters: 1100,
+      points: [
+        { dist: 0, alt: 10, label: 'Coromandel Coast (10m)', eco: 'Coastal Dry Evergreen' },
+        { dist: 50, alt: 150, label: 'Coastal Plains (150m)', eco: 'Scrub & Cultivation' },
+        { dist: 100, alt: 400, label: 'Eastern Foothills (400m)', eco: 'Dry Teak Forest' },
+        { dist: 150, alt: 950, label: 'Nallamala Ridge (950m)', eco: 'Tropical Dry Deciduous (Nagarjunasagar)' },
+        { dist: 180, alt: 1100, label: 'Bhairavakonda Peak (1100m)', eco: 'Moist Peninsular Sal (Isolated Patches)' }
+      ]
     }
   ];
 

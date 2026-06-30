@@ -217,7 +217,7 @@ export const DeveloperAbout = () => {
           <h2 className="mt-8 font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02] text-fog">
             Omkar Bhople
           </h2>
-          <p className="mt-4 text-xl text-gold font-display tracking-wide">Tiger Researcher, Conservationist & Hardcore Wildlifer.</p>
+          <p className="mt-4 text-xl text-gold font-display tracking-wide">Tiger Lover, Conservationist Researcher, Tiger and Animal Tracker, Trekker.</p>
         </Reveal>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-12 gap-12">
@@ -225,14 +225,14 @@ export const DeveloperAbout = () => {
             <Reveal delay={0.2}>
               <div className="glass-card p-6 rounded-2xl border-l border-gold/30 shadow-emerald">
                 <h4 className="text-xs uppercase tracking-widest text-gold mb-2">Wildlife Specialist</h4>
-                <p className="text-sm text-fog/80 leading-relaxed">World Record Holder, Pantherine Neophyte, & Researcher</p>
+                <p className="text-sm text-fog/80 leading-relaxed">Tiger Lover, Conservationist Researcher, Tiger and Animal Tracker, Trekker</p>
               </div>
             </Reveal>
 
             <Reveal delay={0.3}>
               <div className="glass-card p-6 rounded-2xl border-l border-emerald/30 shadow-emerald">
                 <h4 className="text-xs uppercase tracking-widest text-emerald mb-2">Focus</h4>
-                <p className="text-sm text-fog/80 leading-relaxed">AI, Automation, System Design & Software Development</p>
+                <p className="text-sm text-fog/80 leading-relaxed">AI, Automation, and Softwares related to Wildlife</p>
               </div>
             </Reveal>
 
@@ -240,14 +240,14 @@ export const DeveloperAbout = () => {
               <Reveal delay={0.4}>
                 <div className="glass-card p-6 rounded-2xl border-l border-white/10 shadow-emerald h-full">
                   <h4 className="text-xs uppercase tracking-widest text-fog/50 mb-2">Achievements</h4>
-                  <p className="text-sm text-fog/80 leading-relaxed">Super Talented Kids Award Holder</p>
+                  <p className="text-sm text-fog/80 leading-relaxed">World Record Holder, Super Talented Kids Award Holder</p>
                 </div>
               </Reveal>
 
               <Reveal delay={0.5}>
                 <div className="glass-card p-6 rounded-2xl border-l border-white/10 shadow-emerald h-full">
-                  <h4 className="text-xs uppercase tracking-widest text-fog/50 mb-2">Experience</h4>
-                  <p className="text-sm text-fog/80 leading-relaxed">Years of field-based initiatives and collaboration with different Forest Departments.</p>
+                  <h4 className="text-xs uppercase tracking-widest text-fog/50 mb-2">Affiliations</h4>
+                  <p className="text-sm text-fog/80 leading-relaxed">PantheraRadar India (Founder), PSBS Bhandara & other NGOs.</p>
                 </div>
               </Reveal>
             </div>
