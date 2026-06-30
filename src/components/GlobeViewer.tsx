@@ -65,6 +65,7 @@ const getEntityEmoji = (type?: string) => {
   if (t.includes('tiger')) return '🐅';
   if (t.includes('biosphere')) return '🌿';
   if (t.includes('national park')) return '🌲';
+  if (t.includes('sanctuary')) return '🦊';
   if (t.includes('elephant')) return '🐘';
   if (t.includes('ramsar')) return '💧';
   if (t.includes('global')) return '🌎';
@@ -77,6 +78,7 @@ const getEntityColor = (type?: string) => {
   if (t.includes('tiger')) return '#F97316'; // orange-500
   if (t.includes('biosphere')) return '#84CC16'; // lime-500
   if (t.includes('national park')) return '#22C55E'; // green-500
+  if (t.includes('sanctuary')) return '#14B8A6'; // teal-500
   if (t.includes('elephant')) return '#A3A3A3'; // neutral-400
   if (t.includes('ramsar')) return '#3B82F6'; // blue-500
   if (t.includes('global')) return '#EAB308'; // yellow-500
@@ -259,6 +261,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
         <ul className="space-y-3">
           <li className="flex items-center gap-3 text-sm text-fog/80"><span>🐅</span> Tiger Reserves</li>
           <li className="flex items-center gap-3 text-sm text-fog/80"><span>🌲</span> National Parks</li>
+          <li className="flex items-center gap-3 text-sm text-fog/80"><span>🦊</span> Wildlife Sanctuaries</li>
           <li className="flex items-center gap-3 text-sm text-fog/80"><span>🐘</span> Elephant Reserves</li>
           <li className="flex items-center gap-3 text-sm text-fog/80"><span>🌿</span> Biosphere Reserves</li>
           <li className="flex items-center gap-3 text-sm text-fog/80"><span>💧</span> Ramsar Sites</li>
@@ -280,6 +283,9 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
           </div>
           <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
             <span className="text-sm">🌲</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Nat. Park</span>
+          </div>
+          <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
+            <span className="text-sm">🦊</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Sanctuary</span>
           </div>
           <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
             <span className="text-sm">🐘</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Elephant</span>

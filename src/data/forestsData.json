@@ -2278,5 +2278,77 @@
     "size": 0.8,
     "alt": 0.02,
     "facts": []
+  },
+  {
+    "name": "Amazon Rainforest",
+    "country": "Brazil / South America",
+    "lat": -3.0,
+    "lng": -60.0,
+    "type": "Global Main Reserve",
+    "size": 2.5,
+    "alt": 0.05,
+    "facts": [],
+    "id": "ent-190",
+    "color": "#EAB308"
+  },
+  {
+    "name": "Tipeshwar",
+    "country": "Maharashtra, India",
+    "lat": 19.98,
+    "lng": 78.47,
+    "type": "Wildlife Sanctuary",
+    "size": 0.8,
+    "alt": 0.02,
+    "facts": [],
+    "id": "ent-191",
+    "color": "#22C55E"
+  },
+  {
+    "name": "Dnyanganga",
+    "country": "Maharashtra, India",
+    "lat": 20.55,
+    "lng": 76.65,
+    "type": "Wildlife Sanctuary",
+    "size": 0.8,
+    "alt": 0.02,
+    "facts": [],
+    "id": "ent-192",
+    "color": "#22C55E"
+  },
+  {
+    "name": "Karanja Sohol",
+    "country": "Maharashtra, India",
+    "lat": 20.35,
+    "lng": 77.53,
+    "type": "Wildlife Sanctuary",
+    "size": 0.8,
+    "alt": 0.02,
+    "facts": [],
+    "id": "ent-193",
+    "color": "#22C55E"
+  },
+  {
+    "name": "Gautala Autramghat",
+    "country": "Maharashtra, India",
+    "lat": 20.33,
+    "lng": 75.14,
+    "type": "Wildlife Sanctuary",
+    "size": 0.8,
+    "alt": 0.02,
+    "facts": [],
+    "id": "ent-194",
+    "color": "#22C55E"
+  },
+  {
+    "name": "Yedshi Ramling",
+    "country": "Maharashtra, India",
+    "lat": 18.17,
+    "lng": 76.05,
+    "type": "Wildlife Sanctuary",
+    "size": 0.8,
+    "alt": 0.02,
+    "facts": [],
+    "id": "ent-195",
+    "color": "#22C55E"
   }
 ]

@@ -10,6 +10,7 @@ interface JournalUIProps {
 
 export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
   const [wikiData, setWikiData] = useState<string | null>(null);
+  const [wikiUrl, setWikiUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
 
@@ -21,20 +22,26 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
       setLoading(true);
       setWikiData(null);
 
+      const typeStr = entity.type && !entity.name.includes(entity.type) ? entity.type : '';
       const countryStr = entity.country && !entity.country.includes('India') ? entity.country : 'India';
+      
+      // Extremely strict queries to guarantee we don't fetch random towns or people instead of the sanctuary.
       const queriesToTry = [
-        `${entity.name} ${countryStr}`, // Try with country first
-        entity.name // Fallback to just name
+        `${entity.name} ${typeStr} ${countryStr}`.trim(), 
+        `${entity.name} ${typeStr}`.trim(),
+        `${entity.name}`.trim()
       ];
 
       try {
         let extract: string | null = null;
+        let url: string | null = null;
         for (const query of queriesToTry) {
           const searchRes = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&utf8=&format=json&origin=*`);
           const searchData = await searchRes.json();
           
           if (searchData.query?.search?.length > 0) {
             const pageId = searchData.query.search[0].pageid;
+            const pageTitle = searchData.query.search[0].title;
             const extractRes = await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&pageids=${pageId}&format=json&origin=*`);
             const extractData = await extractRes.json();
             
@@ -42,13 +49,17 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
             if (pages) {
               const firstPage = Object.values(pages)[0] as any;
               extract = firstPage?.extract || null;
-              if (extract) break; // Found a good extract, stop trying fallback queries
+              if (extract) {
+                url = `https://en.wikipedia.org/wiki/${encodeURIComponent(pageTitle.replace(/ /g, '_'))}`;
+                break; // Found a good extract, stop trying fallback queries
+              }
             }
           }
         }
         
         if (isMounted) {
           setWikiData(extract || "No detailed information found.");
+          setWikiUrl(url);
         }
       } catch (err) {
         if (isMounted) {
@@ -169,14 +180,10 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
                 {entity.type} • {entity.country}
               </p>
               
-              <div className="grid grid-cols-2 gap-4 mt-6">
-                <div className="bg-white/5 p-4 rounded-xl border border-white/10">
+              <div className="mt-6">
+                <div className="bg-white/5 p-4 rounded-xl border border-white/10 inline-block w-full">
                   <div className="text-[10px] uppercase tracking-widest text-fog/50 mb-1">Coordinates</div>
                   <div className="font-mono text-sm text-gold-soft">{entity.lat.toFixed(4)}°, {entity.lng.toFixed(4)}°</div>
-                </div>
-                <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                  <div className="text-[10px] uppercase tracking-widest text-fog/50 mb-1">Priority Level</div>
-                  <div className="text-sm font-bold text-emerald">High (UPSC IFoS)</div>
                 </div>
               </div>
             </div>
@@ -194,9 +201,21 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
                   <div className="h-4 bg-white/10 rounded w-full"></div>
                 </div>
               ) : (
-                <p className="text-sm leading-relaxed text-fog/80 whitespace-pre-wrap">
-                  {wikiData}
-                </p>
+                <>
+                  <p className="text-sm leading-relaxed text-fog/80 whitespace-pre-wrap">
+                    {wikiData}
+                  </p>
+                  {wikiUrl && (
+                    <a 
+                      href={wikiUrl} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-block mt-4 text-xs font-semibold uppercase tracking-widest text-emerald hover:text-gold transition-colors border border-emerald/30 hover:border-gold/50 px-4 py-2 rounded-full"
+                    >
+                      Read Full Article ↗
+                    </a>
+                  )}
+                </>
               )}
             </div>
             
