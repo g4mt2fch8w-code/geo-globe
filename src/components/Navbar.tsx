@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { BookOpen, Globe2, Sun, Moon, ChevronLeft } from 'lucide-react';
+import { Globe2, Sun, Moon, ChevronLeft, BookOpen, RefreshCw } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTheme } from './ThemeProvider';
 import { GlobalSearch } from './GlobalSearch';
@@ -13,8 +13,8 @@ export function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 p-4 pt-safe pointer-events-none">
       <div className="max-w-3xl mx-auto flex items-center justify-center relative">
         
-        {/* Left: Back Button */}
-        <div className="absolute left-0 pointer-events-auto flex">
+        {/* Left: Back & Refresh Buttons */}
+        <div className="absolute left-0 pointer-events-auto flex items-center gap-2">
           <motion.button 
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -24,6 +24,17 @@ export function Navbar() {
             aria-label="Go back"
           >
             <ChevronLeft className="w-5 h-5" />
+          </motion.button>
+          
+          <motion.button 
+            whileHover={{ scale: 1.1, rotate: 180 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 500, damping: 10 }}
+            onClick={() => window.location.reload()}
+            className="w-11 h-11 rounded-full glass-card flex items-center justify-center text-fog hover:text-white hover:bg-white/10 transition-colors border border-white/10 shadow-[0_0_15px_rgba(0,0,0,0.2)]"
+            aria-label="Refresh page"
+          >
+            <RefreshCw className="w-4 h-4" />
           </motion.button>
         </div>
 
