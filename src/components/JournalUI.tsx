@@ -150,7 +150,7 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
   };
 
   return (
-    <div className="absolute top-0 right-0 h-full w-full md:w-[480px] z-50 animate-in slide-in-from-right-8 fade-in font-body">
+    <div className="absolute top-0 right-0 h-full w-full md:w-[480px] z-[100] animate-in slide-in-from-right-8 fade-in font-body">
       <div className="h-full w-full glass-card border-l border-white/10 shadow-emerald flex flex-col noise">
         <div className="absolute inset-0 noise-overlay"></div>
         
