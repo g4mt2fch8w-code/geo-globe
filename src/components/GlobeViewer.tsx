@@ -88,24 +88,12 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
 }) => {
   const globeRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
-    const updateSize = () => {
-      if (containerRef.current) {
-        setDimensions({
-          width: containerRef.current.clientWidth,
-          height: containerRef.current.clientHeight
-        });
-        setIsMobile(window.innerWidth < 768);
-      }
-    };
-    
-    window.addEventListener('resize', updateSize);
-    updateSize();
-    
-    return () => window.removeEventListener('resize', updateSize);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
@@ -164,8 +152,6 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
         <React.Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/50">Loading Globe...</div>}>
           <Globe
             ref={globeRef}
-            width={dimensions.width}
-            height={dimensions.height}
             
             globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
             bumpImageUrl={isMobile ? undefined : "//unpkg.com/three-globe/example/img/earth-topology.png"}
@@ -228,9 +214,8 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                 // Ruler Marker
                 const filter = isMobile ? '' : 'filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));';
                 el.innerHTML = `
-                  <div style="position: relative; width: 14px; height: 14px; transform: translate(-50%, -50%);">
-                    <div style="width: 100%; height: 100%; background-color: #FF9500; border: 2px solid white; border-radius: 50%; ${filter}"></div>
-                    <div style="position: absolute; top: -18px; left: 50%; transform: translateX(-50%); color: #FF9500; font-weight: bold; font-size: 12px; font-family: sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">${d.label}</div>
+                  <div style="width: 14px; height: 14px; background-color: #FF9500; border: 2px solid white; border-radius: 50%; ${filter}; position: relative;">
+                    <div style="position: absolute; top: -24px; left: 50%; transform: translateX(-50%); color: #FF9500; font-weight: bold; font-size: 12px; font-family: sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.8); white-space: nowrap;">${d.label}</div>
                   </div>
                 `;
               } else {
