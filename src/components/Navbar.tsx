@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { BookOpen, Globe2, Home, Sun, Moon, ChevronLeft } from 'lucide-react';
+import { BookOpen, Globe2, Sun, Moon, ChevronLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTheme } from './ThemeProvider';
 import { GlobalSearch } from './GlobalSearch';

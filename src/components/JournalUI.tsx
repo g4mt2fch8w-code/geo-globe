@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import type { GeoEntity } from './GlobeViewer';
 import * as jspdfModule from 'jspdf';
-import { X, ExternalLink, Download, BookOpen, Loader2 } from 'lucide-react';
+import { X, ExternalLink, Download, BookOpen } from 'lucide-react';
 import { logoBase64 } from '../assets/logoBase64';
 
 interface JournalUIProps {
