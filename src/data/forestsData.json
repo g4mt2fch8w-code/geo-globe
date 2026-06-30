@@ -573,7 +573,8 @@
     "type": "Tiger Reserve",
     "size": 0.8,
     "alt": 0.02,
-    "facts": []
+    "facts": [],
+    "customSummary": "Tadoba Andhari Tiger Reserve is Maharashtra's oldest and largest national park, spanning over 1,700 sq. km. Known as the 'Jewel of Vidarbha', it features dry deciduous forests dominated by teak and bamboo. The reserve is renowned for its high density of tigers and frequent sightings, as well as a thriving population of sloth bears, wild dogs (dholes), and leopards."
   },
   {
     "id": "ent-48",
@@ -1117,15 +1118,16 @@
   },
   {
     "id": "ent-93",
-    "name": "Navegaon",
+    "name": "Navegaon Nagzira",
     "country": "Maharashtra, India",
-    "lat": 20.3462868,
-    "lng": 76.824064,
-    "color": "#34C759",
-    "type": "National Park",
-    "size": 0.7,
-    "alt": 0.015,
-    "facts": []
+    "lat": 21.0500,
+    "lng": 80.1000,
+    "color": "#FF9500",
+    "type": "Tiger Reserve",
+    "size": 0.8,
+    "alt": 0.02,
+    "facts": [],
+    "customSummary": "Navegaon Nagzira Tiger Reserve (NNTR) is situated in the Gondia and Bhandara districts of Maharashtra. Comprising several distinct wildlife sanctuaries, it covers a significant geographical range and serves as a vital ecological corridor for tigers moving between central Indian forests like Kanha, Pench, and Tadoba."
   },
   {
     "id": "ent-94",
