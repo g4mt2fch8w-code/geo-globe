@@ -258,7 +258,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
         </React.Suspense>
       </div>
 
-      <div className="absolute bottom-8 left-8 p-6 glass-card rounded-2xl pointer-events-none z-10 hidden md:block">
+      <div className="absolute bottom-8 left-8 p-6 bg-black/5 dark:bg-black/20 backdrop-blur-[30px] rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)] pointer-events-none z-10 hidden md:block">
         <h3 className="text-sm font-display uppercase tracking-widest text-gold mb-4">Legend</h3>
         <ul className="space-y-3">
           <li className="flex items-center gap-3 text-sm text-fog/80"><span>🐅</span> Tiger Reserves</li>
@@ -279,23 +279,23 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
         className="absolute bottom-24 w-full px-4 z-10 md:hidden pointer-events-auto flex gap-2 overflow-x-auto pb-1"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
-        <div className="flex gap-2 min-w-max">
-          <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
+        <div className="flex gap-3 min-w-max">
+          <div className="flex items-center gap-1.5 bg-black/5 dark:bg-black/20 backdrop-blur-[30px] px-4 py-2 rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
             <span className="text-sm">🐅</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Tiger Reserve</span>
           </div>
-          <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
+          <div className="flex items-center gap-1.5 bg-black/5 dark:bg-black/20 backdrop-blur-[30px] px-4 py-2 rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
             <span className="text-sm">🌲</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">National Park</span>
           </div>
-          <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
+          <div className="flex items-center gap-1.5 bg-black/5 dark:bg-black/20 backdrop-blur-[30px] px-4 py-2 rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
             <span className="text-sm">🦌</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Wildlife Sanctuary</span>
           </div>
-          <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
+          <div className="flex items-center gap-1.5 bg-black/5 dark:bg-black/20 backdrop-blur-[30px] px-4 py-2 rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
             <span className="text-sm">🐘</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Elephant Reserve</span>
           </div>
-          <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
+          <div className="flex items-center gap-1.5 bg-black/5 dark:bg-black/20 backdrop-blur-[30px] px-4 py-2 rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
             <span className="text-sm">🌿</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Biosphere Reserve</span>
           </div>
-          <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
+          <div className="flex items-center gap-1.5 bg-black/5 dark:bg-black/20 backdrop-blur-[30px] px-4 py-2 rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
             <span className="text-sm">💧</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Ramsar Site</span>
           </div>
         </div>
