@@ -162,48 +162,7 @@ export const AnalyticalHub = () => {
             <div className="text-[10px] text-slate-500 dark:text-white/50 mt-4 text-right">Source: NTCA 2022 Tiger Census Report</div>
           </div>
 
-          {/* Area Allocation Chart */}
-          <div className="glass-card bg-white/80 dark:bg-[#1e1b4b]/80 border border-indigo-300 dark:border-[#818cf8]/40 p-6 rounded-3xl shadow-xl">
-            <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-6 uppercase tracking-wider font-mono">Core vs Buffer Zone Allocation</h3>
-            <div className="flex h-32 items-end gap-2 sm:gap-4 mb-2">
-              {[
-                { name: "Nagarjunasagar", core: 3721, buffer: 1175 },
-                { name: "Similipal", core: 1194, buffer: 1555 },
-                { name: "Bandipur", core: 872, buffer: 584 },
-                { name: "Corbett", core: 821, buffer: 466 },
-                { name: "Ranthambore", core: 1113, buffer: 297 }
-              ].map((reserve) => (
-                <div key={reserve.name} className="flex-1 flex flex-col justify-end items-center group relative h-full">
-                  <div className="absolute -top-10 scale-0 group-hover:scale-100 transition-transform bg-black/80 text-white text-[10px] p-2 rounded whitespace-nowrap z-10 border border-white/20">
-                    <div className="font-bold text-[#818cf8]">{reserve.name}</div>
-                    <div>Core: {reserve.core} km²</div>
-                    <div>Buffer: {reserve.buffer} km²</div>
-                  </div>
-                  
-                  {/* Buffer bar (top) */}
-                  <div 
-                    className="w-full bg-[#818cf8]/40 rounded-t-sm"
-                    style={{ height: `${(reserve.buffer / 5000) * 100}%` }}
-                  />
-                  {/* Core bar (bottom) */}
-                  <div 
-                    className="w-full bg-[#4f46e5] rounded-t-sm"
-                    style={{ height: `${(reserve.core / 5000) * 100}%` }}
-                  />
-                  
-                  <div className="text-[9px] font-mono font-bold text-slate-600 dark:text-[#818cf8]/80 -rotate-45 origin-top-left mt-8 w-20 whitespace-nowrap">
-                    {reserve.name}
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <div className="flex gap-4 text-[10px] text-slate-600 dark:text-white/70 mt-10 justify-center">
-              <div className="flex items-center gap-1"><div className="w-3 h-3 bg-[#4f46e5] rounded-sm"></div> Core Area</div>
-              <div className="flex items-center gap-1"><div className="w-3 h-3 bg-[#818cf8]/40 rounded-sm"></div> Buffer Area</div>
-            </div>
-            <div className="text-[10px] text-slate-500 dark:text-white/50 mt-4 text-right">Source: MoEFCC Gazette Notifications</div>
-          </div>
+
         </div>
       </div>
 
