@@ -77,8 +77,12 @@ const GlobeApp = () => {
 };
 
 import { ThemeProvider } from './components/ThemeProvider';
+import { useLocation } from 'react-router-dom';
 
 export default function App() {
+  const location = useLocation();
+  const isGlobePage = location.pathname === '/globe';
+
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-ink text-fog overflow-x-hidden">
@@ -90,7 +94,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
           </Routes>
         </main>
-        <Footer />
+        {!isGlobePage && <Footer />}
       </div>
     </ThemeProvider>
   );
