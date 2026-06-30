@@ -1,4 +1,5 @@
 import { Leaf } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export function Footer() {
   return (
@@ -24,6 +25,8 @@ export function Footer() {
       <div className="mx-auto mt-14 flex max-w-[1500px] flex-col items-center justify-between gap-4 border-t border-white/[0.06] px-6 pt-6 text-xs text-fog/40 md:flex-row md:px-12">
         <div>
           © {new Date().getFullYear()} Geo-Globe | Made by <a href="https://omkarbhople.com" target="_blank" rel="noopener noreferrer" className="text-emerald hover:underline">Omkar Bhople</a>
+          <span className="mx-2">&middot;</span>
+          <Link to="/terms" className="hover:text-white transition-colors">Terms & Conditions</Link>
         </div>
         <div className="flex items-center gap-2">
           <span className="h-px w-4 bg-gold/30" />

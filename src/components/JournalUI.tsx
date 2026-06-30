@@ -194,14 +194,14 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
           <div id="journal-content" className="flex-1 overflow-y-auto p-8 text-fog">
             <div className="mb-8 pb-8 border-b border-white/10">
               <h1 className="text-4xl font-display text-gold-gradient mb-2">{entity.name}</h1>
-              <p className="text-sm font-semibold tracking-widest uppercase text-emerald mb-4">
+              <p className="text-sm font-semibold tracking-widest uppercase text-sky-300 mb-4">
                 {entity.type} • {entity.country}
               </p>
               
               <div className="mt-6">
                 <div className="bg-white/5 p-4 rounded-xl border border-white/10 inline-block w-full">
                   <div className="text-[10px] uppercase tracking-widest text-fog/50 mb-1">Coordinates</div>
-                  <div className="font-mono text-sm text-gold-soft">{entity.lat.toFixed(4)}°, {entity.lng.toFixed(4)}°</div>
+                  <div className="font-mono text-sm text-sky-300">{entity.lat.toFixed(4)}°, {entity.lng.toFixed(4)}°</div>
                 </div>
               </div>
             </div>
@@ -221,9 +221,11 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
               ) : (
                 <>
                   {wikiData ? (
-                    <p className="text-sm leading-relaxed text-fog/80 whitespace-pre-wrap">
-                      {wikiData}
-                    </p>
+                    <div className="bg-white/5 backdrop-blur-2xl p-6 rounded-[2rem] border border-white/10 shadow-[inset_0_2px_20px_rgba(255,255,255,0.05)]">
+                      <p className="text-sm leading-relaxed text-fog/90 whitespace-pre-wrap">
+                        {wikiData}
+                      </p>
+                    </div>
                   ) : (
                     <div className="bg-emerald-900/40 p-4 rounded-xl border border-emerald-500/20 mt-4">
                       <div className="flex items-start gap-3">

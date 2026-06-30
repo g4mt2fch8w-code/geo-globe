@@ -343,6 +343,56 @@ export const AnimatedDivider = () => {
   );
 };
 
+const faqs = [
+  {
+    q: "What is Geo-Globe?",
+    a: "An interactive 3D platform designed to help UPSC and IFoS aspirants visualize and memorize India's vital ecological reserves, national parks, and biospheres."
+  },
+  {
+    q: "How does the distance measurement work?",
+    a: "It uses the Haversine formula to calculate the exact real-world distance between two geographical coordinates, drawing a 3D arc across the globe's surface."
+  },
+  {
+    q: "Is the data updated regularly?",
+    a: "We pull live facts directly from Wikipedia's API, meaning you always get the latest available information on any selected reserve or park."
+  },
+  {
+    q: "How do I export my research?",
+    a: "When you open the data journal for a location, you can click the \"Download PDF\" button to instantly generate a printable lab report of your findings."
+  }
+];
+
+const FAQSection = () => {
+  return (
+    <section className="py-32 px-6 bg-ink relative z-10 border-t border-white/[0.04]">
+      <div className="max-w-[1200px] mx-auto">
+        <Reveal>
+          <div className="flex items-center gap-4 mb-8">
+            <span className="h-px w-10 bg-emerald/60" />
+            <span className="text-[11px] uppercase tracking-[0.4em] text-emerald/80">
+              Questions & Answers
+            </span>
+          </div>
+          <h2 className="font-display text-4xl md:text-5xl text-fog mb-16">
+            Frequently Asked <span className="text-emerald">Questions</span>
+          </h2>
+        </Reveal>
+        
+        <div className="grid md:grid-cols-2 gap-6">
+          {faqs.map((faq, i) => (
+            <Reveal delay={i * 0.1} key={i}>
+              <div className="glass-card p-8 rounded-[2rem] h-full transition-transform duration-500 hover:-translate-y-2">
+                <h3 className="font-display text-2xl text-white mb-4 leading-snug">{faq.q}</h3>
+                <p className="text-fog/70 leading-relaxed text-sm md:text-base font-body">{faq.a}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export const About = () => {
   return (
     <div className="w-full min-h-screen bg-ink flex flex-col">
@@ -350,6 +400,7 @@ export const About = () => {
       <AnimatedDivider />
       <Timeline />
       <DeveloperAbout />
+      <FAQSection />
     </div>
   );
 };

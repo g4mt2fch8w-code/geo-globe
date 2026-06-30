@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { About } from './components/About';
 import { Home } from './components/Home';
+import { Terms } from './components/Terms';
 import { GlobeViewer } from './components/GlobeViewer';
 import type { GeoEntity } from './components/GlobeViewer';
 import { ControlsUI } from './components/ControlsUI';
@@ -110,6 +111,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/globe" element={<GlobeApp />} />
             <Route path="/about" element={<About />} />
+            <Route path="/terms" element={<Terms />} />
           </Routes>
         </main>
         {!isGlobePage && <Footer />}
