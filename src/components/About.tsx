@@ -225,7 +225,7 @@ export const DeveloperAbout = () => {
             <Reveal delay={0.2}>
               <div className="glass-card p-6 rounded-2xl border-l border-gold/30 shadow-emerald">
                 <h4 className="text-xs uppercase tracking-widest text-gold mb-2">Wildlife Specialist</h4>
-                <p className="text-sm text-fog/80 leading-relaxed">World Record Holder, Tiger Expert, & Researcher</p>
+                <p className="text-sm text-fog/80 leading-relaxed">World Record Holder, Pantherine Neophyte, & Researcher</p>
               </div>
             </Reveal>
 

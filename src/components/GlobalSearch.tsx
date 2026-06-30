@@ -8,7 +8,7 @@ const staticPages = [
   { name: 'Home', path: '/', icon: Home, type: 'Page' },
   { name: 'Globe Viewer', path: '/globe', icon: Globe2, type: 'Page' },
   { name: 'About Geo-Globe', path: '/about', icon: BookOpen, type: 'Page' },
-  { name: 'About Omkar Bhople', path: 'https://omkarbhople.com', icon: User, type: 'Creator' }
+  { name: 'About Omkar Bhople', path: 'https://onkarpatil.tiger.in', icon: User, type: 'Creator' }
 ];
 
 export function GlobalSearch() {
