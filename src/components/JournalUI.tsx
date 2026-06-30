@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { GeoEntity } from './GlobeViewer';
 import * as jspdfModule from 'jspdf';
-import { X, ExternalLink, Download, FileText, ChevronRight, BookOpen } from 'lucide-react';
+import { X, ExternalLink, Download, BookOpen } from 'lucide-react';
 
 interface JournalUIProps {
   entity: GeoEntity | null;
