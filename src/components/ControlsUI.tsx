@@ -187,7 +187,7 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
 
         </div>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2 md:gap-3 w-full md:w-auto">
 {/* Interactive Globe Modes Selector */}
         {setGlobeMode && (
           <div className="relative pointer-events-auto">
@@ -422,12 +422,13 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
           {/* Measurement Tools: desktop only */}
           <button 
             onClick={() => setRulerMode(!rulerMode)}
-            className={`hidden sm:flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold transition-all border backdrop-blur-md ${
+            className={`flex items-center justify-center gap-2 px-3 sm:px-5 py-2.5 rounded-full text-[10px] sm:text-xs font-bold transition-all border backdrop-blur-md ${
               rulerMode ? 'border-gold text-gold bg-gold/15 shadow-[0_0_20px_rgba(251,191,36,0.3)]' : 'bg-black/40 text-white/90 border-white/20 hover:border-gold/50 hover:text-white'
             }`}
           >
             <Activity className="w-3.5 h-3.5" />
-            <span>{rulerMode ? 'Exit Tools' : 'Measurement Tools'}</span>
+            <span className="hidden sm:inline">{rulerMode ? 'Exit Tools' : 'Measurement Tools'}</span>
+            <span className="sm:hidden">{rulerMode ? 'Exit' : 'Measure'}</span>
           </button>
 
           {/* Orbit/Pause: visible on all screens */}
