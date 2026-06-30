@@ -146,7 +146,7 @@ export const SplashScreen: React.FC<{ onComplete: () => void }> = ({ onComplete 
           transition={{ delay: 0.2 }}
           className="text-2xl sm:text-3xl font-display font-extrabold text-[#fbbf24] mb-3 drop-shadow-[0_2px_10px_rgba(251,191,36,0.3)]"
         >
-          Experience 3D Wildlife & Forests
+          Experience Wildlife & Forests
         </motion.h1>
 
         {/* Instructions in own words */}
