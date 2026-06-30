@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { BookOpen, Globe2, Home, Sun, Moon } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
+import { GlobalSearch } from './GlobalSearch';
 
 export function Navbar() {
   const location = useLocation();
@@ -54,6 +55,9 @@ export function Navbar() {
           </button>
         </div>
 
+        <div className="ml-2 sm:ml-4">
+          <GlobalSearch />
+        </div>
       </div>
     </nav>
   );

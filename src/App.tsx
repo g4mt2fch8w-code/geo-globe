@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { About } from './components/About';
@@ -9,8 +9,12 @@ import { ControlsUI } from './components/ControlsUI';
 import { JournalUI } from './components/JournalUI';
 import { Footer } from './components/Footer';
 
+import { useLocation, useSearchParams } from 'react-router-dom';
+import forestsData from './data/forestsData.json';
+
 const GlobeApp = () => {
   const [selectedEntity, setSelectedEntity] = useState<GeoEntity | null>(null);
+  const [searchParams] = useSearchParams();
   
   // Ruler State
   const [rulerMode, setRulerMode] = useState(false);
@@ -19,6 +23,21 @@ const GlobeApp = () => {
   // Globe State
   const [isAutoRotate, setIsAutoRotate] = useState(true);
   const [flyTo, setFlyTo] = useState<{lat: number, lng: number} | null>(null);
+
+  // Check for search query in URL on mount
+  useEffect(() => {
+    const search = searchParams.get('search');
+    if (search) {
+      const decodedSearch = decodeURIComponent(search).toLowerCase().trim();
+      const match = forestsData.find(f => f.name.toLowerCase().includes(decodedSearch));
+      if (match) {
+        // Delay slightly to ensure Globe component is mounted before flying
+        setTimeout(() => {
+          handleSearchSelect(match as GeoEntity);
+        }, 500);
+      }
+    }
+  }, [searchParams]);
 
   const handleGlobeClick = (lat: number, lng: number) => {
     if (rulerMode) {
@@ -77,7 +96,6 @@ const GlobeApp = () => {
 };
 
 import { ThemeProvider } from './components/ThemeProvider';
-import { useLocation } from 'react-router-dom';
 
 export default function App() {
   const location = useLocation();
