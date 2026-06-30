@@ -8,6 +8,21 @@ export default defineConfig({
     react(),
   ],
   build: {
-    chunkSizeWarningLimit: 1500
+    chunkSizeWarningLimit: 2500,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/three')) {
+            return 'three';
+          }
+          if (id.includes('node_modules/react-globe.gl')) {
+            return 'react-globe';
+          }
+          if (id.includes('node_modules/framer-motion')) {
+            return 'framer-motion';
+          }
+        }
+      }
+    }
   }
 })

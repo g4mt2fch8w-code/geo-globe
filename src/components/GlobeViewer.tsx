@@ -432,7 +432,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
           <Globe
             ref={globeRef}
             
-            globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+            globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
             bumpImageUrl={isMobile ? undefined : "//unpkg.com/three-globe/example/img/earth-topology.png"}
             backgroundImageUrl={isMobile ? undefined : "//unpkg.com/three-globe/example/img/night-sky.png"}
             
@@ -512,7 +512,18 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             pointResolution={16}
             onPointClick={(d: any) => handleEntityClick(d)}
             
-            htmlElementsData={isMobile ? rulerHtmlData : (globeMode && globeMode !== 'standard' ? [...rulerHtmlData, ...layerHtmlElements] : [...forestsData, ...rulerHtmlData, ...layerHtmlElements])}
+
+            labelsData={globeMode === 'standard' ? forestsData : []}
+            labelLat="lat"
+            labelLng="lng"
+            labelText={(d: any) => getEntityEmoji(d.type)}
+            labelSize={isMobile ? 1.5 : 2.5}
+            labelDotRadius={0.5}
+            labelColor={(d: any) => getEntityColor(d.type)}
+            labelResolution={3}
+            onLabelClick={(d: any) => handleEntityClick(d)}
+
+            htmlElementsData={(() => { const base = [...rulerHtmlData, ...layerHtmlElements]; if (selectedEntity) { const fullEntity = forestsData.find(f => f.name === selectedEntity.name); if (fullEntity) base.push(fullEntity); } return base; })()}
             htmlLat="lat"
             htmlLng="lng"
             htmlElement={(d: any) => {
@@ -557,7 +568,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       </div>
                     ` : ''}
                     <div style="font-size: ${isSelected ? '28px' : '22px'}; ${textShadow} transition: transform 0.2s;" class="${isSelected ? 'scale-125' : 'group-hover:scale-125'}">${emoji}</div>
-                    <div class="${isSelected ? 'opacity-100 scale-105' : 'opacity-0 group-hover:opacity-100'} transition-all duration-200 absolute top-[28px] pointer-events-none whitespace-nowrap z-50">
+                    <div class="opacity-100 scale-105 transition-all duration-200 absolute top-[28px] pointer-events-none whitespace-nowrap z-50">
                       <div style="background: ${bg}; border: 1px solid ${isSelected ? 'rgba(251, 191, 36, 0.9)' : 'rgba(201, 161, 59, 0.4)'}; padding: ${isSelected ? '4px 8px' : '3px 7px'}; border-radius: 6px; color: #F0D87A; font-family: sans-serif; font-size: ${isSelected ? '11px' : '10px'}; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.8); ${backdrop}">
                         ${d.name}
                       </div>

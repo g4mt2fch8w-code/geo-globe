@@ -364,7 +364,7 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
 </div>
       {/* Interactive Timeline Range Slider when in timeline mode */}
       {globeMode === 'timeline' && setTimelineYear && (
-        <div className="absolute bottom-24 md:bottom-auto md:top-24 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-xl glass-card bg-[#08221a]/95 border border-[#fbbf24]/50 p-4 rounded-3xl shadow-[0_10px_40px_rgba(251,191,36,0.3)] pointer-events-auto">
+        <div className="absolute top-24 sm:top-24 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-xl glass-card bg-[#08221a]/95 border border-[#fbbf24]/50 p-4 rounded-3xl shadow-[0_10px_40px_rgba(251,191,36,0.3)] pointer-events-auto">
           <div className="flex items-center justify-between mb-2">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-[#fbbf24]">Project Tiger Chronology</span>
@@ -513,99 +513,6 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
         )}
       </div>
 
-      {/* MOBILE ONLY: Bottom Controls Bar */}
-      <div className="fixed bottom-6 left-2 right-2 md:hidden pointer-events-none flex flex-col justify-end items-center gap-2 z-40 font-body">
-        
-        {/* Blinking Down Indicator */}
-        <div className="animate-bounce mb-2 text-white/50 pointer-events-auto bg-black/40 rounded-full p-1 border border-white/10 shadow-lg">
-           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </div>
-
-        <div className="flex w-full justify-between items-end pointer-events-auto gap-2">
-            <div className="flex flex-col gap-2 relative">
-                {/* Mobile Mode Button */}
-                <button
-                onClick={() => { setShowModesMenu(!showModesMenu); setShowLayersMenu(false); }}
-                className={`flex items-center justify-center p-3 rounded-full text-xs font-bold transition-all border shadow-lg ${
-                    globeMode !== 'standard' || showModesMenu
-                    ? 'bg-[#fbbf24] text-[#04120e] border-[#f59e0b]'
-                    : 'bg-black/80 text-white/90 border-white/20'
-                }`}
-                >
-                <Activity className="w-5 h-5" />
-                </button>
-                
-                {/* Mobile Modes Menu Dropup */}
-                {showModesMenu && (
-                <div className="absolute bottom-full left-0 mb-2 w-64 bg-[#08221a]/95 backdrop-blur-2xl border border-[#fbbf24]/40 rounded-2xl p-3 shadow-2xl z-50">
-                    <div className="text-[10px] font-mono font-bold uppercase text-[#fbbf24] mb-2 pb-1 border-b border-[#fbbf24]/20">Modes</div>
-                    <div className="space-y-1">
-                        <button onClick={() => { setGlobeMode?.('standard'); setShowModesMenu(false); }} className="w-full text-left px-2 py-2 text-xs text-white/80 hover:bg-white/5 rounded">🌐 Standard</button>
-                        <button onClick={() => { setGlobeMode?.('timeline'); setShowModesMenu(false); }} className="w-full text-left px-2 py-2 text-xs text-[#fbbf24] hover:bg-white/5 rounded">⏳ Timeline</button>
-                        <button onClick={() => { setGlobeMode?.('biogeo'); setShowModesMenu(false); }} className="w-full text-left px-2 py-2 text-xs text-[#38bdf8] hover:bg-white/5 rounded">🗺️ Biogeo Zones</button>
-                        <button onClick={() => { setGlobeMode?.('threats'); setShowModesMenu(false); }} className="w-full text-left px-2 py-2 text-xs text-[#f97316] hover:bg-white/5 rounded">⚠️ Threat Matrix</button>
-                    </div>
-                </div>
-                )}
-
-                {/* Mobile Data Button */}
-                <button
-                onClick={() => { setShowLayersMenu(!showLayersMenu); setShowModesMenu(false); }}
-                className={`flex items-center justify-center p-3 rounded-full text-xs font-bold transition-all border shadow-lg ${
-                    activeLayer !== 'none' || showLayersMenu
-                    ? 'bg-[#10b981] text-[#04120e] border-[#34d399]'
-                    : 'bg-black/80 text-white/90 border-white/20'
-                }`}
-                >
-                <Layers className="w-5 h-5" />
-                </button>
-
-                {/* Mobile Data Menu Dropup */}
-                {showLayersMenu && (
-                <div className="absolute bottom-full left-0 mb-2 w-64 bg-[#08221a]/95 backdrop-blur-2xl border border-[#34d399]/40 rounded-2xl p-3 shadow-2xl z-50">
-                    <div className="text-[10px] font-mono font-bold uppercase text-[#34d399] mb-2 pb-1 border-b border-[#34d399]/20">Data</div>
-                    <div className="space-y-1">
-                        <button onClick={() => { setActiveLayer?.('none'); setShowLayersMenu(false); }} className="w-full text-left px-2 py-2 text-xs text-white/80 hover:bg-white/5 rounded">None</button>
-                        <button onClick={() => { setActiveLayer?.('champion'); setShowLayersMenu(false); }} className="w-full text-left px-2 py-2 text-xs text-[#fbbf24] hover:bg-white/5 rounded">🌲 Champion & Seth</button>
-                        <button onClick={() => { setActiveLayer?.('watershed'); setShowLayersMenu(false); }} className="w-full text-left px-2 py-2 text-xs text-[#38bdf8] hover:bg-white/5 rounded">💧 Watersheds</button>
-                        <button onClick={() => { setActiveLayer?.('soil'); setShowLayersMenu(false); }} className="w-full text-left px-2 py-2 text-xs text-[#f59e0b] hover:bg-white/5 rounded">🪴 Soil & Rainfall</button>
-                    </div>
-                </div>
-                )}
-            </div>
-
-            <div className="flex gap-2">
-                {/* Mobile Ruler */}
-                <button 
-                onClick={() => setRulerMode(!rulerMode)}
-                className={`flex items-center justify-center p-3 rounded-full text-xs font-bold transition-all border backdrop-blur-md ${
-                    rulerMode ? 'border-gold text-gold bg-gold/15 shadow-[0_0_20px_rgba(251,191,36,0.3)]' : 'bg-black/80 text-white/90 border-white/20'
-                }`}
-                >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 21L3 3"/><path d="M21 3L3 21"/><path d="M14 6l4 4"/><path d="M10 10l4 4"/><path d="M6 14l4 4"/></svg>
-                </button>
-                {/* Mobile Pause */}
-                <button 
-                onClick={() => setIsAutoRotate(!isAutoRotate)}
-                className={`flex items-center justify-center p-3 rounded-full text-xs font-bold transition-all bg-black/80 backdrop-blur-md text-white/90 border border-white/20`}
-                >
-                {isAutoRotate ? <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> : <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>}
-                </button>
-            </div>
-        </div>
-
-        {/* Mobile Ruler UI below buttons */}
-        {rulerMode && (
-          <div className="bg-[#08221a]/95 backdrop-blur-2xl w-full p-4 rounded-2xl border border-[#34d399]/40 mt-2 shadow-2xl text-left pointer-events-auto">
-             <div className="flex justify-between items-center mb-2">
-                <span className="text-[10px] text-[#34d399] font-bold">CROSS-SECTION (3D: {slopeDistanceStr})</span>
-                <button onClick={() => setRulerPoints([])} className="text-[10px] bg-red-500/20 text-red-400 px-2 py-1 rounded">Clear</button>
-             </div>
-             <p className="text-[10px] text-white/60 mb-2">Tap 2 points on the globe.</p>
-          </div>
-        )}
-      </div>
-
-    </>
+          </>
   );
 };
