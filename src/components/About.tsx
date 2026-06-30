@@ -291,10 +291,63 @@ export const DeveloperAbout = () => {
   );
 };
 
+export const AnimatedDivider = () => {
+  return (
+    <div className="relative w-full py-12 md:py-20 overflow-hidden flex flex-col items-center justify-center bg-ink">
+      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-900/40 via-ink to-ink" />
+      
+      {/* Decorative top border */}
+      <div className="absolute top-0 w-full flex justify-center">
+        <div className="h-[1px] w-3/4 bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
+      </div>
+
+      <div className="w-[200vw] md:w-[150vw] -rotate-2 transform-gpu">
+        <div className="flex w-[200%] marquee-track">
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="flex w-1/2 justify-around items-center gap-12 px-6">
+              <span className="text-4xl md:text-7xl font-display text-transparent font-bold" style={{ WebkitTextStroke: '1px rgba(255, 255, 255, 0.1)' }}>PROTECT</span>
+              <span className="text-xl md:text-3xl text-gold">✦</span>
+              <span className="text-4xl md:text-7xl font-display text-emerald font-medium opacity-80">PRESERVE</span>
+              <span className="text-xl md:text-3xl text-gold">✦</span>
+              <span className="text-4xl md:text-7xl font-display text-transparent font-bold" style={{ WebkitTextStroke: '1px rgba(255, 255, 255, 0.1)' }}>RESEARCH</span>
+              <span className="text-xl md:text-3xl text-gold">✦</span>
+              <span className="text-4xl md:text-7xl font-display text-emerald font-medium opacity-80">CONSERVE</span>
+              <span className="text-xl md:text-3xl text-gold">✦</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="w-[200vw] md:w-[150vw] rotate-1 mt-6 transform-gpu opacity-50">
+        <div className="flex w-[200%] marquee-track" style={{ animationDirection: 'reverse', animationDuration: '35s' }}>
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="flex w-1/2 justify-around items-center gap-12 px-6">
+              <span className="text-3xl md:text-5xl font-display text-fog opacity-40">WILDLIFE</span>
+              <span className="w-16 h-[1px] bg-white/20"></span>
+              <span className="text-3xl md:text-5xl font-display text-transparent" style={{ WebkitTextStroke: '1px rgba(201, 161, 59, 0.4)' }}>ECOSYSTEMS</span>
+              <span className="w-16 h-[1px] bg-white/20"></span>
+              <span className="text-3xl md:text-5xl font-display text-fog opacity-40">HABITATS</span>
+              <span className="w-16 h-[1px] bg-white/20"></span>
+              <span className="text-3xl md:text-5xl font-display text-transparent" style={{ WebkitTextStroke: '1px rgba(201, 161, 59, 0.4)' }}>BIODIVERSITY</span>
+              <span className="w-16 h-[1px] bg-white/20"></span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Decorative bottom border */}
+      <div className="absolute bottom-0 w-full flex justify-center">
+        <div className="h-[1px] w-3/4 bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
+      </div>
+    </div>
+  );
+};
+
 export const About = () => {
   return (
     <div className="w-full min-h-screen bg-ink flex flex-col">
       <HomeSpotlight />
+      <AnimatedDivider />
       <Timeline />
       <DeveloperAbout />
     </div>
