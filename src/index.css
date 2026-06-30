@@ -56,8 +56,7 @@
   --font-body: "Inter", system-ui, sans-serif;
 }
 
-/* ─── DARK MODE (default) ──────────────────────────────── */
-:root,
+/* ─── DARK MODE ──────────────────────────────── */
 .dark {
   --radius: 0.75rem;
 
@@ -121,7 +120,8 @@
   --noise-opacity: 0.04;
 }
 
-/* ─── LIGHT MODE ───────────────────────────────────────── */
+/* ─── LIGHT MODE (default) ───────────────────────────────────────── */
+:root,
 .light {
   --ink: oklch(0.97 0.012 85);
   --canopy: oklch(0.93 0.016 88);

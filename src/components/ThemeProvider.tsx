@@ -15,9 +15,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('theme') as Theme;
       if (stored) return stored;
-      if (window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
     }
-    return 'dark'; // Default to dark mode
+    return 'light'; // Default to light mode
   });
 
   useEffect(() => {
