@@ -169,7 +169,6 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
       // Footer
       pdf.setTextColor(16, 185, 129);
       pdf.setFontSize(8);
-      pdf.text("Official Geo-Globe Database", pageWidth / 2, pageHeight - 10, { align: 'center' });
       
       pdf.save(`${entity.name.replace(/\s+/g, '_')}_Lab_Report.pdf`);
     } catch (e: any) {
@@ -261,9 +260,6 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
             </div>
             
             <div className="mt-12 pt-8 border-t border-white/10 text-center flex flex-col items-center gap-2">
-              <div className="inline-block px-4 py-1 rounded-full border border-emerald/30 bg-emerald/10 text-emerald text-[10px] tracking-widest uppercase">
-                Official Geo-Globe Database
-              </div>
               <div className="text-[10px] text-fog/40 uppercase tracking-widest mt-2">
                 Research Data Provided by Wikipedia API
               </div>
