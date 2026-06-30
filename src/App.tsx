@@ -92,6 +92,7 @@ const GlobeApp = () => {
           isAutoRotate={isAutoRotate}
           setIsAutoRotate={setIsAutoRotate}
           onSearchSelect={handleSearchSelect}
+          onOpenHelp={() => setShowSplash(true)}
         />
       </div>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search } from 'lucide-react';
+import { Search, HelpCircle } from 'lucide-react';
 import type { GeoEntity } from './GlobeViewer';
 import forestsData from '../data/forestsData.json';
 
@@ -11,6 +11,7 @@ interface ControlsUIProps {
   isAutoRotate: boolean;
   setIsAutoRotate: (val: boolean) => void;
   onSearchSelect: (entity: GeoEntity) => void;
+  onOpenHelp?: () => void;
 }
 
 const haversineDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
@@ -26,7 +27,7 @@ const haversineDistance = (lat1: number, lon1: number, lat2: number, lon2: numbe
 };
 
 export const ControlsUI: React.FC<ControlsUIProps> = ({ 
-  rulerMode, setRulerMode, rulerPoints, setRulerPoints, isAutoRotate, setIsAutoRotate, onSearchSelect 
+  rulerMode, setRulerMode, rulerPoints, setRulerPoints, isAutoRotate, setIsAutoRotate, onSearchSelect, onOpenHelp 
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [results, setResults] = useState<GeoEntity[]>([]);
@@ -82,31 +83,44 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
     <>
       <div className="absolute top-20 left-4 right-4 md:top-28 md:left-6 md:right-auto pointer-events-auto flex flex-col gap-4 z-40 font-body">
         
-        <div className="relative w-full">
-          <div className="relative glass-card rounded-full flex items-center px-4 py-2 border border-white/10 shadow-emerald w-full md:w-80">
-            <Search className="w-4 h-4 text-gold mr-3" />
-            <input 
-              type="text" 
-              placeholder={rulerMode ? "Search to add measurement point..." : "Search Reserves..."}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="bg-transparent border-none outline-none text-fog text-sm placeholder:text-fog/40 w-full font-medium"
-            />
-          </div>
-          
-          {results.length > 0 && (
-            <div className="absolute top-full left-0 mt-2 w-full glass-card rounded-2xl border border-white/10 overflow-hidden shadow-emerald max-h-64 overflow-y-auto">
-              {results.map(r => (
-                <button 
-                  key={r.id}
-                  onClick={() => handleSearchResultClick(r)}
-                  className="w-full text-left px-4 py-3 border-b border-white/5 last:border-none hover:bg-white/5 transition-colors"
-                >
-                  <div className="text-sm font-semibold text-fog">{r.name}</div>
-                  <div className="text-xs text-fog/50">{r.type} • {r.country}</div>
-                </button>
-              ))}
+        <div className="flex items-center gap-2.5 w-full md:w-auto">
+          <div className="relative w-1/2 sm:w-60 md:w-80 flex-1 md:flex-none">
+            <div className="relative glass-card rounded-full flex items-center px-3.5 py-2 border border-white/10 shadow-emerald w-full">
+              <Search className="w-4 h-4 text-gold mr-2 shrink-0" />
+              <input 
+                type="text" 
+                placeholder={rulerMode ? "Search point..." : "Search reserves..."}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="bg-transparent border-none outline-none text-fog text-xs sm:text-sm placeholder:text-fog/40 w-full font-medium truncate"
+              />
             </div>
+            
+            {results.length > 0 && (
+              <div className="absolute top-full left-0 mt-2 w-full sm:w-80 glass-card rounded-2xl border border-white/10 overflow-hidden shadow-emerald max-h-64 overflow-y-auto z-50">
+                {results.map(r => (
+                  <button 
+                    key={r.id}
+                    onClick={() => handleSearchResultClick(r)}
+                    className="w-full text-left px-4 py-3 border-b border-white/5 last:border-none hover:bg-white/5 transition-colors"
+                  >
+                    <div className="text-sm font-semibold text-fog">{r.name}</div>
+                    <div className="text-xs text-fog/50">{r.type} • {r.country}</div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {onOpenHelp && (
+            <button
+              onClick={onOpenHelp}
+              className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-full bg-[#10b981]/20 text-[#34d399] border border-[#10b981]/60 hover:bg-[#10b981]/40 hover:text-white transition-all shadow-[0_0_15px_rgba(16,185,129,0.5)] animate-pulse font-extrabold text-[11px] sm:text-xs shrink-0"
+              title="How to use the globe"
+            >
+              <HelpCircle className="w-3.5 h-3.5" />
+              <span>How to Use Guide</span>
+            </button>
           )}
         </div>
       </div>
