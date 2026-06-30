@@ -49,8 +49,18 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
           const searchData = await searchRes.json();
           
           if (searchData.query?.search?.length > 0) {
-            const pageId = searchData.query.search[0].pageid;
-            const pageTitle = searchData.query.search[0].title;
+            // Find a valid specific article, rejecting generic list/index pages
+            const validMatch = searchData.query.search.find((res: any) => {
+              const lowerTitle = res.title.toLowerCase();
+              return !lowerTitle.startsWith('list of') && 
+                     !lowerTitle.startsWith('index of') &&
+                     !lowerTitle.includes('protected areas');
+            });
+
+            if (!validMatch) continue; // Try the next search query fallback
+
+            const pageId = validMatch.pageid;
+            const pageTitle = validMatch.title;
             const extractRes = await fetch(`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&pageids=${pageId}&format=json&origin=*`);
             const extractData = await extractRes.json();
             
