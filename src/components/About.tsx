@@ -326,7 +326,7 @@ export const AnimatedDivider = () => {
               <span className="text-2xl md:text-4xl text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">◆</span>
               <span className="text-3xl md:text-5xl font-display text-teal-400 opacity-100 drop-shadow-[0_0_15px_rgba(45,212,191,0.6)]">ECOSYSTEMS</span>
               <span className="text-2xl md:text-4xl text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">◆</span>
-              <span className="text-3xl md:text-5xl font-display text-violet-400 opacity-100 drop-shadow-[0_0_15px_rgba(167,139,250,0.6)]">HABITATS</span>
+              <span className="text-3xl md:text-5xl font-display text-rose-400 opacity-100 drop-shadow-[0_0_15px_rgba(251,113,133,0.6)]">HABITATS</span>
               <span className="text-2xl md:text-4xl text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">◆</span>
               <span className="text-3xl md:text-5xl font-display text-emerald-400 opacity-100 drop-shadow-[0_0_15px_rgba(52,211,153,0.6)]">BIODIVERSITY</span>
               <span className="text-2xl md:text-4xl text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">◆</span>
