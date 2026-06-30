@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import type { GeoEntity } from './GlobeViewer';
 import * as jspdfModule from 'jspdf';
 import { X, ExternalLink, Download, BookOpen, Loader2 } from 'lucide-react';
@@ -193,8 +194,8 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
     setIsGeneratingPDF(false);
   };
 
-  return (
-    <div className="absolute top-0 right-0 h-full w-full md:w-[480px] z-[100] animate-in slide-in-from-right-8 fade-in font-body">
+  return createPortal(
+    <div className="fixed top-0 right-0 h-full w-full md:w-[480px] z-[100] animate-in slide-in-from-right-8 fade-in font-body">
       <div className="h-full w-full glass-card border-l border-white/10 shadow-emerald flex flex-col noise">
         <div className="absolute inset-0 noise-overlay"></div>
         
@@ -277,7 +278,7 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
             </div>
             
             <div className="mt-12 pt-8 border-t border-white/10 text-center flex flex-col items-center gap-2">
-              <div className="text-[10px] text-fog/40 uppercase tracking-widest mt-2">
+              <div className="text-[10px] text-fog/80 uppercase tracking-widest mt-2">
                 Research Data Provided by Wikipedia API
               </div>
             </div>
@@ -295,6 +296,7 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
