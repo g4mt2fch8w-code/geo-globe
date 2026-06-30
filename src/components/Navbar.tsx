@@ -11,7 +11,7 @@ export function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 p-4 pt-safe pointer-events-none">
-      <div className="max-w-5xl mx-auto flex items-center justify-center relative">
+      <div className="max-w-3xl mx-auto flex items-center justify-center relative">
         
         {/* Left: Back Button */}
         <div className="absolute left-0 pointer-events-auto hidden sm:flex">
@@ -33,7 +33,7 @@ export function Navbar() {
             {location.pathname === '/' && (
               <motion.div
                 layoutId="nav-active"
-                className="absolute inset-0 bg-white/20 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(255,255,255,0.3)]"
+                className="absolute inset-0 bg-[#D4AF37]/30 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(212,175,55,0.4)]"
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               />
             )}
@@ -48,7 +48,7 @@ export function Navbar() {
             {location.pathname === '/globe' && (
               <motion.div
                 layoutId="nav-active"
-                className="absolute inset-0 bg-white/20 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(255,255,255,0.3)]"
+                className="absolute inset-0 bg-[#D4AF37]/30 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(212,175,55,0.4)]"
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               />
             )}
@@ -63,7 +63,7 @@ export function Navbar() {
             {location.pathname === '/about' && (
               <motion.div
                 layoutId="nav-active"
-                className="absolute inset-0 bg-white/20 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(255,255,255,0.3)]"
+                className="absolute inset-0 bg-[#D4AF37]/30 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(212,175,55,0.4)]"
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               />
             )}
