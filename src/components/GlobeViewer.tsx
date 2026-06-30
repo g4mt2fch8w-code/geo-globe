@@ -446,7 +446,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                   if (typeof globeRef.current.renderer === 'function') {
                     const renderer = globeRef.current.renderer();
                     if (renderer) {
-                      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+                      renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 1.5));
                     }
                   }
 
