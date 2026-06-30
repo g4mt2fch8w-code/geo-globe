@@ -278,7 +278,7 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
             </div>
             
             <div className="mt-12 pt-8 border-t border-white/10 text-center flex flex-col items-center gap-2">
-              <div className="text-[10px] text-fog/80 uppercase tracking-widest mt-2">
+              <div className="text-[10px] text-sky-300/80 uppercase tracking-widest mt-2">
                 Research Data Provided by Wikipedia API
               </div>
             </div>
