@@ -301,35 +301,35 @@ export const AnimatedDivider = () => {
         <div className="h-[1px] w-3/4 bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
       </div>
 
-      <div className="w-[200vw] md:w-[150vw] -rotate-2 transform-gpu drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)]">
+      <div className="w-[200vw] md:w-[150vw] -rotate-2 transform-gpu drop-shadow-[0_0_40px_rgba(16,185,129,0.2)]">
         <div className="flex w-[200%] marquee-track">
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex w-1/2 justify-around items-center gap-12 px-6">
-              <span className="text-4xl md:text-7xl font-display text-transparent font-bold" style={{ WebkitTextStroke: '2px rgba(255, 255, 255, 0.6)', filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.3))' }}>PROTECT</span>
-              <span className="text-xl md:text-3xl text-gold drop-shadow-[0_0_10px_rgba(201,161,59,0.8)]">✦</span>
-              <span className="text-4xl md:text-7xl font-display text-emerald font-semibold opacity-100 drop-shadow-[0_0_20px_rgba(16,185,129,0.7)]">PRESERVE</span>
-              <span className="text-xl md:text-3xl text-gold drop-shadow-[0_0_10px_rgba(201,161,59,0.8)]">✦</span>
-              <span className="text-4xl md:text-7xl font-display text-transparent font-bold" style={{ WebkitTextStroke: '2px rgba(255, 255, 255, 0.6)', filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.3))' }}>RESEARCH</span>
-              <span className="text-xl md:text-3xl text-gold drop-shadow-[0_0_10px_rgba(201,161,59,0.8)]">✦</span>
-              <span className="text-4xl md:text-7xl font-display text-emerald font-semibold opacity-100 drop-shadow-[0_0_20px_rgba(16,185,129,0.7)]">CONSERVE</span>
-              <span className="text-xl md:text-3xl text-gold drop-shadow-[0_0_10px_rgba(201,161,59,0.8)]">✦</span>
+              <span className="text-4xl md:text-7xl font-display text-transparent font-bold" style={{ WebkitTextStroke: '2px rgba(255, 255, 255, 0.6)', filter: 'drop-shadow(0 0 15px rgba(255,255,255,0.6))' }}>PROTECT</span>
+              <span className="text-xl md:text-3xl text-gold drop-shadow-[0_0_15px_rgba(201,161,59,1)]">✦</span>
+              <span className="text-4xl md:text-7xl font-display text-emerald font-semibold opacity-100 drop-shadow-[0_0_30px_rgba(16,185,129,1)]">PRESERVE</span>
+              <span className="text-xl md:text-3xl text-gold drop-shadow-[0_0_15px_rgba(201,161,59,1)]">✦</span>
+              <span className="text-4xl md:text-7xl font-display text-transparent font-bold" style={{ WebkitTextStroke: '2px rgba(255, 255, 255, 0.6)', filter: 'drop-shadow(0 0 15px rgba(255,255,255,0.6))' }}>RESEARCH</span>
+              <span className="text-xl md:text-3xl text-gold drop-shadow-[0_0_15px_rgba(201,161,59,1)]">✦</span>
+              <span className="text-4xl md:text-7xl font-display text-emerald font-semibold opacity-100 drop-shadow-[0_0_30px_rgba(16,185,129,1)]">CONSERVE</span>
+              <span className="text-xl md:text-3xl text-gold drop-shadow-[0_0_15px_rgba(201,161,59,1)]">✦</span>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="w-[200vw] md:w-[150vw] rotate-1 mt-6 transform-gpu opacity-90 drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]">
+      <div className="w-[200vw] md:w-[150vw] rotate-1 mt-6 transform-gpu opacity-90 drop-shadow-[0_0_40px_rgba(201,161,59,0.2)]">
         <div className="flex w-[200%] marquee-track" style={{ animationDirection: 'reverse', animationDuration: '35s' }}>
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex w-1/2 justify-around items-center gap-12 px-6">
-              <span className="text-3xl md:text-5xl font-display text-fog opacity-80 drop-shadow-[0_0_10px_rgba(255,255,255,0.15)]">WILDLIFE</span>
-              <span className="w-16 h-[1px] bg-white/40 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]"></span>
-              <span className="text-3xl md:text-5xl font-display text-transparent" style={{ WebkitTextStroke: '2px rgba(201, 161, 59, 0.8)', filter: 'drop-shadow(0 0 12px rgba(201,161,59,0.3))' }}>ECOSYSTEMS</span>
-              <span className="w-16 h-[1px] bg-white/40 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]"></span>
-              <span className="text-3xl md:text-5xl font-display text-fog opacity-80 drop-shadow-[0_0_10px_rgba(255,255,255,0.15)]">HABITATS</span>
-              <span className="w-16 h-[1px] bg-white/40 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]"></span>
-              <span className="text-3xl md:text-5xl font-display text-transparent" style={{ WebkitTextStroke: '2px rgba(201, 161, 59, 0.8)', filter: 'drop-shadow(0 0 12px rgba(201,161,59,0.3))' }}>BIODIVERSITY</span>
-              <span className="w-16 h-[1px] bg-white/40 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]"></span>
+              <span className="text-3xl md:text-5xl font-display text-fog opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">WILDLIFE</span>
+              <span className="w-16 h-[1px] bg-white/40 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"></span>
+              <span className="text-3xl md:text-5xl font-display text-transparent" style={{ WebkitTextStroke: '2px rgba(201, 161, 59, 0.8)', filter: 'drop-shadow(0 0 15px rgba(201,161,59,0.7))' }}>ECOSYSTEMS</span>
+              <span className="w-16 h-[1px] bg-white/40 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"></span>
+              <span className="text-3xl md:text-5xl font-display text-fog opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">HABITATS</span>
+              <span className="w-16 h-[1px] bg-white/40 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"></span>
+              <span className="text-3xl md:text-5xl font-display text-transparent" style={{ WebkitTextStroke: '2px rgba(201, 161, 59, 0.8)', filter: 'drop-shadow(0 0 15px rgba(201,161,59,0.7))' }}>BIODIVERSITY</span>
+              <span className="w-16 h-[1px] bg-white/40 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]"></span>
             </div>
           ))}
         </div>
