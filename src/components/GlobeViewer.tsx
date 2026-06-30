@@ -432,7 +432,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
           <Globe
             ref={globeRef}
             
-            globeImageUrl="//unpkg.com/three-globe/example/img/earth-dark.jpg"
+            globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
             bumpImageUrl={isMobile ? undefined : "//unpkg.com/three-globe/example/img/earth-topology.png"}
             backgroundImageUrl={isMobile ? undefined : "//unpkg.com/three-globe/example/img/night-sky.png"}
             
@@ -513,17 +513,9 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             onPointClick={(d: any) => handleEntityClick(d)}
             
 
-            labelsData={globeMode === 'standard' ? forestsData : []}
-            labelLat="lat"
-            labelLng="lng"
-            labelText={(d: any) => getEntityEmoji(d.type)}
-            labelSize={isMobile ? 1.5 : 2.5}
-            labelDotRadius={0.5}
-            labelColor={(d: any) => getEntityColor(d.type)}
-            labelResolution={3}
-            onLabelClick={(d: any) => handleEntityClick(d)}
 
-            htmlElementsData={(() => { const base = [...rulerHtmlData, ...layerHtmlElements]; if (selectedEntity) { const fullEntity = forestsData.find(f => f.name === selectedEntity.name); if (fullEntity) base.push(fullEntity); } return base; })()}
+
+            htmlElementsData={globeMode === 'timeline' ? [...forestsData, ...rulerHtmlData] : globeMode === 'standard' ? [...forestsData, ...rulerHtmlData, ...layerHtmlElements] : [...rulerHtmlData, ...layerHtmlElements]}
             htmlLat="lat"
             htmlLng="lng"
             htmlElement={(d: any) => {
@@ -551,10 +543,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                 `;
               } else {
                 const emoji = getEntityEmoji(d?.type);
-                const textShadow = isMobile ? '' : 'text-shadow: 0 0 10px rgba(255,255,255,0.5);';
-                const backdrop = isMobile ? '' : 'backdrop-filter: blur(4px);';
-                const bg = isMobile ? 'rgba(10, 26, 16, 1)' : 'rgba(10, 26, 16, 0.9)';
-                
+                const color = getEntityColor(d?.type);
                 const isSelected = Boolean(selectedEntity && d?.name && d.name === selectedEntity.name);
                 
                 el.innerHTML = `
@@ -567,9 +556,11 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                         <div style="width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #F59E0B;"></div>
                       </div>
                     ` : ''}
-                    <div style="font-size: ${isSelected ? '28px' : '22px'}; ${textShadow} transition: transform 0.2s;" class="${isSelected ? 'scale-125' : 'group-hover:scale-125'}">${emoji}</div>
-                    <div class="opacity-100 scale-105 transition-all duration-200 absolute top-[28px] pointer-events-none whitespace-nowrap z-50">
-                      <div style="background: ${bg}; border: 1px solid ${isSelected ? 'rgba(251, 191, 36, 0.9)' : 'rgba(201, 161, 59, 0.4)'}; padding: ${isSelected ? '4px 8px' : '3px 7px'}; border-radius: 6px; color: #F0D87A; font-family: sans-serif; font-size: ${isSelected ? '11px' : '10px'}; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.8); ${backdrop}">
+                    <div style="font-size: ${isSelected ? '28px' : '22px'}; transition: transform 0.2s;" class="${isSelected ? 'scale-125' : 'group-hover:scale-125'}">${emoji}</div>
+                    
+                    <!-- Performance Fix: Only render the card visually if selected OR on group-hover -->
+                    <div class="${isSelected ? 'block' : 'hidden group-hover:block'} transition-all duration-200 absolute top-[28px] pointer-events-none whitespace-nowrap z-50">
+                      <div style="background: rgba(10, 26, 16, 0.95); border: 1px solid ${color}; padding: 4px 8px; border-radius: 6px; color: ${color}; font-family: sans-serif; font-size: 11px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.8);">
                         ${d.name}
                       </div>
                     </div>
@@ -595,15 +586,14 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
 
       {/* Restored Clean Legends - Desktop */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 bg-black/40 backdrop-blur-[30px] rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)] pointer-events-auto z-10 hidden lg:flex flex-col items-center min-w-max">
-        <div className="flex gap-6 mb-2">
-          <div className="flex items-center gap-2 text-sm text-white/90"><span>🐅</span> Tiger Reserves</div>
-          <div className="flex items-center gap-2 text-sm text-white/90"><span>🌲</span> National Parks</div>
-          <div className="flex items-center gap-2 text-sm text-white/90"><span>🦌</span> Sanctuaries</div>
-          <div className="flex items-center gap-2 text-sm text-white/90"><span>🌿</span> Biosphere</div>
-          <div className="flex items-center gap-2 text-sm text-white/90"><span>🐘</span> Elephant Reserves</div>
-          <div className="flex items-center gap-2 text-sm text-white/90"><span>🌳</span> Forest Reserves</div>
-          <div className="flex items-center gap-2 text-sm text-white/90"><span>💧</span> Ramsar Sites</div>
-          <div className="flex items-center gap-2 text-sm text-white/90"><span>🔵</span> Tiger Corridors</div>
+        <div className="flex flex-wrap justify-center gap-4 mb-2">
+          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#fbbf24'}}>🐅</span> <span style={{color: '#fbbf24', fontWeight: 'bold'}}>Tiger Reserves</span></div>
+          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#34d399'}}>🌲</span> <span style={{color: '#34d399', fontWeight: 'bold'}}>National Parks</span></div>
+          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#f87171'}}>🦌</span> <span style={{color: '#f87171', fontWeight: 'bold'}}>Sanctuaries</span></div>
+          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#a78bfa'}}>🌿</span> <span style={{color: '#a78bfa', fontWeight: 'bold'}}>Biosphere</span></div>
+          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#60a5fa'}}>🐘</span> <span style={{color: '#60a5fa', fontWeight: 'bold'}}>Elephant Reserves</span></div>
+          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#fb923c'}}>🌳</span> <span style={{color: '#fb923c', fontWeight: 'bold'}}>Forest Reserves</span></div>
+          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#38bdf8'}}>💧</span> <span style={{color: '#38bdf8', fontWeight: 'bold'}}>Ramsar Sites</span></div>
         </div>
         <div className="text-[11px] text-white/60 text-center">
           <span className="text-gold font-semibold">💡 Controls:</span> Click any reserve icon to open journal. Drag to rotate globe.
