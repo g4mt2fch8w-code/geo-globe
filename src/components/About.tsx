@@ -301,7 +301,7 @@ export const AnimatedDivider = () => {
         <div className="h-[1px] w-3/4 bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
       </div>
 
-      <div className="w-[200vw] md:w-[150vw] -rotate-2 transform-gpu drop-shadow-[0_0_40px_rgba(16,185,129,0.2)]">
+      <div className="w-[200vw] md:w-[150vw] -rotate-2 transform-gpu bg-black/60 py-6 border-y border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,1)] backdrop-blur-sm relative z-10">
         <div className="flex w-[200%] marquee-track">
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex w-1/2 justify-around items-center gap-12 px-6">
@@ -318,7 +318,7 @@ export const AnimatedDivider = () => {
         </div>
       </div>
 
-      <div className="w-[200vw] md:w-[150vw] rotate-1 mt-6 transform-gpu opacity-90 drop-shadow-[0_0_40px_rgba(129,140,248,0.2)]">
+      <div className="w-[200vw] md:w-[150vw] rotate-1 mt-6 transform-gpu opacity-90 bg-black/40 py-4 border-y border-white/5 shadow-[0_30px_60px_-15px_rgba(0,0,0,1)] relative z-0">
         <div className="flex w-[200%] marquee-track" style={{ animationDirection: 'reverse', animationDuration: '35s' }}>
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex w-1/2 justify-around items-center gap-12 px-6">
