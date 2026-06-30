@@ -279,22 +279,22 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
       >
         <div className="flex gap-2 min-w-max">
           <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
-            <span className="text-sm">🐅</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Tiger</span>
+            <span className="text-sm">🐅</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Tiger Reserve</span>
           </div>
           <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
-            <span className="text-sm">🌲</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Nat. Park</span>
+            <span className="text-sm">🌲</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">National Park</span>
           </div>
           <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
-            <span className="text-sm">🦊</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Sanctuary</span>
+            <span className="text-sm">🦊</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Wildlife Sanctuary</span>
           </div>
           <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
-            <span className="text-sm">🐘</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Elephant</span>
+            <span className="text-sm">🐘</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Elephant Reserve</span>
           </div>
           <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
-            <span className="text-sm">🌿</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Biosphere</span>
+            <span className="text-sm">🌿</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Biosphere Reserve</span>
           </div>
           <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
-            <span className="text-sm">💧</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Ramsar</span>
+            <span className="text-sm">💧</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Ramsar Site</span>
           </div>
         </div>
       </div>
