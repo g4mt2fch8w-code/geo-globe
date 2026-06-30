@@ -160,7 +160,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
 
   return (
     <div className="w-full h-full flex flex-col relative bg-black">
-      <div ref={containerRef} className="w-full h-full relative">
+      <div ref={containerRef} className="w-full h-full relative" style={{ touchAction: 'none' }}>
         <React.Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/50">Loading Globe...</div>}>
           <Globe
             ref={globeRef}

@@ -43,13 +43,15 @@ const GlobeApp = () => {
 
   return (
     <div className="relative w-full h-[100dvh] overflow-hidden bg-ink">
-      <GlobeViewer 
-        onEntityClick={handleEntityClick} 
-        onGlobeClick={handleGlobeClick}
-        rulerPoints={rulerPoints}
-        isAutoRotate={isAutoRotate}
-        flyTo={flyTo}
-      />
+      <div className="absolute inset-0 z-0">
+        <GlobeViewer 
+          onEntityClick={handleEntityClick} 
+          onGlobeClick={handleGlobeClick}
+          rulerPoints={rulerPoints}
+          isAutoRotate={isAutoRotate}
+          flyTo={flyTo}
+        />
+      </div>
       
       <div className="absolute inset-0 pointer-events-none z-10">
         <ControlsUI 
