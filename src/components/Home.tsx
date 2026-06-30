@@ -104,7 +104,7 @@ export const Home = () => {
                   Tap Map Markers
                 </h3>
                 <p className="text-xs sm:text-sm text-[#d1fae5]/80 leading-relaxed font-normal">
-                  <strong className="text-white font-semibold">Click any glowing dot or emoji</strong> to launch deep-dive research journals, tiger census stats, and Wikipedia briefs.
+                  <strong className="text-white font-semibold">Click any glowing dot or emoji</strong> to launch research journals and Wikipedia briefs.
                 </p>
               </div>
             </div>
