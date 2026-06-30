@@ -1,141 +1,115 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-// A 100% reliable, zero-latency animated SVG Big Cat (Running Tiger/Panther)
-const AnimatedBigCat = () => {
+// Badass Holographic Wildlife Conservation Radar & Cyber-Tiger Emblem
+const HolographicTigerRadar = () => {
   return (
-    <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-[#08221a] to-[#04120e] p-4 overflow-hidden">
-      {/* Background speed lines for motion effect */}
+    <div className="relative w-full h-full flex items-center justify-center bg-[#030e0b] overflow-hidden rounded-full border border-[#34d399]/40 shadow-[inset_0_0_30px_rgba(16,185,129,0.3)]">
+      {/* Background Radar Grid */}
+      <div className="absolute inset-0 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px] opacity-20" />
+
+      {/* Outer Rotating Radar Ring */}
       <motion.div 
-        animate={{ x: [-100, 200] }}
-        transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
-        className="absolute top-1/4 left-0 w-24 h-0.5 bg-[#34d399]/30 rounded-full"
-      />
-      <motion.div 
-        animate={{ x: [-150, 200] }}
-        transition={{ repeat: Infinity, duration: 0.9, ease: "linear", delay: 0.3 }}
-        className="absolute top-2/3 left-0 w-32 h-0.5 bg-[#fbbf24]/30 rounded-full"
-      />
-      <motion.div 
-        animate={{ x: [-80, 220] }}
-        transition={{ repeat: Infinity, duration: 1.5, ease: "linear", delay: 0.7 }}
-        className="absolute bottom-1/4 left-0 w-20 h-0.5 bg-[#34d399]/20 rounded-full"
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 12, ease: "linear" }}
+        className="absolute inset-2 rounded-full border-2 border-dashed border-[#34d399]/40"
       />
 
-      {/* Leaping/Running Big Cat SVG */}
-      <motion.svg 
-        viewBox="0 0 240 140" 
-        className="w-full h-full max-w-[180px] drop-shadow-[0_4px_15px_rgba(251,191,36,0.3)] overflow-visible"
-        animate={{ y: [-4, 4, -4], rotate: [-1, 2, -1] }}
-        transition={{ repeat: Infinity, duration: 0.8, ease: "easeInOut" }}
+      {/* Counter-Rotating Gold Target Ring */}
+      <motion.div 
+        animate={{ rotate: -360 }}
+        transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+        className="absolute inset-6 rounded-full border border-dotted border-[#fbbf24]/50 flex items-center justify-center"
       >
-        <defs>
-          <linearGradient id="tigerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#f59e0b" />
-            <stop offset="50%" stopColor="#d97706" />
-            <stop offset="100%" stopColor="#92400e" />
-          </linearGradient>
-          <linearGradient id="stripesGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#1e1b18" />
-            <stop offset="100%" stopColor="#0f0d0c" />
-          </linearGradient>
-        </defs>
+        <div className="absolute top-0 w-2 h-2 bg-[#fbbf24] rounded-full shadow-[0_0_8px_#fbbf24]" />
+        <div className="absolute bottom-0 w-1.5 h-1.5 bg-[#34d399] rounded-full" />
+      </motion.div>
 
-        {/* Tail animated */}
-        <motion.path
-          d="M 45 65 Q 15 40 5 20"
-          stroke="#d97706"
-          strokeWidth="10"
-          strokeLinecap="round"
-          fill="none"
-          animate={{ d: ["M 45 65 Q 15 40 5 20", "M 45 65 Q 10 75 5 95", "M 45 65 Q 15 40 5 20"] }}
-          transition={{ repeat: Infinity, duration: 0.8, ease: "easeInOut" }}
-        />
+      {/* Radar Scanner Sweep Beam */}
+      <motion.div 
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 4, ease: "linear" }}
+        className="absolute inset-0 rounded-full bg-[conic-gradient(from_0deg,transparent_0deg,transparent_270deg,rgba(52,211,153,0.25)_360deg)] pointer-events-none"
+      />
 
-        {/* Back Leg Left (running animation) */}
-        <motion.path
-          d="M 60 85 L 40 120 L 25 125"
-          stroke="#92400e"
-          strokeWidth="12"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-          style={{ originX: "60px", originY: "85px" }}
-          animate={{ rotate: [25, -35, 25] }}
-          transition={{ repeat: Infinity, duration: 0.6, ease: "easeInOut" }}
-        />
+      {/* Pulsing Core Hologram */}
+      <motion.div
+        animate={{ scale: [0.95, 1.05, 0.95] }}
+        transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+        className="relative z-10 flex flex-col items-center justify-center p-3 rounded-full bg-gradient-to-br from-[#063223]/80 to-[#021810]/90 border border-[#10b981]/50 shadow-[0_0_25px_rgba(16,185,129,0.5)]"
+      >
+        {/* Sleek Geometric Cyber-Tiger Emblem */}
+        <svg viewBox="0 0 100 100" className="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]">
+          <defs>
+            <linearGradient id="cyberGold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#fde68a" />
+              <stop offset="50%" stopColor="#f59e0b" />
+              <stop offset="100%" stopColor="#b45309" />
+            </linearGradient>
+          </defs>
 
-        {/* Front Leg Left (running animation) */}
-        <motion.path
-          d="M 160 85 L 140 120 L 125 122"
-          stroke="#92400e"
-          strokeWidth="11"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-          style={{ originX: "160px", originY: "85px" }}
-          animate={{ rotate: [-30, 30, -30] }}
-          transition={{ repeat: Infinity, duration: 0.6, ease: "easeInOut" }}
-        />
+          {/* Majestic Tiger Ears */}
+          <polygon points="22,35 15,12 38,25" fill="url(#cyberGold)" />
+          <polygon points="78,35 85,12 62,25" fill="url(#cyberGold)" />
+          <polygon points="20,25 24,18 32,25" fill="#04120e" />
+          <polygon points="80,25 76,18 68,25" fill="#04120e" />
 
-        {/* Main Body */}
-        <path
-          d="M 50 65 C 60 50, 140 45, 175 65 C 185 75, 170 95, 140 95 C 100 98, 70 95, 50 65 Z"
-          fill="url(#tigerGrad)"
-        />
+          {/* Crown / Forehead Shield */}
+          <polygon points="50,15 35,28 65,28" fill="#10b981" opacity="0.8" />
+          <polygon points="50,20 42,28 58,28" fill="#ecfdf5" />
 
-        {/* Tiger Stripes */}
-        <path d="M 75 53 Q 72 68 80 82" stroke="url(#stripesGrad)" strokeWidth="4" strokeLinecap="round" fill="none" />
-        <path d="M 105 50 Q 102 68 110 88" stroke="url(#stripesGrad)" strokeWidth="5" strokeLinecap="round" fill="none" />
-        <path d="M 135 51 Q 132 68 140 85" stroke="url(#stripesGrad)" strokeWidth="4.5" strokeLinecap="round" fill="none" />
-        <path d="M 158 57 Q 155 70 162 82" stroke="url(#stripesGrad)" strokeWidth="3.5" strokeLinecap="round" fill="none" />
+          {/* Cheeks & Face Contour */}
+          <polygon points="25,32 75,32 85,58 50,88 15,58" fill="url(#cyberGold)" />
 
-        {/* Back Leg Right (running animation) */}
-        <motion.path
-          d="M 75 85 L 95 120 L 110 122"
-          stroke="url(#tigerGrad)"
-          strokeWidth="13"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-          style={{ originX: "75px", originY: "85px" }}
-          animate={{ rotate: [-35, 25, -35] }}
-          transition={{ repeat: Infinity, duration: 0.6, ease: "easeInOut" }}
-        />
+          {/* Black Stripes (Sleek Angular Cyber cuts) */}
+          <polygon points="25,40 40,43 23,47" fill="#04120e" />
+          <polygon points="75,40 60,43 77,47" fill="#04120e" />
+          <polygon points="20,53 38,56 22,61" fill="#04120e" />
+          <polygon points="80,53 62,56 78,61" fill="#04120e" />
+          <polygon points="47,28 50,38 53,28" fill="#04120e" />
 
-        {/* Front Leg Right (running animation) */}
-        <motion.path
-          d="M 170 85 L 195 115 L 210 115"
-          stroke="url(#tigerGrad)"
-          strokeWidth="12"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-          style={{ originX: "170px", originY: "85px" }}
-          animate={{ rotate: [30, -30, 30] }}
-          transition={{ repeat: Infinity, duration: 0.6, ease: "easeInOut" }}
-        />
+          {/* Snout bridge */}
+          <polygon points="42,42 58,42 55,65 45,65" fill="#d97706" />
 
-        {/* Neck and Head */}
-        <motion.g
-          animate={{ y: [-2, 3, -2], rotate: [0, 3, 0] }}
-          transition={{ repeat: Infinity, duration: 0.6, ease: "easeInOut" }}
-        >
-          {/* Head base */}
-          <path d="M 170 58 C 185 40, 215 48, 215 68 C 215 82, 190 88, 175 75 Z" fill="url(#tigerGrad)" />
-          {/* Ear */}
-          <path d="M 185 45 L 192 32 L 202 44 Z" fill="#92400e" />
-          {/* Snout & Jaw */}
-          <path d="M 210 62 Q 225 65 218 75 L 200 75 Z" fill="#fef3c7" />
-          {/* Nose */}
-          <circle cx="220" cy="63" r="3.5" fill="#f43f5e" />
-          {/* Glowing Eye */}
-          <circle cx="200" cy="55" r="3.5" fill="#34d399" className="animate-pulse" />
-          <circle cx="201" cy="54" r="1.5" fill="#ffffff" />
-          {/* Whiskers */}
-          <path d="M 215 68 L 232 65 M 215 71 L 234 72" stroke="#fef3c7" strokeWidth="1.5" strokeLinecap="round" />
-        </motion.g>
-      </motion.svg>
+          {/* Glowing Fierce Eyes */}
+          <polygon points="28,45 43,48 33,53" fill="#04120e" />
+          <polygon points="72,45 57,48 67,53" fill="#04120e" />
+          <circle cx="36" cy="48" r="3.5" fill="#34d399" className="animate-pulse" />
+          <circle cx="64" cy="48" r="3.5" fill="#34d399" className="animate-pulse" />
+          <circle cx="36" cy="48" r="1.5" fill="#ffffff" />
+          <circle cx="64" cy="48" r="1.5" fill="#ffffff" />
+
+          {/* Nose & Muzzle */}
+          <polygon points="45,64 55,64 50,71" fill="#f43f5e" />
+          <polygon points="35,68 65,68 58,82 42,82" fill="#fef3c7" />
+          <path d="M 50 71 L 50 77 M 42 77 Q 50 82 58 77" stroke="#04120e" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+
+          {/* Cyber Whiskers */}
+          <line x1="12" y1="66" x2="33" y2="71" stroke="#fef3c7" strokeWidth="2" strokeLinecap="round" />
+          <line x1="10" y1="74" x2="34" y2="74" stroke="#fef3c7" strokeWidth="2" strokeLinecap="round" />
+          <line x1="88" y1="66" x2="67" y2="71" stroke="#fef3c7" strokeWidth="2" strokeLinecap="round" />
+          <line x1="90" y1="74" x2="66" y2="74" stroke="#fef3c7" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+
+        {/* Status Tag */}
+        <span className="text-[9px] font-mono font-bold tracking-widest text-[#34d399] uppercase mt-1 bg-[#04120e]/80 px-2 py-0.5 rounded border border-[#34d399]/40">
+          WILDLIFE AI RADAR
+        </span>
+      </motion.div>
+
+      {/* Orbiting Satellite Emojis */}
+      <motion.div 
+        animate={{ rotate: 360 }}
+        transition={{ repeat: Infinity, duration: 16, ease: "linear" }}
+        className="absolute inset-4 pointer-events-none"
+      >
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-2 bg-[#04120e] p-1 rounded-full border border-[#34d399]/50 shadow-[0_0_10px_#34d399] text-xs">
+          🐅
+        </div>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-2 bg-[#04120e] p-1 rounded-full border border-[#fbbf24]/50 shadow-[0_0_10px_#fbbf24] text-xs">
+          🛰️
+        </div>
+      </motion.div>
     </div>
   );
 };
@@ -201,21 +175,19 @@ export const SplashScreen: React.FC<{ onComplete: () => void }> = ({ onComplete 
           </div>
         </div>
 
-        {/* Moving Animated Big Cat Container (Guaranteed 100% Reliable SVG Animation) */}
+        {/* Badass Holographic Wildlife Radar Container */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ 
             opacity: 1, 
-            scale: [1, 1.04, 1],
-            y: [0, -6, 0]
+            scale: [1, 1.03, 1]
           }}
           transition={{ 
-            scale: { repeat: Infinity, duration: 2.5, ease: "easeInOut" },
-            y: { repeat: Infinity, duration: 2.5, ease: "easeInOut" }
+            repeat: Infinity, duration: 3, ease: "easeInOut" 
           }}
-          className="w-44 h-44 sm:w-52 sm:h-52 rounded-full overflow-hidden border-2 border-[#34d399]/40 shadow-[0_0_40px_rgba(16,185,129,0.4)] my-4 relative bg-[#08221a]"
+          className="w-48 h-48 sm:w-56 sm:h-56 my-4 relative"
         >
-          <AnimatedBigCat />
+          <HolographicTigerRadar />
         </motion.div>
 
         {/* Title */}
