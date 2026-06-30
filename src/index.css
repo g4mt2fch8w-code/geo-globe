@@ -59,6 +59,7 @@
 /* ─── LIGHT MODE (default) ───────────────────────────────────────── */
 :root,
 .light {
+  --radius: 1.5rem;
   --ink: oklch(0.97 0.012 85);
   --canopy: oklch(0.93 0.016 88);
   --moss: oklch(0.88 0.018 88);
@@ -120,7 +121,7 @@
 
 /* ─── DARK MODE ──────────────────────────────── */
 .dark {
-  --radius: 0.75rem;
+  --radius: 1.5rem;
 
   /* PSBS Forest palette — dark */
   --ink: oklch(0.13 0.005 150);
@@ -231,12 +232,15 @@
 }
 
 @utility glass-card {
-  background: color-mix(in oklab, var(--ink) 85%, transparent);
-  backdrop-filter: blur(24px) saturate(140%);
-  border: 1px solid color-mix(in oklab, var(--gold) 15%, transparent);
+  background: color-mix(in oklab, var(--ink) 25%, transparent);
+  backdrop-filter: blur(30px) saturate(150%);
+  border: 1px solid color-mix(in oklab, var(--fog) 15%, transparent);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   transition:
     background-color 0.4s ease,
-    border-color 0.4s ease;
+    border-color 0.4s ease,
+    box-shadow 0.4s ease,
+    backdrop-filter 0.4s ease;
 }
 
 @utility noise {
