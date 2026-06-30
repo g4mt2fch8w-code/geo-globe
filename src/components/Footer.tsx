@@ -7,8 +7,8 @@ export function Footer() {
       <div className="mx-auto grid max-w-[1500px] gap-12 px-6 md:px-12 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <div className="flex items-center gap-3">
-            <span className="grid h-11 w-11 place-items-center rounded-full border border-emerald/30 bg-canopy/60">
-              <Leaf className="h-5 w-5 text-emerald" />
+            <span className="grid h-11 w-11 place-items-center rounded-full border border-emerald/30 bg-canopy/60 overflow-hidden">
+              <img src="/logo.jpg" alt="Geo-Globe Logo" className="w-full h-full object-cover" />
             </span>
             <div>
               <div className="font-display text-xl text-fog">Geo-Globe</div>
