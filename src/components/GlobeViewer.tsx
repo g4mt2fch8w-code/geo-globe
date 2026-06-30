@@ -74,28 +74,30 @@ interface GlobeViewerProps {
   timelineYear?: number;
 }
 
-const getEntityEmoji = (type?: string) => {
-  if (!type) return '📍';
-  const t = type.toLowerCase();
-  if (t.includes('tiger')) return '🐅';
-  if (t.includes('biosphere')) return '🌿';
-  if (t.includes('national park')) return '🌲';
-  if (t.includes('sanctuary')) return '🦌';
-  if (t.includes('elephant')) return '🐘';
-  if (t.includes('forest reserve')) return '🌳';
-  if (t.includes('ramsar')) return '💧';
-  if (t.includes('global')) return '🌎';
-  return '📍';
-};
-
 const getEntityColor = (type?: string) => {
   if (!type) return '#FF9500';
   const t = type.toLowerCase();
-  if (t.includes('tiger')) return '#F97316';
-  if (t.includes('biosphere')) return '#10B981';
-  if (t.includes('national park')) return '#3B82F6';
-  if (t.includes('sanctuary')) return '#A855F7';
-  return '#FF9500';
+  if (t.includes('tiger')) return '#F97316';       // orange
+  if (t.includes('national park')) return '#34d399'; // emerald
+  if (t.includes('sanctuary')) return '#A855F7';    // purple
+  if (t.includes('biosphere')) return '#F472B6';    // pink
+  if (t.includes('elephant')) return '#60A5FA';     // blue
+  if (t.includes('forest reserve')) return '#FB923C'; // amber-orange
+  if (t.includes('ramsar')) return '#38BDF8';       // sky blue
+  return '#FBBF24'; // gold default
+};
+
+const getEntityShape = (type?: string) => {
+  if (!type) return '●';
+  const t = type.toLowerCase();
+  if (t.includes('tiger')) return '▲';       // triangle
+  if (t.includes('national park')) return '■'; // square
+  if (t.includes('sanctuary')) return '◆';   // diamond
+  if (t.includes('biosphere')) return '★';   // star
+  if (t.includes('elephant')) return '●';    // circle
+  if (t.includes('forest')) return '●';
+  if (t.includes('ramsar')) return '◉';      // bullseye
+  return '●';
 };
 
 const estimateElevation = (lat: number, lng: number, exaggeration = 1.0): number => {
@@ -524,16 +526,44 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
               el.className = "group pointer-events-auto cursor-pointer";
               
               if (d.isOverlay) {
+                const cardId = `card-${Math.random().toString(36).substr(2,9)}`;
+                el.style.cssText = 'position:relative; display:flex; flex-direction:column; align-items:center; cursor:pointer;';
                 el.innerHTML = `
-                  <div class="flex flex-col items-center justify-center transition-all duration-300 hover:scale-110 relative ${isMobile ? '' : 'group-hover:z-[100]'}" onclick="const card = this.querySelector('.info-card'); if (card) { card.classList.toggle('opacity-0'); card.classList.toggle('opacity-100'); }">
-                    <div style="background-color: ${d.color}; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 10px ${d.color};" class="sm:w-4 sm:h-4 sm:border-[3px]"></div>
-                    <div class="info-card opacity-0 ${isMobile ? '' : 'group-hover:opacity-100'} transition-opacity absolute bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 w-48 sm:w-64 bg-[#08221a]/95 backdrop-blur-md border border-[#34d399]/40 p-2 sm:p-3 rounded-xl shadow-2xl text-left pointer-events-none z-[100]">
-                      <div style="color: ${d.color}; font-size: 9px; font-weight: bold; text-transform: uppercase;" class="sm:text-[10px]">${d.badge}</div>
-                      <div class="text-white text-[11px] sm:text-xs font-bold my-0.5 sm:my-1 leading-tight">${d.name}</div>
-                      <div class="text-[#a7f3d0]/80 text-[9px] sm:text-[10px] leading-tight">${d.desc}</div>
-                    </div>
+                  <div id="${cardId}-dot" style="width:16px;height:16px;border-radius:50%;background:${d.color};border:2px solid white;box-shadow:0 0 12px ${d.color},0 0 4px ${d.color};transition:transform 0.2s;flex-shrink:0;"></div>
+                  <div id="${cardId}-card" style="
+                    display:block;
+                    position:absolute;
+                    bottom:22px;
+                    left:50%;
+                    transform:translateX(-50%);
+                    width:180px;
+                    background:rgba(8,34,26,0.97);
+                    border:1.5px solid ${d.color};
+                    border-radius:12px;
+                    padding:8px 10px;
+                    box-shadow:0 8px 32px rgba(0,0,0,0.9),0 0 16px ${d.color}44;
+                    z-index:9999;
+                    pointer-events:none;
+                  ">
+                    <div style="color:${d.color};font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;font-family:monospace;margin-bottom:2px;">${d.badge || ''}</div>
+                    <div style="color:#fff;font-size:11px;font-weight:700;margin-bottom:3px;font-family:sans-serif;line-height:1.3;">${d.name}</div>
+                    <div style="color:#a7f3d0;font-size:9px;line-height:1.4;font-family:sans-serif;">${d.desc || ''}</div>
                   </div>
                 `;
+                // Click toggles card visibility
+                el.addEventListener('click', () => {
+                  const card = document.getElementById(`${cardId}-card`);
+                  if (card) card.style.display = card.style.display === 'none' ? 'block' : 'none';
+                });
+                // Hover scales dot
+                el.addEventListener('mouseenter', () => {
+                  const dot = document.getElementById(`${cardId}-dot`);
+                  if (dot) dot.style.transform = 'scale(1.5)';
+                });
+                el.addEventListener('mouseleave', () => {
+                  const dot = document.getElementById(`${cardId}-dot`);
+                  if (dot) dot.style.transform = 'scale(1)';
+                });
               } else if (d.label) {
                 const filter = isMobile ? '' : 'filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));';
                 el.innerHTML = `
@@ -542,28 +572,16 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                   </div>
                 `;
               } else {
-                const emoji = getEntityEmoji(d?.type);
                 const color = getEntityColor(d?.type);
                 const isSelected = Boolean(selectedEntity && d?.name && d.name === selectedEntity.name);
+                const size = isSelected ? 20 : 14;
+                const glowColor = color + '99';
                 
                 el.innerHTML = `
-                  <div class="flex flex-col items-center justify-center transition-all duration-300 relative pointer-events-auto cursor-pointer group">
-                    ${isSelected ? `
-                      <div style="position: absolute; top: -38px; left: 50%; transform: translateX(-50%); z-index: 100; animation: bounce 1s infinite;" class="flex flex-col items-center">
-                        <div style="background: linear-gradient(135deg, #F59E0B, #D97706); color: #000; font-weight: 900; font-size: 11px; padding: 2px 8px; border-radius: 12px; border: 2px solid #FFF; box-shadow: 0 0 15px rgba(245,158,11,0.9); white-space: nowrap; display: flex; align-items: center; gap: 4px;">
-                          <span>📍</span> TARGET PIN
-                        </div>
-                        <div style="width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #F59E0B;"></div>
-                      </div>
-                    ` : ''}
-                    <div style="font-size: ${isSelected ? '28px' : '22px'}; transition: transform 0.2s;" class="${isSelected ? 'scale-125' : 'group-hover:scale-125'}">${emoji}</div>
-                    
-                    <!-- Performance Fix: Only render the card visually if selected OR on group-hover -->
-                    <div class="${isSelected ? 'block' : 'hidden group-hover:block'} transition-all duration-200 absolute top-[28px] pointer-events-none whitespace-nowrap z-50">
-                      <div style="background: rgba(10, 26, 16, 0.95); border: 1px solid ${color}; padding: 4px 8px; border-radius: 6px; color: ${color}; font-family: sans-serif; font-size: 11px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.8);">
-                        ${d.name}
-                      </div>
-                    </div>
+                  <div style="display:flex; flex-direction:column; align-items:center; position:relative; cursor:pointer;">
+                    ${isSelected ? `<div style="position:absolute; top:-32px; left:50%; transform:translateX(-50%); background:#F59E0B; color:#000; font-weight:900; font-size:10px; padding:2px 8px; border-radius:10px; white-space:nowrap; box-shadow:0 0 12px #F59E0B;">SELECTED</div>` : ''}
+                    <div style="width:${size}px; height:${size}px; background:${color}; border-radius:50%; border:${isSelected ? 3 : 2}px solid white; box-shadow:0 0 ${isSelected ? 16 : 8}px ${glowColor}; transition:all 0.2s;"></div>
+                    <div style="margin-top:3px; background:rgba(8,34,26,0.95); border:1px solid ${color}; padding:2px 6px; border-radius:5px; color:${color}; font-family:sans-serif; font-size:${isSelected ? 11 : 10}px; font-weight:bold; white-space:nowrap; box-shadow:0 2px 8px rgba(0,0,0,0.8);">${d.name}</div>
                   </div>
                 `;
                 el.onclick = () => handleEntityClick(d as GeoEntity);

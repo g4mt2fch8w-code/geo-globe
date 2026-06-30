@@ -417,11 +417,12 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
       </div>
 
       {/* Controls (Ruler & Pause) */}
-      <div className="absolute top-48 left-4 right-4 sm:bottom-auto sm:top-24 sm:right-6 sm:left-auto pointer-events-auto flex flex-col sm:items-end gap-3 z-30 font-body">
-        <div className="flex gap-2 sm:gap-3 w-full sm:w-auto">
+      <div className="absolute bottom-28 right-4 sm:bottom-auto sm:top-24 sm:right-6 pointer-events-auto flex flex-col items-end gap-3 z-30 font-body">
+        <div className="flex gap-2 sm:gap-3">
+          {/* Measurement Tools: desktop only */}
           <button 
             onClick={() => setRulerMode(!rulerMode)}
-            className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-full text-xs font-bold transition-all border backdrop-blur-md ${
+            className={`hidden sm:flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold transition-all border backdrop-blur-md ${
               rulerMode ? 'border-gold text-gold bg-gold/15 shadow-[0_0_20px_rgba(251,191,36,0.3)]' : 'bg-black/40 text-white/90 border-white/20 hover:border-gold/50 hover:text-white'
             }`}
           >
@@ -429,9 +430,10 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
             <span>{rulerMode ? 'Exit Tools' : 'Measurement Tools'}</span>
           </button>
 
+          {/* Orbit/Pause: visible on all screens */}
           <button 
             onClick={() => setIsAutoRotate(!isAutoRotate)}
-            className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-black/40 backdrop-blur-md text-white/90 border border-white/20 hover:border-gold/50 hover:text-white`}
+            className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-[#08221a]/95 backdrop-blur-2xl text-white border border-[#34d399]/50 hover:border-[#34d399] shadow-2xl`}
           >
             {isAutoRotate ? '⏸ Pause' : '▶ Orbit'}
           </button>
