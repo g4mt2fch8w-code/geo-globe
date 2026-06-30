@@ -73,17 +73,17 @@ export const AnalyticalHub = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-ink text-fog pt-28 pb-20 px-4 sm:px-8 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-slate-50 dark:bg-ink text-slate-900 dark:text-fog pt-28 pb-20 px-4 sm:px-8 max-w-7xl mx-auto">
       {/* Header */}
       <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#10b981]/10 border border-[#34d399]/30 text-[#059669] dark:text-[#34d399] text-xs font-mono font-bold tracking-wider mb-4">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 dark:bg-[#10b981]/10 border border-emerald-300 dark:border-[#34d399]/30 text-emerald-700 dark:text-[#34d399] text-xs font-mono font-bold tracking-wider mb-4">
           <Sparkles className="w-4 h-4" />
           <span>RESEARCHER ANALYTICAL SUITE</span>
         </div>
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-fog tracking-tight mb-4">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-fog tracking-tight mb-4">
           Forest Services Analytical Hub
         </h1>
-        <p className="text-fog/80 max-w-3xl mx-auto text-sm sm:text-base leading-relaxed">
+        <p className="text-slate-600 dark:text-fog/80 max-w-3xl mx-auto text-sm sm:text-base leading-relaxed">
           Explore all 6 advanced forest management, pedagogical syllabus tools, and interactive spatial overlays. Standalone tools operate at lightning speed devoid of heavy 3D rendering, while spatial modes integrate seamlessly into our North-headed globe.
         </p>
       </div>
@@ -100,24 +100,24 @@ export const AnalyticalHub = () => {
                 <div className="p-3 rounded-2xl bg-ink/5 dark:bg-black/40 border border-ink/10 dark:border-white/10">
                   {tool.icon}
                 </div>
-                <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-ink/10 dark:bg-black/50 border border-ink/10 dark:border-white/10 text-fog uppercase tracking-wider">
+                <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-slate-200 dark:bg-black/50 border border-slate-300 dark:border-white/10 text-slate-700 dark:text-fog uppercase tracking-wider">
                   {tool.badge}
                 </span>
               </div>
-              <div className="text-xs font-semibold uppercase tracking-wider opacity-80 mb-1 text-fog">
+              <div className="text-xs font-semibold uppercase tracking-wider opacity-80 mb-1 text-slate-700 dark:text-fog">
                 {tool.category}
               </div>
-              <h3 className="text-lg font-bold text-fog leading-snug mb-2">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-fog leading-snug mb-2">
                 {tool.title}
               </h3>
-              <p className="text-xs text-fog/80 leading-relaxed mb-6 font-medium">
+              <p className="text-xs text-slate-600 dark:text-fog/80 leading-relaxed mb-6 font-medium">
                 {tool.desc}
               </p>
             </div>
 
             <Link
               to={tool.path}
-              className="w-full py-3 px-4 rounded-xl bg-ink/10 dark:bg-white/10 hover:bg-ink/20 dark:hover:bg-white/20 border border-ink/20 dark:border-white/20 text-fog text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-lg"
+              className="w-full py-3 px-4 rounded-xl bg-white/50 dark:bg-white/10 hover:bg-white/80 dark:hover:bg-white/20 border border-slate-300 dark:border-white/20 text-slate-800 dark:text-fog text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-lg"
             >
               <span>{tool.isStandalone ? 'Launch Standalone Tool' : 'Open in Globe Mode'}</span>
               <span>→</span>
@@ -126,14 +126,95 @@ export const AnalyticalHub = () => {
         ))}
       </div>
 
+      {/* NTCA Authentic Data Analytics Section */}
+      <div className="mb-16">
+        <div className="flex items-center gap-3 mb-6">
+          <BarChart3 className="w-6 h-6 text-[#fbbf24]" />
+          <h2 className="text-2xl font-extrabold text-slate-900 dark:text-fog">NTCA Status of Tigers 2022 Data</h2>
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Tiger Population by State */}
+          <div className="glass-card bg-white/80 dark:bg-[#08221a]/80 border border-emerald-300 dark:border-[#34d399]/40 p-6 rounded-3xl shadow-xl">
+            <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-6 uppercase tracking-wider font-mono">Top Tiger States (2022 Census)</h3>
+            <div className="space-y-4">
+              {[
+                { state: "Madhya Pradesh", pop: 785, percent: 100 },
+                { state: "Karnataka", pop: 563, percent: 71.7 },
+                { state: "Uttarakhand", pop: 560, percent: 71.3 },
+                { state: "Maharashtra", pop: 444, percent: 56.5 },
+                { state: "Tamil Nadu", pop: 306, percent: 38.9 }
+              ].map((item) => (
+                <div key={item.state} className="relative">
+                  <div className="flex justify-between text-xs font-bold text-slate-700 dark:text-[#a7f3d0] mb-1">
+                    <span>{item.state}</span>
+                    <span>{item.pop}</span>
+                  </div>
+                  <div className="h-2 w-full bg-slate-200 dark:bg-black/50 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] rounded-full" 
+                      style={{ width: `${item.percent}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="text-[10px] text-slate-500 dark:text-white/50 mt-4 text-right">Source: NTCA 2022 Tiger Census Report</div>
+          </div>
+
+          {/* Area Allocation Chart */}
+          <div className="glass-card bg-white/80 dark:bg-[#1e1b4b]/80 border border-indigo-300 dark:border-[#818cf8]/40 p-6 rounded-3xl shadow-xl">
+            <h3 className="text-sm font-bold text-slate-800 dark:text-white mb-6 uppercase tracking-wider font-mono">Core vs Buffer Zone Allocation</h3>
+            <div className="flex h-32 items-end gap-2 sm:gap-4 mb-2">
+              {[
+                { name: "Nagarjunasagar", core: 3721, buffer: 1175 },
+                { name: "Similipal", core: 1194, buffer: 1555 },
+                { name: "Bandipur", core: 872, buffer: 584 },
+                { name: "Corbett", core: 821, buffer: 466 },
+                { name: "Ranthambore", core: 1113, buffer: 297 }
+              ].map((reserve) => (
+                <div key={reserve.name} className="flex-1 flex flex-col justify-end items-center group relative h-full">
+                  <div className="absolute -top-10 scale-0 group-hover:scale-100 transition-transform bg-black/80 text-white text-[10px] p-2 rounded whitespace-nowrap z-10 border border-white/20">
+                    <div className="font-bold text-[#818cf8]">{reserve.name}</div>
+                    <div>Core: {reserve.core} km²</div>
+                    <div>Buffer: {reserve.buffer} km²</div>
+                  </div>
+                  
+                  {/* Buffer bar (top) */}
+                  <div 
+                    className="w-full bg-[#818cf8]/40 rounded-t-sm"
+                    style={{ height: `${(reserve.buffer / 5000) * 100}%` }}
+                  />
+                  {/* Core bar (bottom) */}
+                  <div 
+                    className="w-full bg-[#4f46e5] rounded-t-sm"
+                    style={{ height: `${(reserve.core / 5000) * 100}%` }}
+                  />
+                  
+                  <div className="text-[9px] font-mono font-bold text-slate-600 dark:text-[#818cf8]/80 -rotate-45 origin-top-left mt-8 w-20 whitespace-nowrap">
+                    {reserve.name}
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="flex gap-4 text-[10px] text-slate-600 dark:text-white/70 mt-10 justify-center">
+              <div className="flex items-center gap-1"><div className="w-3 h-3 bg-[#4f46e5] rounded-sm"></div> Core Area</div>
+              <div className="flex items-center gap-1"><div className="w-3 h-3 bg-[#818cf8]/40 rounded-sm"></div> Buffer Area</div>
+            </div>
+            <div className="text-[10px] text-slate-500 dark:text-white/50 mt-4 text-right">Source: MoEFCC Gazette Notifications</div>
+          </div>
+        </div>
+      </div>
+
       {/* Official Credits Footer Banner */}
-      <div className="glass-card bg-[#08221a]/90 border border-[#34d399]/30 p-6 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="glass-card bg-slate-800 dark:bg-[#08221a]/90 border border-slate-700 dark:border-[#34d399]/30 p-6 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
           <h4 className="text-sm font-bold text-white flex items-center gap-2">
             <span>🏛️ Official Data & Research Citations</span>
           </h4>
           <p className="text-xs text-white/80 mt-1">
-            Forest Survey of India (FSI) Van Agni Alert System • Champion & Seth (1968) Forest Typology • Rodgers & Panwar (1988) Biogeographic Classification • Wildlife (Protection) Act, 1972 & NTCA Protocols.
+            Forest Survey of India (FSI) Van Agni Alert System (Removed) • Champion & Seth (1968) Forest Typology • Rodgers & Panwar (1988) Biogeographic Classification • Wildlife (Protection) Act, 1972 & NTCA Protocols.
           </p>
         </div>
         <div className="text-[11px] font-mono text-[#34d399] bg-black/40 px-4 py-2 rounded-xl border border-[#34d399]/30 whitespace-nowrap">

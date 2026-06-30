@@ -389,7 +389,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
       color: t.impactLevel === 'Critical' ? '#EF4444' : '#F97316',
       desc: t.summary
     }));
-  } else if (activeLayer === 'champion' && !isMobile) {
+  } else if (activeLayer === 'champion') {
     layerHtmlElements = championForestTypes.map((c: any) => ({
       lat: c.lat,
       lng: c.lng,
@@ -399,7 +399,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
       color: c.color,
       desc: c.description
     }));
-  } else if (activeLayer === 'watershed' && !isMobile) {
+  } else if (activeLayer === 'watershed') {
     layerHtmlElements = hydrologicalWatersheds.map((w: any) => ({
       lat: w.coords[0][0],
       lng: w.coords[0][1],
@@ -409,7 +409,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
       color: w.color,
       desc: `Origin: ${w.origin}`
     }));
-  } else if (activeLayer === 'soil' && !isMobile) {
+  } else if (activeLayer === 'soil') {
     layerHtmlElements = soilClimateGrids.map((s: any) => ({
       lat: s.lat,
       lng: s.lng,
@@ -425,7 +425,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
     <div 
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="w-full h-full flex flex-col relative bg-black"
+      className="w-full h-full flex flex-col relative bg-black pt-16 sm:pt-0"
     >
       <div ref={containerRef} className="w-full h-full relative" style={{ touchAction: 'none' }}>
         <React.Suspense fallback={<div className="w-full h-full flex items-center justify-center text-white/50">Loading Globe...</div>}>
@@ -522,12 +522,12 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
               
               if (d.isOverlay) {
                 el.innerHTML = `
-                  <div class="flex flex-col items-center justify-center transition-all duration-300 hover:scale-110 relative">
-                    <div style="background-color: ${d.color}; width: 16px; height: 16px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 15px ${d.color};"></div>
-                    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 w-64 bg-[#08221a]/95 backdrop-blur-md border border-[#34d399]/40 p-3 rounded-xl shadow-2xl text-left pointer-events-none z-50">
-                      <div style="color: ${d.color}; font-size: 10px; font-weight: bold; text-transform: uppercase;">${d.badge}</div>
-                      <div class="text-white text-xs font-bold my-1">${d.name}</div>
-                      <div class="text-[#a7f3d0]/80 text-[10px] leading-tight">${d.desc}</div>
+                  <div class="flex flex-col items-center justify-center transition-all duration-300 hover:scale-110 relative group-hover:z-[100]">
+                    <div style="background-color: ${d.color}; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 10px ${d.color};" class="sm:w-4 sm:h-4 sm:border-[3px]"></div>
+                    <div class="opacity-0 group-hover:opacity-100 transition-opacity absolute bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 w-48 sm:w-64 bg-[#08221a]/95 backdrop-blur-md border border-[#34d399]/40 p-2 sm:p-3 rounded-xl shadow-2xl text-left pointer-events-none z-[100]">
+                      <div style="color: ${d.color}; font-size: 9px; font-weight: bold; text-transform: uppercase;" class="sm:text-[10px]">${d.badge}</div>
+                      <div class="text-white text-[11px] sm:text-xs font-bold my-0.5 sm:my-1 leading-tight">${d.name}</div>
+                      <div class="text-[#a7f3d0]/80 text-[9px] sm:text-[10px] leading-tight">${d.desc}</div>
                     </div>
                   </div>
                 `;

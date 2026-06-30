@@ -176,11 +176,11 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
           {onOpenHelp && (
             <button
               onClick={onOpenHelp}
-              className="hidden sm:flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-full bg-[#10b981]/20 text-[#34d399] border border-[#10b981]/60 hover:bg-[#10b981]/40 hover:text-white transition-all shadow-[0_0_15px_rgba(16,185,129,0.5)] animate-pulse font-extrabold text-xs shrink-0"
+              className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-full bg-[#10b981]/20 text-[#34d399] border border-[#10b981]/60 hover:bg-[#10b981]/40 hover:text-white transition-all shadow-[0_0_15px_rgba(16,185,129,0.5)] animate-pulse font-extrabold text-xs shrink-0"
               title="How to use the globe"
             >
-              <HelpCircle className="w-3.5 h-3.5" />
-              <span>Guide</span>
+              <HelpCircle className="w-3.5 h-3.5 shrink-0" />
+              <span className="hidden sm:inline">Guide</span>
             </button>
           )}
 
@@ -192,14 +192,14 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
           <div className="relative pointer-events-auto">
             <button
               onClick={() => setShowModesMenu(!showModesMenu)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all border shadow-lg ${
+              className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-full text-[10px] sm:text-xs font-bold transition-all border shadow-lg ${
                 globeMode !== 'standard' || showModesMenu
                   ? 'bg-[#fbbf24] text-[#04120e] border-[#f59e0b] shadow-[0_0_20px_rgba(251,191,36,0.6)]'
                   : 'bg-black/60 text-white/90 border-white/20 hover:border-[#fbbf24]/60'
               }`}
             >
-              <Activity className="w-3.5 h-3.5" />
-              <span>Globe Mode: {globeMode.toUpperCase()}</span>
+              <Activity className="w-3.5 h-3.5 shrink-0" />
+              <span className="whitespace-nowrap">Mode: {globeMode.toUpperCase()}</span>
             </button>
 
             {showModesMenu && (
@@ -267,17 +267,17 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
 
         {/* Forestry Syllabus Overlays Menu Toggle */}
         <div className="relative pointer-events-auto">
-          <button
-            onClick={() => setShowLayersMenu(!showLayersMenu)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all border shadow-lg ${
-              activeLayer !== 'none' || showLayersMenu
-                ? 'bg-[#10b981] text-[#04120e] border-[#34d399] shadow-[0_0_20px_rgba(52,211,153,0.6)]'
-                : 'bg-black/60 text-white/90 border-white/20 hover:border-[#34d399]/60'
-            }`}
-          >
-            <Layers className="w-3.5 h-3.5" />
-            <span>Syllabus Data Overlays: {activeLayer.toUpperCase()}</span>
-          </button>
+            <button
+              onClick={() => setShowLayersMenu(!showLayersMenu)}
+              className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-full text-[10px] sm:text-xs font-bold transition-all border shadow-lg ${
+                activeLayer !== 'none' || showLayersMenu
+                  ? 'bg-[#10b981] text-[#04120e] border-[#34d399] shadow-[0_0_20px_rgba(52,211,153,0.6)]'
+                  : 'bg-black/60 text-white/90 border-white/20 hover:border-[#34d399]/60'
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5 shrink-0" />
+              <span className="whitespace-nowrap">Data: {activeLayer.toUpperCase()}</span>
+            </button>
 
           {showLayersMenu && (
             <div className="absolute top-full left-0 mt-2 w-72 bg-[#08221a]/95 backdrop-blur-2xl border border-[#34d399]/40 rounded-2xl p-4 shadow-2xl z-50 animate-in fade-in slide-in-from-top-2">
@@ -413,8 +413,8 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
         </div>
       </div>
 
-      {/* Bottom Right Controls (Ruler & Pause) */}
-      <div className="absolute bottom-20 left-4 right-4 sm:bottom-auto sm:top-24 sm:right-6 sm:left-auto pointer-events-auto flex flex-col sm:items-end gap-3 z-30 font-body">
+      {/* Controls (Ruler & Pause) */}
+      <div className="absolute top-48 left-4 right-4 sm:bottom-auto sm:top-24 sm:right-6 sm:left-auto pointer-events-auto flex flex-col sm:items-end gap-3 z-30 font-body">
         <div className="flex gap-2 sm:gap-3 w-full sm:w-auto">
           <button 
             onClick={() => setRulerMode(!rulerMode)}

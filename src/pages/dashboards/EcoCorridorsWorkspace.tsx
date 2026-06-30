@@ -292,13 +292,69 @@ export const EcoCorridorsWorkspace = () => {
 
   const selected = corridors.find(c => c.id === selectedCorridorId) || corridors[0];
 
+  const renderInspectionWorkspace = (selected: any) => (
+    <div className="glass-card bg-ink/5 dark:bg-black/60 border border-ink/20 dark:border-[#34d399]/30 p-8 rounded-3xl space-y-6">
+      <div className="border-b border-ink/10 dark:border-white/10 pb-5">
+        <div className="text-[10px] sm:text-xs font-mono text-[#059669] dark:text-[#34d399] uppercase font-bold mb-1">
+          Transect Vector Coordinates: {selected.coords} • Source: Official NTCA Report
+        </div>
+        <h2 className="text-xl sm:text-3xl font-extrabold text-slate-900 dark:text-fog">{selected.name}</h2>
+        <p className="text-xs sm:text-sm text-slate-600 dark:text-fog/80 mt-1 font-medium">Jurisdiction: {selected.states}</p>
+      </div>
+
+      {/* Status Matrix */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {showCorridors && (
+          <div className="bg-[#0284c7]/15 dark:bg-[#38bdf8]/10 border border-[#0284c7]/40 dark:border-[#38bdf8]/30 p-4 rounded-2xl">
+            <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold text-[#0284c7] dark:text-[#38bdf8] uppercase font-mono mb-1.5">
+              <MapPin className="w-4 h-4 shrink-0" />
+              <span>Linear Infrastructure Bottlenecks</span>
+            </div>
+            <p className="text-xs text-slate-700 dark:text-white/90 leading-relaxed font-medium">{selected.bottlenecks}</p>
+          </div>
+        )}
+        <div className="bg-[#10b981]/15 dark:bg-[#10b981]/10 border border-[#10b981]/40 dark:border-[#34d399]/30 p-4 rounded-2xl">
+          <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold text-[#059669] dark:text-[#34d399] uppercase font-mono mb-1.5">
+            <ShieldAlert className="w-4 h-4 shrink-0" />
+            <span>Eco-Sensitive Zone (ESZ)</span>
+          </div>
+          <p className="text-xs text-slate-700 dark:text-white/90 leading-relaxed font-medium">{selected.eszRadiusKm}</p>
+        </div>
+      </div>
+
+      {/* Conflict & Management */}
+      <div className="space-y-4">
+        <div className="bg-[#ef4444]/15 dark:bg-[#ef4444]/10 border border-[#ef4444]/40 p-5 rounded-2xl">
+          <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold text-[#dc2626] dark:text-[#ef4444] uppercase font-mono mb-2">
+            <AlertTriangle className="w-4 h-4 shrink-0" />
+            <span>Human-Wildlife Conflict (HWC) Incidents</span>
+          </div>
+          <p className="text-xs text-slate-700 dark:text-white/90 leading-relaxed font-medium">{selected.hwcIncidents}</p>
+        </div>
+
+        <div className="bg-slate-200/50 dark:bg-white/5 border border-slate-300 dark:border-white/10 p-5 rounded-2xl">
+          <div className="text-[10px] sm:text-xs font-bold text-[#d97706] dark:text-[#fbbf24] uppercase font-mono mb-2">
+            🏛️ Forest Department Management Action Plan
+          </div>
+          <p className="text-xs text-slate-700 dark:text-white/80 leading-relaxed font-medium">{selected.managementAction}</p>
+        </div>
+      </div>
+
+      {showBorders && (
+        <div className="p-4 rounded-xl bg-[#f97316]/15 dark:bg-[#f97316]/10 border border-[#f97316]/40 text-xs text-[#c2410c] dark:text-[#fdba74] font-medium">
+          <strong>Interstate Border Governance Notice:</strong> This corridor intersects multiple state forest divisions requiring synchronized joint patrol protocols under NTCA guidelines.
+        </div>
+      )}
+    </div>
+  );
+
   return (
-    <div className="min-h-screen bg-ink text-fog pt-28 pb-20 px-4 sm:px-8 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-slate-50 dark:bg-ink text-slate-900 dark:text-fog pt-28 pb-20 px-4 sm:px-8 max-w-7xl mx-auto">
       {/* Top Nav */}
       <div className="flex items-center justify-between mb-8">
         <Link
           to="/dashboards"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-ink/10 dark:bg-white/10 hover:bg-ink/20 dark:hover:bg-white/20 border border-ink/20 dark:border-white/10 text-xs font-bold text-fog transition-all"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-200 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/20 border border-slate-300 dark:border-white/10 text-xs font-bold text-slate-800 dark:text-fog transition-all"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Analytical Hub</span>
@@ -310,11 +366,11 @@ export const EcoCorridorsWorkspace = () => {
 
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-fog flex items-center gap-3 mb-2">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-fog flex items-center gap-3 mb-2">
           <Route className="w-8 h-8 text-[#059669] dark:text-[#34d399]" />
           <span>Forestry Administration & Eco-Corridor Workspace</span>
         </h1>
-        <p className="text-sm text-fog/80 max-w-3xl font-medium">
+        <p className="text-sm text-slate-600 dark:text-fog/80 max-w-3xl font-medium">
           Examine all 20 official NTCA wildlife dispersal corridors connecting protected area sources across India, human-wildlife conflict zones, linear infrastructure bottlenecks, and administrative interstate boundaries.
         </p>
       </div>
@@ -353,79 +409,42 @@ export const EcoCorridorsWorkspace = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left List */}
         <div className="space-y-3 max-h-[750px] overflow-y-auto pr-2 custom-scrollbar">
-          <div className="text-xs font-mono font-bold uppercase tracking-wider text-fog/80 dark:text-white/80 px-1 sticky top-0 bg-ink py-2 z-10">
+          <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-600 dark:text-white/80 px-1 sticky top-0 bg-slate-50 dark:bg-ink py-2 z-10">
             Select Vital Corridor Transect ({corridors.length} Total)
           </div>
           {corridors.map(c => (
-            <div
-              key={c.id}
-              onClick={() => setSelectedCorridorId(c.id)}
-              className={`p-4 rounded-2xl border cursor-pointer transition-all ${
-                selectedCorridorId === c.id
-                  ? 'bg-[#08221a] text-white border-[#34d399] shadow-[0_0_20px_rgba(52,211,153,0.25)]'
-                  : 'glass-card hover:bg-ink/10 dark:hover:bg-white/10 border-ink/10 dark:border-white/10'
-              }`}
-            >
-              <div className="flex justify-between items-start mb-1.5">
-                <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-ink/10 dark:bg-black/40 text-fog dark:text-white/80 border border-ink/10 dark:border-white/10">
-                  {c.lengthKm} km • {c.areaSqKm} sq km
-                </span>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded text-[#059669] dark:text-[#34d399] bg-[#34d399]/15">
-                  NTCA Tier
-                </span>
+            <div key={c.id}>
+              <div
+                onClick={() => setSelectedCorridorId(c.id)}
+                className={`p-4 rounded-2xl border cursor-pointer transition-all ${
+                  selectedCorridorId === c.id
+                    ? 'bg-[#08221a] text-white border-[#34d399] shadow-[0_0_20px_rgba(52,211,153,0.25)]'
+                    : 'glass-card bg-white/50 dark:bg-transparent hover:bg-slate-200 dark:hover:bg-white/10 border-slate-300 dark:border-white/10'
+                }`}
+              >
+                <div className="flex justify-between items-start mb-1.5">
+                  <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-slate-200 dark:bg-black/40 text-slate-700 dark:text-white/80 border border-slate-300 dark:border-white/10">
+                    {c.lengthKm} km • {c.areaSqKm} sq km
+                  </span>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded text-[#059669] dark:text-[#34d399] bg-[#10b981]/15 dark:bg-[#34d399]/15">
+                    NTCA Tier
+                  </span>
+                </div>
+                <h3 className={`text-sm font-bold mb-1 ${selectedCorridorId === c.id ? 'text-white' : 'text-slate-900 dark:text-fog'}`}>{c.name}</h3>
+                <p className={`text-[11px] font-mono ${selectedCorridorId === c.id ? 'text-[#34d399]' : 'text-slate-600 dark:text-fog/70'}`}>{c.states}</p>
               </div>
-              <h3 className={`text-sm font-bold mb-1 ${selectedCorridorId === c.id ? 'text-white' : 'text-fog'}`}>{c.name}</h3>
-              <p className={`text-[11px] font-mono ${selectedCorridorId === c.id ? 'text-[#34d399]' : 'text-fog/70'}`}>{c.states}</p>
+
+              {/* Mobile Inline Detail View */}
+              <div className={`mt-3 mb-6 transition-all duration-300 ${selectedCorridorId === c.id ? 'block lg:hidden opacity-100' : 'hidden opacity-0'}`}>
+                {renderInspectionWorkspace(selected)}
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Right Inspection Workspace */}
-        <div className="lg:col-span-2 glass-card bg-ink/5 dark:bg-black/60 border border-ink/20 dark:border-[#34d399]/30 p-8 rounded-3xl space-y-6">
-          <div className="border-b border-ink/10 dark:border-white/10 pb-5">
-            <div className="text-xs font-mono text-[#059669] dark:text-[#34d399] uppercase font-bold mb-1">
-              Transect Vector Coordinates: {selected.coords} • Source: Official NTCA Report
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-fog">{selected.name}</h2>
-            <p className="text-sm text-fog/80 mt-1 font-medium">Jurisdiction: {selected.states}</p>
-          </div>
-
-          {/* Status Matrix */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {showCorridors && (
-              <div className="bg-[#0284c7]/15 dark:bg-[#38bdf8]/10 border border-[#0284c7]/40 dark:border-[#38bdf8]/30 p-4 rounded-2xl">
-                <div className="flex items-center gap-2 text-xs font-bold text-[#0284c7] dark:text-[#38bdf8] uppercase font-mono mb-1.5">
-                  <MapPin className="w-4 h-4" />
-                  <span>Linear Infrastructure Bottlenecks</span>
-                </div>
-                <p className="text-xs text-fog dark:text-white/90 leading-relaxed font-medium">{selected.bottlenecks}</p>
-              </div>
-            )}
-          </div>
-
-          {/* Conflict & Management */}
-          <div className="space-y-4">
-            <div className="bg-[#ef4444]/15 dark:bg-[#ef4444]/10 border border-[#ef4444]/40 p-5 rounded-2xl">
-              <div className="flex items-center gap-2 text-xs font-bold text-[#dc2626] dark:text-[#ef4444] uppercase font-mono mb-2">
-                <AlertTriangle className="w-4 h-4" />
-                <span>Human-Wildlife Conflict (HWC) Incidents</span>
-              </div>
-              <p className="text-xs text-fog dark:text-white/90 leading-relaxed font-medium">{selected.hwcIncidents}</p>
-            </div>
-
-            <div className="bg-ink/5 dark:bg-white/5 border border-ink/10 dark:border-white/10 p-5 rounded-2xl">
-              <div className="text-xs font-bold text-[#d97706] dark:text-[#fbbf24] uppercase font-mono mb-2">
-                🏛️ Forest Department Management Action Plan
-              </div>
-              <p className="text-xs text-fog/90 dark:text-white/80 leading-relaxed font-medium">{selected.managementAction}</p>
-            </div>
-          </div>
-
-          {showBorders && (
-            <div className="p-4 rounded-xl bg-[#f97316]/15 dark:bg-[#f97316]/10 border border-[#f97316]/40 text-xs text-[#c2410c] dark:text-[#fdba74] font-medium">
-              <strong>Interstate Border Governance Notice:</strong> This corridor intersects multiple state forest divisions requiring synchronized joint patrol protocols under NTCA guidelines.
-            </div>
-          )}
+        {/* Right Inspection Workspace (Desktop) */}
+        <div className="hidden lg:block lg:col-span-2">
+          {renderInspectionWorkspace(selected)}
         </div>
       </div>
     </div>

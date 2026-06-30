@@ -16,12 +16,12 @@ export const SyllabusCompare = () => {
   const maxRain = Math.max(rainA, rainB, 3500);
 
   return (
-    <div className="min-h-screen bg-ink text-fog pt-28 pb-20 px-4 sm:px-8 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-slate-50 dark:bg-ink text-slate-900 dark:text-fog pt-28 pb-20 px-4 sm:px-8 max-w-7xl mx-auto">
       {/* Top Nav */}
       <div className="flex items-center justify-between mb-8">
         <Link
           to="/dashboards"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-ink/10 dark:bg-white/10 hover:bg-ink/20 dark:hover:bg-white/20 border border-ink/20 dark:border-white/10 text-xs font-bold text-fog transition-all"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-200 dark:bg-ink/10 hover:bg-slate-300 dark:hover:bg-ink/20 border border-slate-300 dark:border-white/10 text-xs font-bold text-slate-800 dark:text-fog transition-all"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Analytical Hub</span>
@@ -33,45 +33,45 @@ export const SyllabusCompare = () => {
 
       {/* Header */}
       <div className="mb-10">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-fog flex items-center gap-3 mb-2">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-fog flex items-center gap-3 mb-2">
           <GitCompare className="w-8 h-8 text-[#fbbf24]" />
           <span>Cross-Reference Syllabus Analytical Matrix</span>
         </h1>
-        <p className="text-sm text-fog/80 max-w-2xl font-medium">
+        <p className="text-sm text-slate-600 dark:text-fog/80 max-w-2xl font-medium">
           Compare two protected areas side-by-side across Champion & Seth forest classifications, official NTCA/MoEFCC notification year, indicator floral/faunal species, altitude brackets, and annual precipitation levels.
         </p>
       </div>
 
       {/* Dropdown Selectors */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-        <div className="glass-card bg-[#08221a]/80 dark:bg-[#08221a]/80 border border-[#34d399]/40 p-5 rounded-2xl shadow-xl">
-          <label className="block text-xs font-mono font-bold uppercase text-[#34d399] tracking-wider mb-2">
+        <div className="glass-card bg-white/80 dark:bg-[#08221a]/80 border border-[#34d399]/40 p-5 rounded-2xl shadow-xl">
+          <label className="block text-xs font-mono font-bold uppercase text-[#059669] dark:text-[#34d399] tracking-wider mb-2">
             Select Reserve A (Primary)
           </label>
           <select
             value={resAId}
             onChange={(e) => setResAId(e.target.value)}
-            className="w-full bg-ink/80 dark:bg-black/60 border border-[#34d399]/40 text-fog dark:text-white rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-[#34d399]"
+            className="w-full bg-slate-50 dark:bg-black/60 border border-[#34d399]/40 text-slate-900 dark:text-white rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-[#34d399]"
           >
             {reserves.map(r => (
-              <option key={r.id} value={r.id} className="bg-ink dark:bg-[#08221a] text-fog dark:text-white">
+              <option key={r.id} value={r.id} className="bg-white dark:bg-[#08221a] text-slate-900 dark:text-white">
                 {r.name} ({r.state}) - {r.type}
               </option>
             ))}
           </select>
         </div>
 
-        <div className="glass-card bg-[#1e1b4b]/80 dark:bg-[#1e1b4b]/80 border border-[#818cf8]/40 p-5 rounded-2xl shadow-xl">
-          <label className="block text-xs font-mono font-bold uppercase text-[#818cf8] tracking-wider mb-2">
+        <div className="glass-card bg-white/80 dark:bg-[#1e1b4b]/80 border border-[#818cf8]/40 p-5 rounded-2xl shadow-xl">
+          <label className="block text-xs font-mono font-bold uppercase text-[#4f46e5] dark:text-[#818cf8] tracking-wider mb-2">
             Select Reserve B (Comparison)
           </label>
           <select
             value={resBId}
             onChange={(e) => setResBId(e.target.value)}
-            className="w-full bg-ink/80 dark:bg-black/60 border border-[#818cf8]/40 text-fog dark:text-white rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-[#818cf8]"
+            className="w-full bg-slate-50 dark:bg-black/60 border border-[#818cf8]/40 text-slate-900 dark:text-white rounded-xl px-4 py-3 text-sm font-semibold focus:outline-none focus:border-[#818cf8]"
           >
             {reserves.map(r => (
-              <option key={r.id} value={r.id} className="bg-ink dark:bg-[#1e1b4b] text-fog dark:text-white">
+              <option key={r.id} value={r.id} className="bg-white dark:bg-[#1e1b4b] text-slate-900 dark:text-white">
                 {r.name} ({r.state}) - {r.type}
               </option>
             ))}
