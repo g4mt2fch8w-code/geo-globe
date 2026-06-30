@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Layers, MapPin, AlertTriangle, Route } from 'lucide-react';
+import { ArrowLeft, Layers, MapPin, AlertTriangle, Route, ShieldAlert } from 'lucide-react';
 
 export const EcoCorridorsWorkspace = () => {
   const [showCorridors, setShowCorridors] = useState(true);
