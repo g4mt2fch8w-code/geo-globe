@@ -42,7 +42,7 @@ const GlobeApp = () => {
   };
 
   return (
-    <div className="relative w-full h-[100dvh] overflow-hidden bg-ink">
+    <div className="fixed inset-0 overflow-hidden bg-ink">
       <div className="absolute inset-0 z-0">
         <GlobeViewer 
           onEntityClick={handleEntityClick} 
