@@ -71,6 +71,18 @@ const getEntityEmoji = (type?: string) => {
   return '📍';
 };
 
+const getEntityColor = (type?: string) => {
+  if (!type) return '#FF9500';
+  const t = type.toLowerCase();
+  if (t.includes('tiger')) return '#F97316'; // orange-500
+  if (t.includes('biosphere')) return '#84CC16'; // lime-500
+  if (t.includes('national park')) return '#22C55E'; // green-500
+  if (t.includes('elephant')) return '#A3A3A3'; // neutral-400
+  if (t.includes('ramsar')) return '#3B82F6'; // blue-500
+  if (t.includes('global')) return '#EAB308'; // yellow-500
+  return '#FF9500';
+};
+
 export const GlobeViewer: React.FC<GlobeViewerProps> = ({ 
   onEntityClick, onGlobeClick, rulerPoints, isAutoRotate, flyTo
 }) => {
@@ -192,16 +204,16 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             pathDashAnimateTime={10000}
             pathStroke={2}
             
-            // On mobile, use native WebGL labels for forests to prevent DOM main-thread locking.
-            labelsData={isMobile ? forestsData : []}
-            labelLat="lat"
-            labelLng="lng"
-            labelText={(d: any) => getEntityEmoji(d.type)}
-            labelSize={2.5}
-            labelDotRadius={0.5}
-            labelColor={() => 'rgba(255, 255, 255, 1)'}
-            labelResolution={3}
-            onLabelClick={(d: any) => handleEntityClick(d)}
+            // On mobile, use highly optimized raw WebGL points instead of text/labels. 
+            // Rendering 200+ emojis to canvas textures completely blocks mobile CPUs.
+            pointsData={isMobile ? forestsData : []}
+            pointLat="lat"
+            pointLng="lng"
+            pointColor={(d: any) => getEntityColor(d.type)}
+            pointAltitude={0.01}
+            pointRadius={0.4}
+            pointResolution={16}
+            onPointClick={(d: any) => handleEntityClick(d)}
             
             // On mobile, only render ruler HTML elements. On desktop, render forests and rulers as HTML.
             htmlElementsData={isMobile ? rulerHtmlData : [...forestsData, ...rulerHtmlData]}
