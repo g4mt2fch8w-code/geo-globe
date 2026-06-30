@@ -215,7 +215,7 @@ export const DeveloperAbout = () => {
         
         <Reveal delay={0.15}>
           <h2 className="mt-8 font-display text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.02] text-fog">
-            Omkar Anil Bhople
+            Omkar Bhople
           </h2>
           <p className="mt-4 text-xl text-gold font-display tracking-wide">Tiger Researcher, Conservationist & Hardcore Wildlifer.</p>
         </Reveal>
@@ -257,7 +257,7 @@ export const DeveloperAbout = () => {
             <Reveal delay={0.3}>
               <h3 className="font-display text-2xl text-gold mt-0">My Journey</h3>
               <p>
-                Hey! I'm Omkar Anil Bhople. If there is one thing that defines me, it is curiosity. Whether I am architecting a complex software system, observing tiger behavior in the wild, or finding a smarter way to solve an everyday problem, I thrive on learning by doing.
+                Hey! I'm Omkar Bhople. If there is one thing that defines me, it is curiosity. Whether I am architecting a complex software system, observing tiger behavior in the wild, or finding a smarter way to solve an everyday problem, I thrive on learning by doing.
               </p>
               <p>
                 I am currently pursuing my B.Tech while actively building software solutions. My journey has been a unique intersection of two worlds: the high-speed, logical realm of Artificial Intelligence and the patient, disciplined world of wildlife conservation. Through my work and collaborations with Forest Departments, I learned that the best solutions whether for a forest ecosystem or a digital platform require observation, resilience, and a deep understanding of the end goal.
@@ -282,7 +282,7 @@ export const DeveloperAbout = () => {
               <p>
                 Every user who interacts with this app becomes part of that journey. Thank you for choosing to use my work; I truly hope it adds value to your life, and I look forward to creating many more meaningful products in the years ahead.
               </p>
-              <p className="font-display text-emerald mt-8 text-xl">— Omkar Anil Bhople</p>
+              <p className="font-display text-emerald mt-8 text-xl">— Omkar Bhople</p>
             </Reveal>
           </div>
         </div>
@@ -301,35 +301,35 @@ export const AnimatedDivider = () => {
         <div className="h-[1px] w-3/4 bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
       </div>
 
-      <div className="w-[200vw] md:w-[150vw] -rotate-2 transform-gpu">
+      <div className="w-[200vw] md:w-[150vw] -rotate-2 transform-gpu drop-shadow-[0_20px_30px_rgba(0,0,0,0.7)]">
         <div className="flex w-[200%] marquee-track">
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex w-1/2 justify-around items-center gap-12 px-6">
-              <span className="text-4xl md:text-7xl font-display text-transparent font-bold" style={{ WebkitTextStroke: '2px rgba(255, 255, 255, 0.6)' }}>PROTECT</span>
-              <span className="text-xl md:text-3xl text-gold">✦</span>
-              <span className="text-4xl md:text-7xl font-display text-emerald font-semibold opacity-100 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">PRESERVE</span>
-              <span className="text-xl md:text-3xl text-gold">✦</span>
-              <span className="text-4xl md:text-7xl font-display text-transparent font-bold" style={{ WebkitTextStroke: '2px rgba(255, 255, 255, 0.6)' }}>RESEARCH</span>
-              <span className="text-xl md:text-3xl text-gold">✦</span>
-              <span className="text-4xl md:text-7xl font-display text-emerald font-semibold opacity-100 drop-shadow-[0_0_15px_rgba(16,185,129,0.5)]">CONSERVE</span>
-              <span className="text-xl md:text-3xl text-gold">✦</span>
+              <span className="text-4xl md:text-7xl font-display text-transparent font-bold" style={{ WebkitTextStroke: '2px rgba(255, 255, 255, 0.6)', filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.3))' }}>PROTECT</span>
+              <span className="text-xl md:text-3xl text-gold drop-shadow-[0_0_10px_rgba(201,161,59,0.8)]">✦</span>
+              <span className="text-4xl md:text-7xl font-display text-emerald font-semibold opacity-100 drop-shadow-[0_0_20px_rgba(16,185,129,0.7)]">PRESERVE</span>
+              <span className="text-xl md:text-3xl text-gold drop-shadow-[0_0_10px_rgba(201,161,59,0.8)]">✦</span>
+              <span className="text-4xl md:text-7xl font-display text-transparent font-bold" style={{ WebkitTextStroke: '2px rgba(255, 255, 255, 0.6)', filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.3))' }}>RESEARCH</span>
+              <span className="text-xl md:text-3xl text-gold drop-shadow-[0_0_10px_rgba(201,161,59,0.8)]">✦</span>
+              <span className="text-4xl md:text-7xl font-display text-emerald font-semibold opacity-100 drop-shadow-[0_0_20px_rgba(16,185,129,0.7)]">CONSERVE</span>
+              <span className="text-xl md:text-3xl text-gold drop-shadow-[0_0_10px_rgba(201,161,59,0.8)]">✦</span>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="w-[200vw] md:w-[150vw] rotate-1 mt-6 transform-gpu opacity-90">
+      <div className="w-[200vw] md:w-[150vw] rotate-1 mt-6 transform-gpu opacity-90 drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]">
         <div className="flex w-[200%] marquee-track" style={{ animationDirection: 'reverse', animationDuration: '35s' }}>
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex w-1/2 justify-around items-center gap-12 px-6">
-              <span className="text-3xl md:text-5xl font-display text-fog opacity-80">WILDLIFE</span>
-              <span className="w-16 h-[1px] bg-white/40"></span>
-              <span className="text-3xl md:text-5xl font-display text-transparent" style={{ WebkitTextStroke: '2px rgba(201, 161, 59, 0.8)' }}>ECOSYSTEMS</span>
-              <span className="w-16 h-[1px] bg-white/40"></span>
-              <span className="text-3xl md:text-5xl font-display text-fog opacity-80">HABITATS</span>
-              <span className="w-16 h-[1px] bg-white/40"></span>
-              <span className="text-3xl md:text-5xl font-display text-transparent" style={{ WebkitTextStroke: '2px rgba(201, 161, 59, 0.8)' }}>BIODIVERSITY</span>
-              <span className="w-16 h-[1px] bg-white/40"></span>
+              <span className="text-3xl md:text-5xl font-display text-fog opacity-80 drop-shadow-[0_0_10px_rgba(255,255,255,0.15)]">WILDLIFE</span>
+              <span className="w-16 h-[1px] bg-white/40 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]"></span>
+              <span className="text-3xl md:text-5xl font-display text-transparent" style={{ WebkitTextStroke: '2px rgba(201, 161, 59, 0.8)', filter: 'drop-shadow(0 0 12px rgba(201,161,59,0.3))' }}>ECOSYSTEMS</span>
+              <span className="w-16 h-[1px] bg-white/40 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]"></span>
+              <span className="text-3xl md:text-5xl font-display text-fog opacity-80 drop-shadow-[0_0_10px_rgba(255,255,255,0.15)]">HABITATS</span>
+              <span className="w-16 h-[1px] bg-white/40 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]"></span>
+              <span className="text-3xl md:text-5xl font-display text-transparent" style={{ WebkitTextStroke: '2px rgba(201, 161, 59, 0.8)', filter: 'drop-shadow(0 0 12px rgba(201,161,59,0.3))' }}>BIODIVERSITY</span>
+              <span className="w-16 h-[1px] bg-white/40 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]"></span>
             </div>
           ))}
         </div>
