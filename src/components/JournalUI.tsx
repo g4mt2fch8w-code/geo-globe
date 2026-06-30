@@ -23,7 +23,7 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
       setWikiData(null);
       setWikiUrl(null);
 
-      const typeStr = entity.type && !entity.name.includes(entity.type) ? entity.type : '';
+      const typeStr = entity.type && !entity.name.includes(entity.type) && !entity.type.includes('Global') ? entity.type : '';
       const countryStr = entity.country && !entity.country.includes('India') ? entity.country : 'India';
       
       // Priority order: exact type name, generic type, then just the name.
@@ -45,9 +45,17 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
             // Find a valid specific article, rejecting generic list/index pages
             const validMatch = searchData.query.search.find((res: any) => {
               const lowerTitle = res.title.toLowerCase();
-              return !lowerTitle.startsWith('list of') && 
-                     !lowerTitle.startsWith('index of') &&
-                     !lowerTitle.includes('protected areas');
+              if (lowerTitle.startsWith('list of') || 
+                  lowerTitle.startsWith('index of') ||
+                  lowerTitle.includes('protected areas')) return false;
+                  
+              // For safety, the result's title or snippet must contain the first major word of the entity name
+              const nameParts = entity.name.split(' ').filter(p => p.length > 2);
+              const firstWord = nameParts.length > 0 ? nameParts[0].toLowerCase() : entity.name.toLowerCase();
+              
+              if (!lowerTitle.includes(firstWord) && !res.snippet.toLowerCase().includes(firstWord)) return false;
+              
+              return true;
             });
 
             if (!validMatch) continue; // Try the next search query fallback

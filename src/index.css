@@ -319,4 +319,6 @@
 html, body, #root {
   touch-action: pan-x pan-y;
   overscroll-behavior: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
