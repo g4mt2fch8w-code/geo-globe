@@ -518,12 +518,14 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
               el.className = "group pointer-events-auto cursor-pointer";
               
               if (d.isOverlay) {
+                // Cards auto-open only when a real mode/overlay is turned on
+                const modeIsActive = globeMode !== 'standard' || activeLayer !== 'none';
                 const cardId = `card-${Math.random().toString(36).substr(2,9)}`;
                 el.style.cssText = 'position:relative; display:flex; flex-direction:column; align-items:center; cursor:pointer;';
                 el.innerHTML = `
                   <div id="${cardId}-dot" style="width:16px;height:16px;border-radius:50%;background:${d.color};border:2px solid white;box-shadow:0 0 12px ${d.color},0 0 4px ${d.color};transition:transform 0.2s;flex-shrink:0;"></div>
                   <div id="${cardId}-card" style="
-                    display:block;
+                    display:${modeIsActive ? 'block' : 'none'};
                     position:absolute;
                     bottom:22px;
                     left:50%;
@@ -542,19 +544,23 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                     <div style="color:#a7f3d0;font-size:9px;line-height:1.4;font-family:sans-serif;">${d.desc || ''}</div>
                   </div>
                 `;
-                // Click toggles card visibility
+                // Click always toggles card
                 el.addEventListener('click', () => {
                   const card = document.getElementById(`${cardId}-card`);
                   if (card) card.style.display = card.style.display === 'none' ? 'block' : 'none';
                 });
-                // Hover scales dot
+                // In standard mode: hover shows/hides card. In active mode: hover just scales dot.
                 el.addEventListener('mouseenter', () => {
                   const dot = document.getElementById(`${cardId}-dot`);
+                  const card = document.getElementById(`${cardId}-card`);
                   if (dot) dot.style.transform = 'scale(1.5)';
+                  if (!modeIsActive && card) card.style.display = 'block';
                 });
                 el.addEventListener('mouseleave', () => {
                   const dot = document.getElementById(`${cardId}-dot`);
+                  const card = document.getElementById(`${cardId}-card`);
                   if (dot) dot.style.transform = 'scale(1)';
+                  if (!modeIsActive && card) card.style.display = 'none';
                 });
               } else if (d.label) {
                 const filter = isMobile ? '' : 'filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));';
