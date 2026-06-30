@@ -1,6 +1,145 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+// A 100% reliable, zero-latency animated SVG Big Cat (Running Tiger/Panther)
+const AnimatedBigCat = () => {
+  return (
+    <div className="relative w-full h-full flex items-center justify-center bg-gradient-to-br from-[#08221a] to-[#04120e] p-4 overflow-hidden">
+      {/* Background speed lines for motion effect */}
+      <motion.div 
+        animate={{ x: [-100, 200] }}
+        transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
+        className="absolute top-1/4 left-0 w-24 h-0.5 bg-[#34d399]/30 rounded-full"
+      />
+      <motion.div 
+        animate={{ x: [-150, 200] }}
+        transition={{ repeat: Infinity, duration: 0.9, ease: "linear", delay: 0.3 }}
+        className="absolute top-2/3 left-0 w-32 h-0.5 bg-[#fbbf24]/30 rounded-full"
+      />
+      <motion.div 
+        animate={{ x: [-80, 220] }}
+        transition={{ repeat: Infinity, duration: 1.5, ease: "linear", delay: 0.7 }}
+        className="absolute bottom-1/4 left-0 w-20 h-0.5 bg-[#34d399]/20 rounded-full"
+      />
+
+      {/* Leaping/Running Big Cat SVG */}
+      <motion.svg 
+        viewBox="0 0 240 140" 
+        className="w-full h-full max-w-[180px] drop-shadow-[0_4px_15px_rgba(251,191,36,0.3)] overflow-visible"
+        animate={{ y: [-4, 4, -4], rotate: [-1, 2, -1] }}
+        transition={{ repeat: Infinity, duration: 0.8, ease: "easeInOut" }}
+      >
+        <defs>
+          <linearGradient id="tigerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#f59e0b" />
+            <stop offset="50%" stopColor="#d97706" />
+            <stop offset="100%" stopColor="#92400e" />
+          </linearGradient>
+          <linearGradient id="stripesGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#1e1b18" />
+            <stop offset="100%" stopColor="#0f0d0c" />
+          </linearGradient>
+        </defs>
+
+        {/* Tail animated */}
+        <motion.path
+          d="M 45 65 Q 15 40 5 20"
+          stroke="#d97706"
+          strokeWidth="10"
+          strokeLinecap="round"
+          fill="none"
+          animate={{ d: ["M 45 65 Q 15 40 5 20", "M 45 65 Q 10 75 5 95", "M 45 65 Q 15 40 5 20"] }}
+          transition={{ repeat: Infinity, duration: 0.8, ease: "easeInOut" }}
+        />
+
+        {/* Back Leg Left (running animation) */}
+        <motion.path
+          d="M 60 85 L 40 120 L 25 125"
+          stroke="#92400e"
+          strokeWidth="12"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+          style={{ originX: "60px", originY: "85px" }}
+          animate={{ rotate: [25, -35, 25] }}
+          transition={{ repeat: Infinity, duration: 0.6, ease: "easeInOut" }}
+        />
+
+        {/* Front Leg Left (running animation) */}
+        <motion.path
+          d="M 160 85 L 140 120 L 125 122"
+          stroke="#92400e"
+          strokeWidth="11"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+          style={{ originX: "160px", originY: "85px" }}
+          animate={{ rotate: [-30, 30, -30] }}
+          transition={{ repeat: Infinity, duration: 0.6, ease: "easeInOut" }}
+        />
+
+        {/* Main Body */}
+        <path
+          d="M 50 65 C 60 50, 140 45, 175 65 C 185 75, 170 95, 140 95 C 100 98, 70 95, 50 65 Z"
+          fill="url(#tigerGrad)"
+        />
+
+        {/* Tiger Stripes */}
+        <path d="M 75 53 Q 72 68 80 82" stroke="url(#stripesGrad)" strokeWidth="4" strokeLinecap="round" fill="none" />
+        <path d="M 105 50 Q 102 68 110 88" stroke="url(#stripesGrad)" strokeWidth="5" strokeLinecap="round" fill="none" />
+        <path d="M 135 51 Q 132 68 140 85" stroke="url(#stripesGrad)" strokeWidth="4.5" strokeLinecap="round" fill="none" />
+        <path d="M 158 57 Q 155 70 162 82" stroke="url(#stripesGrad)" strokeWidth="3.5" strokeLinecap="round" fill="none" />
+
+        {/* Back Leg Right (running animation) */}
+        <motion.path
+          d="M 75 85 L 95 120 L 110 122"
+          stroke="url(#tigerGrad)"
+          strokeWidth="13"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+          style={{ originX: "75px", originY: "85px" }}
+          animate={{ rotate: [-35, 25, -35] }}
+          transition={{ repeat: Infinity, duration: 0.6, ease: "easeInOut" }}
+        />
+
+        {/* Front Leg Right (running animation) */}
+        <motion.path
+          d="M 170 85 L 195 115 L 210 115"
+          stroke="url(#tigerGrad)"
+          strokeWidth="12"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+          style={{ originX: "170px", originY: "85px" }}
+          animate={{ rotate: [30, -30, 30] }}
+          transition={{ repeat: Infinity, duration: 0.6, ease: "easeInOut" }}
+        />
+
+        {/* Neck and Head */}
+        <motion.g
+          animate={{ y: [-2, 3, -2], rotate: [0, 3, 0] }}
+          transition={{ repeat: Infinity, duration: 0.6, ease: "easeInOut" }}
+        >
+          {/* Head base */}
+          <path d="M 170 58 C 185 40, 215 48, 215 68 C 215 82, 190 88, 175 75 Z" fill="url(#tigerGrad)" />
+          {/* Ear */}
+          <path d="M 185 45 L 192 32 L 202 44 Z" fill="#92400e" />
+          {/* Snout & Jaw */}
+          <path d="M 210 62 Q 225 65 218 75 L 200 75 Z" fill="#fef3c7" />
+          {/* Nose */}
+          <circle cx="220" cy="63" r="3.5" fill="#f43f5e" />
+          {/* Glowing Eye */}
+          <circle cx="200" cy="55" r="3.5" fill="#34d399" className="animate-pulse" />
+          <circle cx="201" cy="54" r="1.5" fill="#ffffff" />
+          {/* Whiskers */}
+          <path d="M 215 68 L 232 65 M 215 71 L 234 72" stroke="#fef3c7" strokeWidth="1.5" strokeLinecap="round" />
+        </motion.g>
+      </motion.svg>
+    </div>
+  );
+};
+
 export const SplashScreen: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
   const [timeLeft, setTimeLeft] = useState(5);
   const totalTime = 5;
@@ -62,7 +201,7 @@ export const SplashScreen: React.FC<{ onComplete: () => void }> = ({ onComplete 
           </div>
         </div>
 
-        {/* Moving Animated Big Cat Container */}
+        {/* Moving Animated Big Cat Container (Guaranteed 100% Reliable SVG Animation) */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ 
@@ -76,12 +215,7 @@ export const SplashScreen: React.FC<{ onComplete: () => void }> = ({ onComplete 
           }}
           className="w-44 h-44 sm:w-52 sm:h-52 rounded-full overflow-hidden border-2 border-[#34d399]/40 shadow-[0_0_40px_rgba(16,185,129,0.4)] my-4 relative bg-[#08221a]"
         >
-          {/* Animated Big Cat GIF */}
-          <img 
-            src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHI3eDRwZ3l0ZHF4bW8xMXF3eWFtbnM1amZzeWNneHV1ZGN3dHZheSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8L0yOaWLNmHnm9T4dR/giphy.gif" 
-            alt="Moving Big Cat Animation"
-            className="w-full h-full object-cover scale-110"
-          />
+          <AnimatedBigCat />
         </motion.div>
 
         {/* Title */}
@@ -119,8 +253,8 @@ export const SplashScreen: React.FC<{ onComplete: () => void }> = ({ onComplete 
                 <span><strong className="text-[#fbbf24]">Pinch / Scroll</strong> to zoom in close on wildlife hotspots.</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-[#34d399]">✨</span>
-                <span><strong className="text-[#fbbf24]">Tap glowing markers</strong> to open deep research journals & live Wikipedia briefs.</span>
+                <span className="text-[#34d399]">📍</span>
+                <span><strong className="text-[#fbbf24]">Tap top emojis or map dots</strong> to open deep research journals & live Wikipedia briefs.</span>
               </li>
             </ul>
           </div>
