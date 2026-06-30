@@ -67,7 +67,7 @@ const getEntityEmoji = (type?: string) => {
   if (t.includes('tiger')) return '🐅';
   if (t.includes('biosphere')) return '🌿';
   if (t.includes('national park')) return '🌲';
-  if (t.includes('sanctuary')) return '🦊';
+  if (t.includes('sanctuary')) return '🦌';
   if (t.includes('elephant')) return '🐘';
   if (t.includes('ramsar')) return '💧';
   if (t.includes('global')) return '🌎';
@@ -263,7 +263,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
         <ul className="space-y-3">
           <li className="flex items-center gap-3 text-sm text-fog/80"><span>🐅</span> Tiger Reserves</li>
           <li className="flex items-center gap-3 text-sm text-fog/80"><span>🌲</span> National Parks</li>
-          <li className="flex items-center gap-3 text-sm text-fog/80"><span>🦊</span> Wildlife Sanctuaries</li>
+          <li className="flex items-center gap-3 text-sm text-fog/80"><span>🦌</span> Wildlife Sanctuaries</li>
           <li className="flex items-center gap-3 text-sm text-fog/80"><span>🐘</span> Elephant Reserves</li>
           <li className="flex items-center gap-3 text-sm text-fog/80"><span>🌿</span> Biosphere Reserves</li>
           <li className="flex items-center gap-3 text-sm text-fog/80"><span>💧</span> Ramsar Sites</li>
@@ -287,7 +287,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             <span className="text-sm">🌲</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">National Park</span>
           </div>
           <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
-            <span className="text-sm">🦊</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Wildlife Sanctuary</span>
+            <span className="text-sm">🦌</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Wildlife Sanctuary</span>
           </div>
           <div className="flex items-center gap-1.5 bg-ink/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-emerald">
             <span className="text-sm">🐘</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Elephant Reserve</span>

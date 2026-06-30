@@ -314,3 +314,9 @@
 @utility marquee-track {
   animation: marquee 28s linear infinite;
 }
+
+/* Prevent mobile browser zoom while allowing scrolling */
+html, body, #root {
+  touch-action: pan-x pan-y;
+  overscroll-behavior: none;
+}
