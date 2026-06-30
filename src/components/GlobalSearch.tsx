@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, X, MapPin, Globe2, BookOpen, Home } from 'lucide-react';
+import { Search, X, MapPin, Globe2, BookOpen, Home, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import forestsData from '../data/forestsData.json';
 
 const staticPages = [
   { name: 'Home', path: '/', icon: Home, type: 'Page' },
   { name: 'Globe Viewer', path: '/globe', icon: Globe2, type: 'Page' },
-  { name: 'About Geo-Globe', path: '/about', icon: BookOpen, type: 'Page' }
+  { name: 'About Geo-Globe', path: '/about', icon: BookOpen, type: 'Page' },
+  { name: 'About Omkar Bhople', path: 'https://omkarbhople.com', icon: User, type: 'Creator' }
 ];
 
 export function GlobalSearch() {
@@ -40,7 +41,11 @@ export function GlobalSearch() {
 
   const handleSelectPage = (path: string) => {
     setIsOpen(false);
-    navigate(path);
+    if (path.startsWith('http')) {
+      window.open(path, '_blank', 'noopener,noreferrer');
+    } else {
+      navigate(path);
+    }
   };
 
   const handleSelectForest = (name: string) => {
