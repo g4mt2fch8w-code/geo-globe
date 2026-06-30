@@ -382,7 +382,7 @@ const FAQSection = () => {
           {faqs.map((faq, i) => (
             <Reveal delay={i * 0.1} key={i}>
               <div className="glass-card p-8 rounded-[2rem] h-full transition-transform duration-500 hover:-translate-y-2">
-                <h3 className="font-display text-2xl text-white mb-4 leading-snug">{faq.q}</h3>
+                <h3 className="font-display text-2xl text-fog mb-4 leading-snug">{faq.q}</h3>
                 <p className="text-fog/70 leading-relaxed text-sm md:text-base font-body">{faq.a}</p>
               </div>
             </Reveal>

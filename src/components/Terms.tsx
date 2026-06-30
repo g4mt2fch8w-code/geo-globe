@@ -13,21 +13,21 @@ export function Terms() {
         
         <div className="space-y-8 text-fog/80 font-body leading-relaxed">
           <div>
-            <h2 className="text-xl text-white font-medium mb-3">Educational Purpose</h2>
+            <h2 className="text-xl text-fog font-medium mb-3">Educational Purpose</h2>
             <p>
               Geo-Globe is an educational tool built for students and aspirants. The maps, coordinates, and borders shown are for representative and learning purposes only and may not reflect exact political boundaries.
             </p>
           </div>
 
           <div>
-            <h2 className="text-xl text-white font-medium mb-3">Data Accuracy</h2>
+            <h2 className="text-xl text-fog font-medium mb-3">Data Accuracy</h2>
             <p>
               Information is dynamically sourced from open APIs like Wikipedia. While we strive for accuracy, users should verify facts with official sources for exam preparation.
             </p>
           </div>
 
           <div>
-            <h2 className="text-xl text-white font-medium mb-3">Usage</h2>
+            <h2 className="text-xl text-fog font-medium mb-3">Usage</h2>
             <p>
               The platform and its PDF generation tools are provided free of charge for non-commercial, educational use.
             </p>
