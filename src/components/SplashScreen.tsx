@@ -187,7 +187,7 @@ export const SplashScreen: React.FC<{ onComplete: () => void }> = ({ onComplete 
           onClick={onComplete}
           className="mt-6 px-6 py-2.5 rounded-full bg-[#10b981]/20 border border-[#34d399]/50 text-xs font-bold text-[#34d399] hover:bg-[#10b981]/40 hover:text-white transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)]"
         >
-          Enter 3D Globe Now →
+        Enter Globe Now →
         </motion.button>
       </div>
     </motion.div>
