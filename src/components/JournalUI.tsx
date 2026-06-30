@@ -21,6 +21,15 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
       if (!entity) return;
       setLoading(true);
       setWikiData(null);
+      setWikiUrl(null);
+
+      // Check if we have hardcoded accurate data for this entity
+      if (entity.customSummary) {
+        setWikiData(entity.customSummary);
+        setWikiUrl(entity.customUrl || null);
+        setLoading(false);
+        return;
+      }
 
       const typeStr = entity.type && !entity.name.includes(entity.type) ? entity.type : '';
       const countryStr = entity.country && !entity.country.includes('India') ? entity.country : 'India';

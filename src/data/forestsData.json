@@ -2301,7 +2301,9 @@
     "alt": 0.02,
     "facts": [],
     "id": "ent-191",
-    "color": "#22C55E"
+    "color": "#22C55E",
+    "customSummary": "Tipeshwar Wildlife Sanctuary is a hidden gem located in the Yavatmal district of Maharashtra, India. Spanning approximately 148.63 sq. km, the sanctuary is characterized by hilly, undulating terrain, dry deciduous forests, and abundant bamboo patches. It is famous for its emerging tiger population and serves as a vital wildlife corridor for big cats moving between nearby reserves. It offers an authentic wilderness experience away from highly commercialized parks.",
+    "customUrl": "https://yavatmal.gov.in/tourist-place/tipeshwar-wildlife-sanctuary/"
   },
   {
     "name": "Dnyanganga",
@@ -2313,7 +2315,9 @@
     "alt": 0.02,
     "facts": [],
     "id": "ent-192",
-    "color": "#22C55E"
+    "color": "#22C55E",
+    "customSummary": "Dnyanganga Wildlife Sanctuary is located in the Buldhana district of Maharashtra, India. It is known for its rich biodiversity, encompassing dry deciduous forests that provide habitat for leopards, sloth bears, wild boars, and a wide variety of avifauna. It serves as an important ecological zone in the Vidarbha region.",
+    "customUrl": "https://buldhana.nic.in/en/tourist-place/dnyanganga-sanctuary/"
   },
   {
     "name": "Karanja Sohol",
@@ -2325,7 +2329,9 @@
     "alt": 0.02,
     "facts": [],
     "id": "ent-193",
-    "color": "#22C55E"
+    "color": "#22C55E",
+    "customSummary": "Karanja Sohol Blackbuck Sanctuary is situated in the Washim district of Maharashtra. Originally established to protect the Indian Blackbuck (Antilope cervicapra), the sanctuary consists of undulating grasslands and dry deciduous forests. It provides a critical safe haven for antelope species and supports regional biodiversity conservation.",
+    "customUrl": "https://washim.gov.in/en/tourist-place/karanja-sohol-black-buck-sanctuary/"
   },
   {
     "name": "Gautala Autramghat",
@@ -2337,7 +2343,9 @@
     "alt": 0.02,
     "facts": [],
     "id": "ent-194",
-    "color": "#22C55E"
+    "color": "#22C55E",
+    "customSummary": "Gautala Autramghat Wildlife Sanctuary spans across the Aurangabad and Jalgaon districts in Maharashtra. Nestled in the Satmala and Ajantha hill ranges of the Western Ghats, it features southern tropical dry deciduous forests and grasslands. It is inhabited by leopards, sloth bears, wild boars, and barking deer, alongside ancient rock-cut caves and waterfalls.",
+    "customUrl": "https://en.wikipedia.org/wiki/Gautala_Autramghat_Sanctuary"
   },
   {
     "name": "Yedshi Ramling",
@@ -2349,6 +2357,8 @@
     "alt": 0.02,
     "facts": [],
     "id": "ent-195",
-    "color": "#22C55E"
+    "color": "#22C55E",
+    "customSummary": "Yedshi Ramling Ghat Wildlife Sanctuary is located in the Dharashiv (Osmanabad) district of Maharashtra. It protects the dry deciduous forests of the Balaghat range and is known for its population of chinkara, hyenas, wolves, and wild boars. The sanctuary is also culturally significant due to the ancient Ramling temple situated within its boundaries.",
+    "customUrl": "https://osmanabad.gov.in/tourist-place/yedshi-ramling-ghat-wildlife-sanctuary/"
   }
 ]

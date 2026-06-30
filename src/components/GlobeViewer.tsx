@@ -49,6 +49,8 @@ export interface GeoEntity {
   areaOrElevation?: string;
   facts?: string[];
   country?: string;
+  customSummary?: string;
+  customUrl?: string;
 }
 
 interface GlobeViewerProps {
