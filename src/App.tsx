@@ -12,8 +12,11 @@ import { Footer } from './components/Footer';
 
 import { useLocation, useSearchParams } from 'react-router-dom';
 import forestsData from './data/forestsData.json';
+import { SplashScreen } from './components/SplashScreen';
+import { AnimatePresence } from 'framer-motion';
 
 const GlobeApp = () => {
+  const [showSplash, setShowSplash] = useState(true);
   const [selectedEntity, setSelectedEntity] = useState<GeoEntity | null>(null);
   const [searchParams] = useSearchParams();
   
@@ -62,7 +65,11 @@ const GlobeApp = () => {
   };
 
   return (
-    <div className="fixed inset-0 overflow-hidden bg-ink">
+    <>
+      <AnimatePresence>
+        {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
+      </AnimatePresence>
+      <div className="relative w-full h-[100dvh] bg-ink overflow-hidden font-body">
       <div className="absolute inset-0 z-0">
         <GlobeViewer 
           onEntityClick={handleEntityClick} 
@@ -92,7 +99,8 @@ const GlobeApp = () => {
         entity={selectedEntity} 
         onClose={() => setSelectedEntity(null)} 
       />
-    </div>
+      </div>
+    </>
   );
 };
 
