@@ -25,6 +25,12 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
       setWikiData(null);
       setWikiUrl(null);
 
+      if (entity.customSummary) {
+        setWikiData(entity.customSummary);
+        setLoading(false);
+        return;
+      }
+
       const typeStr = entity.type && !entity.name.includes(entity.type) && !entity.type.includes('Global') ? entity.type : '';
       
       // Priority order: exact type name, generic type, then just the name.
@@ -279,7 +285,7 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
             
             <div className="mt-12 pt-8 border-t border-white/10 text-center flex flex-col items-center gap-2">
               <div className="text-[10px] text-sky-300/80 uppercase tracking-widest mt-2">
-                Research Data Provided by Wikipedia API
+                {entity.customSummary ? "Custom Research Data Provided by Pantherine Neophyte" : "Research Data Provided by Wikipedia API"}
               </div>
             </div>
           </div>
