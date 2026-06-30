@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { GeoEntity } from './GlobeViewer';
 import * as jspdfModule from 'jspdf';
-import { Download, X } from 'lucide-react';
+import { X, ExternalLink, Download, FileText, ChevronRight, BookOpen } from 'lucide-react';
 
 interface JournalUIProps {
   entity: GeoEntity | null;
@@ -24,7 +24,6 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
       setWikiUrl(null);
 
       const typeStr = entity.type && !entity.name.includes(entity.type) && !entity.type.includes('Global') ? entity.type : '';
-      const countryStr = entity.country && !entity.country.includes('India') ? entity.country : 'India';
       
       // Priority order: exact type name, generic type, then just the name.
       const queriesToTry = [
