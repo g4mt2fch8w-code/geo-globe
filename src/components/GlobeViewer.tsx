@@ -228,12 +228,9 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                 // Ruler Marker
                 const filter = isMobile ? '' : 'filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));';
                 el.innerHTML = `
-                  <div style="position: relative; width: 28px; height: 38px; transform: translate(-50%, -100%);">
-                    <svg width="28" height="38" viewBox="0 0 24 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="${filter}">
-                      <path d="M12 0C5.37258 0 0 5.37258 0 12C0 21 12 34 12 34C12 34 24 21 24 12C24 5.37258 18.6274 0 12 0Z" fill="#FF9500"/>
-                      <circle cx="12" cy="12" r="5" fill="white"/>
-                    </svg>
-                    <div style="position: absolute; top: 5px; left: 0; width: 100%; text-align: center; color: #FF9500; font-weight: bold; font-size: 10px; font-family: sans-serif;">${d.label}</div>
+                  <div style="position: relative; width: 14px; height: 14px; transform: translate(-50%, -50%);">
+                    <div style="width: 100%; height: 100%; background-color: #FF9500; border: 2px solid white; border-radius: 50%; ${filter}"></div>
+                    <div style="position: absolute; top: -18px; left: 50%; transform: translateX(-50%); color: #FF9500; font-weight: bold; font-size: 12px; font-family: sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">${d.label}</div>
                   </div>
                 `;
               } else {
