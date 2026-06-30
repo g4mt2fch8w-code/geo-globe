@@ -102,7 +102,7 @@ export const SplashScreen: React.FC<{ onComplete: () => void }> = ({ onComplete 
           className="space-y-4 max-w-md w-full"
         >
           <p className="text-xs sm:text-sm text-[#a7f3d0] leading-relaxed px-2 font-medium">
-            Designed with futuristic glassmorphism and hyper-realistic physics, our interface puts global conservation right at your fingertips.
+            Happy to have you here! While the globe is loading, here's a quick guide to help you navigate and explore the 3D globe effectively. Follow these tips to make the most of your experience:
           </p>
           <div className="bg-[#08221a]/90 p-4 sm:p-5 rounded-2xl border border-[#34d399]/30 text-left shadow-[0_10px_30px_rgba(0,0,0,0.5)] space-y-2.5">
             <h3 className="text-[#fbbf24] font-bold text-xs uppercase tracking-widest flex items-center gap-2">
