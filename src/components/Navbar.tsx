@@ -26,50 +26,56 @@ export function Navbar() {
 
         {/* Center: Navigation Pill */}
         <div className="pointer-events-auto flex items-center p-1.5 glass-card rounded-full border border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.3)] relative">
-          <Link 
-            to="/" 
-            className="relative px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 transition-colors z-10"
-          >
-            {location.pathname === '/' && (
-              <motion.div
-                layoutId="nav-active"
-                className="absolute inset-0 bg-[#D4AF37]/30 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(212,175,55,0.4)]"
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              />
-            )}
-            <img src="/logo.jpg" alt="Geo-Globe Logo" className={`w-5 h-5 rounded-full object-cover relative z-10 ${location.pathname !== '/' && 'opacity-60'}`} />
-            <span className={`hidden sm:inline relative z-10 ${location.pathname === '/' ? 'text-white' : 'text-fog hover:text-white'}`}>Geo-Globe</span>
-          </Link>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+            <Link 
+              to="/" 
+              className="relative px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 transition-colors z-10 block"
+            >
+              {location.pathname === '/' && (
+                <motion.div
+                  layoutId="nav-active"
+                  className="absolute inset-0 bg-[#D4AF37]/30 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(212,175,55,0.4)]"
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                />
+              )}
+              <img src="/logo.jpg" alt="Home Logo" className={`w-5 h-5 rounded-full object-cover relative z-10 ${location.pathname !== '/' && 'opacity-60'}`} />
+              <span className={`hidden sm:inline relative z-10 ${location.pathname === '/' ? 'text-white' : 'text-fog hover:text-white'}`}>Home</span>
+            </Link>
+          </motion.div>
           
-          <Link 
-            to="/globe" 
-            className="relative px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 transition-colors z-10"
-          >
-            {location.pathname === '/globe' && (
-              <motion.div
-                layoutId="nav-active"
-                className="absolute inset-0 bg-[#D4AF37]/30 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(212,175,55,0.4)]"
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              />
-            )}
-            <Globe2 className={`w-5 h-5 relative z-10 ${location.pathname === '/globe' ? 'text-white' : 'text-fog hover:text-white'}`} />
-            <span className={`hidden sm:inline relative z-10 ${location.pathname === '/globe' ? 'text-white' : 'text-fog hover:text-white'}`}>Globe</span>
-          </Link>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+            <Link 
+              to="/globe" 
+              className="relative px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 transition-colors z-10 block"
+            >
+              {location.pathname === '/globe' && (
+                <motion.div
+                  layoutId="nav-active"
+                  className="absolute inset-0 bg-[#D4AF37]/30 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(212,175,55,0.4)]"
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                />
+              )}
+              <Globe2 className={`w-5 h-5 relative z-10 ${location.pathname === '/globe' ? 'text-white' : 'text-fog hover:text-white'}`} />
+              <span className={`hidden sm:inline relative z-10 ${location.pathname === '/globe' ? 'text-white' : 'text-fog hover:text-white'}`}>Globe</span>
+            </Link>
+          </motion.div>
 
-          <Link 
-            to="/about" 
-            className="relative px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 transition-colors z-10"
-          >
-            {location.pathname === '/about' && (
-              <motion.div
-                layoutId="nav-active"
-                className="absolute inset-0 bg-[#D4AF37]/30 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(212,175,55,0.4)]"
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              />
-            )}
-            <BookOpen className={`w-5 h-5 relative z-10 ${location.pathname === '/about' ? 'text-white' : 'text-fog hover:text-white'}`} />
-            <span className={`hidden sm:inline relative z-10 ${location.pathname === '/about' ? 'text-white' : 'text-fog hover:text-white'}`}>About</span>
-          </Link>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+            <Link 
+              to="/about" 
+              className="relative px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 transition-colors z-10 block"
+            >
+              {location.pathname === '/about' && (
+                <motion.div
+                  layoutId="nav-active"
+                  className="absolute inset-0 bg-[#D4AF37]/30 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(212,175,55,0.4)]"
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                />
+              )}
+              <BookOpen className={`w-5 h-5 relative z-10 ${location.pathname === '/about' ? 'text-white' : 'text-fog hover:text-white'}`} />
+              <span className={`hidden sm:inline relative z-10 ${location.pathname === '/about' ? 'text-white' : 'text-fog hover:text-white'}`}>About</span>
+            </Link>
+          </motion.div>
         </div>
           
         {/* Right: Actions */}
