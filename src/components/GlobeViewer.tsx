@@ -574,14 +574,25 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                 const isSelected = Boolean(selectedEntity && d?.name && d.name === selectedEntity.name);
                 const size = isSelected ? 20 : 14;
                 const glowColor = color + '99';
+                const labelId = `lbl-${Math.random().toString(36).substr(2,9)}`;
                 
                 el.innerHTML = `
                   <div style="display:flex; flex-direction:column; align-items:center; position:relative; cursor:pointer;">
                     ${isSelected ? `<div style="position:absolute; top:-32px; left:50%; transform:translateX(-50%); background:#F59E0B; color:#000; font-weight:900; font-size:10px; padding:2px 8px; border-radius:10px; white-space:nowrap; box-shadow:0 0 12px #F59E0B;">SELECTED</div>` : ''}
                     <div style="width:${size}px; height:${size}px; background:${color}; border-radius:50%; border:${isSelected ? 3 : 2}px solid white; box-shadow:0 0 ${isSelected ? 16 : 8}px ${glowColor}; transition:all 0.2s;"></div>
-                    <div style="margin-top:3px; background:rgba(8,34,26,0.95); border:1px solid ${color}; padding:2px 6px; border-radius:5px; color:${color}; font-family:sans-serif; font-size:${isSelected ? 11 : 10}px; font-weight:bold; white-space:nowrap; box-shadow:0 2px 8px rgba(0,0,0,0.8);">${d.name}</div>
+                    <div id="${labelId}" style="display:${isSelected ? 'block' : 'none'}; margin-top:3px; background:rgba(8,34,26,0.95); border:1px solid ${color}; padding:2px 6px; border-radius:5px; color:${color}; font-family:sans-serif; font-size:${isSelected ? 11 : 10}px; font-weight:bold; white-space:nowrap; box-shadow:0 2px 8px rgba(0,0,0,0.8);">${d.name}</div>
                   </div>
                 `;
+                el.addEventListener('mouseenter', () => {
+                  const lbl = document.getElementById(labelId);
+                  if (lbl) lbl.style.display = 'block';
+                });
+                el.addEventListener('mouseleave', () => {
+                  if (!isSelected) {
+                    const lbl = document.getElementById(labelId);
+                    if (lbl) lbl.style.display = 'none';
+                  }
+                });
                 el.onclick = () => handleEntityClick(d as GeoEntity);
               }
               return el;
