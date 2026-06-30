@@ -192,7 +192,19 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             pathDashAnimateTime={10000}
             pathStroke={2}
             
-            htmlElementsData={[...forestsData, ...rulerHtmlData]}
+            // On mobile, use native WebGL labels for forests to prevent DOM main-thread locking.
+            labelsData={isMobile ? forestsData : []}
+            labelLat="lat"
+            labelLng="lng"
+            labelText={(d: any) => getEntityEmoji(d.type)}
+            labelSize={2.5}
+            labelDotRadius={0.5}
+            labelColor={() => 'rgba(255, 255, 255, 1)'}
+            labelResolution={3}
+            onLabelClick={(d: any) => handleEntityClick(d)}
+            
+            // On mobile, only render ruler HTML elements. On desktop, render forests and rulers as HTML.
+            htmlElementsData={isMobile ? rulerHtmlData : [...forestsData, ...rulerHtmlData]}
             htmlLat="lat"
             htmlLng="lng"
             htmlElement={(d: any) => {
