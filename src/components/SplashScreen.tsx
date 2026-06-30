@@ -175,7 +175,11 @@ export const SplashScreen: React.FC<{ onComplete: () => void }> = ({ onComplete 
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-[#34d399]">📍</span>
-                <span><strong className="text-[#fbbf24]">Tap top emojis or map dots</strong> to open deep research journals & live Wikipedia briefs.</span>
+                <span><strong className="text-[#fbbf24]">Tap map dots</strong> to open deep research journals & live Wikipedia briefs.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-[#34d399]">📐</span>
+                <span><strong className="text-[#fbbf24]">Click the Ruler</strong> to measure geodesic polygon area and view cross-sections.</span>
               </li>
             </ul>
           </div>

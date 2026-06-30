@@ -98,13 +98,13 @@ export const Home = () => {
               {/* Card 3 */}
               <div className="bg-[#04120e]/80 border border-[#34d399]/20 rounded-2xl p-5 hover:border-[#34d399]/50 transition-colors">
                 <div className="w-12 h-12 rounded-xl bg-[#10b981]/20 flex items-center justify-center text-2xl mb-4 border border-[#34d399]/30">
-                  📍
+                  📐
                 </div>
                 <h3 className="text-[#fbbf24] font-bold text-base mb-1.5 flex items-center gap-2">
-                  Tap Map Markers
+                  Measure & Analyze
                 </h3>
                 <p className="text-xs sm:text-sm text-[#d1fae5]/80 leading-relaxed font-normal">
-                  <strong className="text-white font-semibold">Click any glowing dot or emoji</strong> to launch research journals and Wikipedia briefs.
+                  <strong className="text-white font-semibold">Enable Ruler Mode</strong> in the bottom right corner and click 3+ points on the globe to calculate geodesic <strong className="text-gold">Polygon Area (sq km)</strong> and elevation profiles.
                 </p>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Globe2, Sun, Moon, ChevronLeft, BookOpen, RefreshCw } from 'lucide-react';
+import { Globe2, Sun, Moon, ChevronLeft, BookOpen, RefreshCw, LayoutDashboard } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTheme } from './ThemeProvider';
 import { GlobalSearch } from './GlobalSearch';
@@ -71,6 +71,23 @@ export function Navbar() {
               )}
               <Globe2 className={`w-5 h-5 relative z-10 ${location.pathname === '/globe' ? 'text-white' : 'text-fog hover:text-white'}`} />
               <span className={`hidden sm:inline relative z-10 ${location.pathname === '/globe' ? 'text-white' : 'text-fog hover:text-white'}`}>Globe</span>
+            </Link>
+          </motion.div>
+
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} transition={{ type: "spring", stiffness: 500, damping: 10 }}>
+            <Link 
+              to="/dashboards" 
+              className="relative px-3 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 transition-colors z-10 block"
+            >
+              {location.pathname.startsWith('/dashboard') && (
+                <motion.div
+                  layoutId="nav-active"
+                  className="absolute inset-0 bg-[#D4AF37]/30 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(212,175,55,0.4)]"
+                  transition={{ type: "spring", stiffness: 400, damping: 18 }}
+                />
+              )}
+              <LayoutDashboard className={`w-5 h-5 relative z-10 ${location.pathname.startsWith('/dashboard') ? 'text-white' : 'text-fog hover:text-white'}`} />
+              <span className={`hidden sm:inline relative z-10 ${location.pathname.startsWith('/dashboard') ? 'text-white' : 'text-fog hover:text-white'}`}>Analytics</span>
             </Link>
           </motion.div>
 
