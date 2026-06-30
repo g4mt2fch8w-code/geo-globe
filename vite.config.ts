@@ -8,15 +8,6 @@ export default defineConfig({
     react(),
   ],
   build: {
-    chunkSizeWarningLimit: 1500,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'react-globe': ['react-globe.gl', 'three'],
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'lucide': ['lucide-react']
-        }
-      }
-    }
+    chunkSizeWarningLimit: 1500
   }
 })

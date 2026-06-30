@@ -522,9 +522,9 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
               
               if (d.isOverlay) {
                 el.innerHTML = `
-                  <div class="flex flex-col items-center justify-center transition-all duration-300 hover:scale-110 relative group-hover:z-[100]">
+                  <div class="flex flex-col items-center justify-center transition-all duration-300 hover:scale-110 relative ${isMobile ? '' : 'group-hover:z-[100]'}" onclick="const card = this.querySelector('.info-card'); if (card) { card.classList.toggle('opacity-0'); card.classList.toggle('opacity-100'); }">
                     <div style="background-color: ${d.color}; width: 14px; height: 14px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 10px ${d.color};" class="sm:w-4 sm:h-4 sm:border-[3px]"></div>
-                    <div class="opacity-0 group-hover:opacity-100 transition-opacity absolute bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 w-48 sm:w-64 bg-[#08221a]/95 backdrop-blur-md border border-[#34d399]/40 p-2 sm:p-3 rounded-xl shadow-2xl text-left pointer-events-none z-[100]">
+                    <div class="info-card opacity-0 ${isMobile ? '' : 'group-hover:opacity-100'} transition-opacity absolute bottom-5 sm:bottom-6 left-1/2 -translate-x-1/2 w-48 sm:w-64 bg-[#08221a]/95 backdrop-blur-md border border-[#34d399]/40 p-2 sm:p-3 rounded-xl shadow-2xl text-left pointer-events-none z-[100]">
                       <div style="color: ${d.color}; font-size: 9px; font-weight: bold; text-transform: uppercase;" class="sm:text-[10px]">${d.badge}</div>
                       <div class="text-white text-[11px] sm:text-xs font-bold my-0.5 sm:my-1 leading-tight">${d.name}</div>
                       <div class="text-[#a7f3d0]/80 text-[9px] sm:text-[10px] leading-tight">${d.desc}</div>
