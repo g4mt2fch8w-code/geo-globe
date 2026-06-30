@@ -261,15 +261,15 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
       <div className="absolute bottom-8 left-8 p-6 bg-black/5 dark:bg-black/20 backdrop-blur-[30px] rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)] pointer-events-none z-10 hidden md:block">
         <h3 className="text-sm font-display uppercase tracking-widest text-gold mb-4">Legend</h3>
         <ul className="space-y-3">
-          <li className="flex items-center gap-3 text-sm text-fog/80"><span>🐅</span> Tiger Reserves</li>
-          <li className="flex items-center gap-3 text-sm text-fog/80"><span>🌲</span> National Parks</li>
-          <li className="flex items-center gap-3 text-sm text-fog/80"><span>🦌</span> Wildlife Sanctuaries</li>
-          <li className="flex items-center gap-3 text-sm text-fog/80"><span>🐘</span> Elephant Reserves</li>
-          <li className="flex items-center gap-3 text-sm text-fog/80"><span>🌿</span> Biosphere Reserves</li>
-          <li className="flex items-center gap-3 text-sm text-fog/80"><span>💧</span> Ramsar Sites</li>
-          <li className="flex items-center gap-3 text-sm text-fog/80"><span>🌎</span> Global Main Reserves</li>
+          <li className="flex items-center gap-3 text-sm text-white/80"><span>🐅</span> Tiger Reserves</li>
+          <li className="flex items-center gap-3 text-sm text-white/80"><span>🌲</span> National Parks</li>
+          <li className="flex items-center gap-3 text-sm text-white/80"><span>🦌</span> Wildlife Sanctuaries</li>
+          <li className="flex items-center gap-3 text-sm text-white/80"><span>🐘</span> Elephant Reserves</li>
+          <li className="flex items-center gap-3 text-sm text-white/80"><span>🌿</span> Biosphere Reserves</li>
+          <li className="flex items-center gap-3 text-sm text-white/80"><span>💧</span> Ramsar Sites</li>
+          <li className="flex items-center gap-3 text-sm text-white/80"><span>🌎</span> Global Main Reserves</li>
         </ul>
-        <div className="mt-6 pt-4 border-t border-white/10 text-xs text-fog/50 pointer-events-auto">
+        <div className="mt-6 pt-4 border-t border-white/10 text-xs text-white/50 pointer-events-auto">
           <p>Tilted at 23.5° (Earth's natural axis).</p>
         </div>
       </div>
@@ -281,27 +281,27 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
       >
         <div className="flex gap-3 min-w-max">
           <div className="flex items-center gap-1.5 bg-black/5 dark:bg-black/20 backdrop-blur-[30px] px-4 py-2 rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
-            <span className="text-sm">🐅</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Tiger Reserve</span>
+            <span className="text-sm">🐅</span><span className="text-[10px] font-bold text-white/90 uppercase tracking-wide">Tiger Reserve</span>
           </div>
           <div className="flex items-center gap-1.5 bg-black/5 dark:bg-black/20 backdrop-blur-[30px] px-4 py-2 rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
-            <span className="text-sm">🌲</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">National Park</span>
+            <span className="text-sm">🌲</span><span className="text-[10px] font-bold text-white/90 uppercase tracking-wide">National Park</span>
           </div>
           <div className="flex items-center gap-1.5 bg-black/5 dark:bg-black/20 backdrop-blur-[30px] px-4 py-2 rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
-            <span className="text-sm">🦌</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Wildlife Sanctuary</span>
+            <span className="text-sm">🦌</span><span className="text-[10px] font-bold text-white/90 uppercase tracking-wide">Wildlife Sanctuary</span>
           </div>
           <div className="flex items-center gap-1.5 bg-black/5 dark:bg-black/20 backdrop-blur-[30px] px-4 py-2 rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
-            <span className="text-sm">🐘</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Elephant Reserve</span>
+            <span className="text-sm">🐘</span><span className="text-[10px] font-bold text-white/90 uppercase tracking-wide">Elephant Reserve</span>
           </div>
           <div className="flex items-center gap-1.5 bg-black/5 dark:bg-black/20 backdrop-blur-[30px] px-4 py-2 rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
-            <span className="text-sm">🌿</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Biosphere Reserve</span>
+            <span className="text-sm">🌿</span><span className="text-[10px] font-bold text-white/90 uppercase tracking-wide">Biosphere Reserve</span>
           </div>
           <div className="flex items-center gap-1.5 bg-black/5 dark:bg-black/20 backdrop-blur-[30px] px-4 py-2 rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
-            <span className="text-sm">💧</span><span className="text-[10px] font-bold text-fog/90 uppercase tracking-wide">Ramsar Site</span>
+            <span className="text-sm">💧</span><span className="text-[10px] font-bold text-white/90 uppercase tracking-wide">Ramsar Site</span>
           </div>
         </div>
       </div>
 
-      <div className="absolute bottom-2 w-full text-center text-[10px] text-fog/40 pointer-events-none z-10">
+      <div className="absolute bottom-2 w-full text-center text-[10px] text-white/40 pointer-events-none z-10">
         Note: Some forests may not be fully available as this is an early stage of the new Geo-Globe project.
       </div>
     </div>

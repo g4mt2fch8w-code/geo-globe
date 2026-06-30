@@ -116,7 +116,7 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
           <button 
             onClick={() => setRulerMode(!rulerMode)}
             className={`flex-1 md:flex-none flex items-center justify-center gap-2 px-4 md:px-6 py-3 rounded-full text-xs sm:text-sm font-bold transition-all border backdrop-blur-md ${
-              rulerMode ? 'border-gold text-gold bg-gold/10 shadow-[0_0_15px_rgba(255,215,0,0.2)]' : 'bg-transparent text-fog/90 border-white/20 hover:border-gold/50 hover:text-white'
+              rulerMode ? 'border-gold text-gold bg-gold/10 shadow-[0_0_15px_rgba(255,215,0,0.2)]' : 'bg-black/20 text-white/90 border-white/20 hover:border-gold/50 hover:text-white'
             }`}
           >
             📏 {rulerMode ? 'Cancel' : 'Measure Displacement'}
@@ -124,7 +124,7 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
 
           <button 
             onClick={() => setIsAutoRotate(!isAutoRotate)}
-            className={`flex-1 md:flex-none flex items-center justify-center gap-2 px-4 md:px-6 py-3 rounded-full text-xs sm:text-sm font-bold transition-all bg-transparent backdrop-blur-md text-fog/90 border border-white/20 hover:border-gold/50 hover:text-white`}
+            className={`flex-1 md:flex-none flex items-center justify-center gap-2 px-4 md:px-6 py-3 rounded-full text-xs sm:text-sm font-bold transition-all bg-black/20 backdrop-blur-md text-white/90 border border-white/20 hover:border-gold/50 hover:text-white`}
           >
             {isAutoRotate ? '⏸ Pause Earth' : '▶ Resume Earth'}
           </button>
@@ -133,11 +133,11 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
         {rulerMode && (
           <div className="bg-ink/40 backdrop-blur-md w-full md:w-80 p-4 rounded-2xl border border-gold/30 mt-2 shadow-emerald text-left">
             <h4 className="text-xs font-display uppercase tracking-widest text-gold mb-2">Displacement Data</h4>
-            {rulerPoints.length === 0 && <p className="text-xs text-fog/60 leading-relaxed">Search for a reserve or click on the globe for <strong>Point A</strong></p>}
-            {rulerPoints.length === 1 && <p className="text-xs text-fog/60 leading-relaxed">Search for a reserve or click on the globe for <strong>Point B</strong></p>}
+            {rulerPoints.length === 0 && <p className="text-xs text-white/60 leading-relaxed">Search for a reserve or click on the globe for <strong>Point A</strong></p>}
+            {rulerPoints.length === 1 && <p className="text-xs text-white/60 leading-relaxed">Search for a reserve or click on the globe for <strong>Point B</strong></p>}
             {rulerPoints.length === 2 && (
               <div className="animate-in fade-in slide-in-from-bottom-2">
-                <p className="text-sm text-fog/80 font-body">Distance: <span className="text-emerald font-display text-3xl ml-2 tracking-tight">{distanceStr}</span></p>
+                <p className="text-sm text-white/80 font-body">Distance: <span className="text-emerald font-display text-3xl ml-2 tracking-tight">{distanceStr}</span></p>
                 <p className="text-[10px] text-fog/40 mt-2 uppercase tracking-widest">Search or click to measure again</p>
               </div>
             )}
