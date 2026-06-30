@@ -56,6 +56,68 @@
   --font-body: "Inter", system-ui, sans-serif;
 }
 
+/* ─── LIGHT MODE (default) ───────────────────────────────────────── */
+:root,
+.light {
+  --ink: oklch(0.97 0.012 85);
+  --canopy: oklch(0.93 0.016 88);
+  --moss: oklch(0.88 0.018 88);
+  --emerald-deep: oklch(0.36 0.12 150);
+  --emerald: oklch(0.42 0.15 150);
+  --gold: oklch(0.65 0.14 80);
+  --gold-soft: oklch(0.75 0.12 82);
+  --fog: oklch(0.18 0.03 150);
+
+  --background: var(--ink);
+  --foreground: var(--fog);
+  --card: oklch(0.99 0.005 85 / 0.85);
+  --card-foreground: var(--fog);
+  --popover: oklch(0.98 0.008 85);
+  --popover-foreground: var(--fog);
+  --primary: var(--gold);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.9 0.018 88);
+  --secondary-foreground: var(--fog);
+  --muted: oklch(0.91 0.014 88);
+  --muted-foreground: oklch(0.45 0.04 140);
+  --accent: var(--emerald);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.55 0.2 28);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0 0 0 / 0.1);
+  --input: oklch(0 0 0 / 0.08);
+  --ring: var(--gold);
+  --chart-1: var(--emerald);
+  --chart-2: var(--gold);
+  --chart-3: var(--emerald-deep);
+  --chart-4: var(--gold-soft);
+  --chart-5: oklch(0.45 0.08 150);
+  --sidebar: var(--canopy);
+  --sidebar-foreground: var(--fog);
+  --sidebar-primary: var(--gold);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.88 0.018 88);
+  --sidebar-accent-foreground: var(--fog);
+  --sidebar-border: oklch(0 0 0 / 0.08);
+  --sidebar-ring: var(--gold);
+
+  --gradient-gold: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  --gradient-canopy: linear-gradient(180deg, transparent, var(--ink) 90%);
+  --gradient-radial-gold: radial-gradient(
+    circle at center,
+    color-mix(in oklab, var(--gold) 30%, transparent),
+    transparent 70%
+  );
+
+  --shadow-glow: 0 0 60px -10px
+    color-mix(in oklab, var(--gold) 40%, transparent);
+  --shadow-emerald: 0 0 80px -20px
+    color-mix(in oklab, var(--emerald) 45%, transparent);
+
+  --nav-bg-scroll: rgba(245, 240, 232, 0.88);
+  --noise-opacity: 0.025;
+}
+
 /* ─── DARK MODE ──────────────────────────────── */
 .dark {
   --radius: 0.75rem;
@@ -120,67 +182,6 @@
   --noise-opacity: 0.04;
 }
 
-/* ─── LIGHT MODE (default) ───────────────────────────────────────── */
-:root,
-.light {
-  --ink: oklch(0.97 0.012 85);
-  --canopy: oklch(0.93 0.016 88);
-  --moss: oklch(0.88 0.018 88);
-  --emerald-deep: oklch(0.36 0.12 150);
-  --emerald: oklch(0.42 0.15 150);
-  --gold: oklch(0.65 0.14 80);
-  --gold-soft: oklch(0.75 0.12 82);
-  --fog: oklch(0.18 0.03 150);
-
-  --background: var(--ink);
-  --foreground: var(--fog);
-  --card: oklch(0.99 0.005 85 / 0.85);
-  --card-foreground: var(--fog);
-  --popover: oklch(0.98 0.008 85);
-  --popover-foreground: var(--fog);
-  --primary: var(--gold);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.9 0.018 88);
-  --secondary-foreground: var(--fog);
-  --muted: oklch(0.91 0.014 88);
-  --muted-foreground: oklch(0.45 0.04 140);
-  --accent: var(--emerald);
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.55 0.2 28);
-  --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0 0 0 / 0.1);
-  --input: oklch(0 0 0 / 0.08);
-  --ring: var(--gold);
-  --chart-1: var(--emerald);
-  --chart-2: var(--gold);
-  --chart-3: var(--emerald-deep);
-  --chart-4: var(--gold-soft);
-  --chart-5: oklch(0.45 0.08 150);
-  --sidebar: var(--canopy);
-  --sidebar-foreground: var(--fog);
-  --sidebar-primary: var(--gold);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.88 0.018 88);
-  --sidebar-accent-foreground: var(--fog);
-  --sidebar-border: oklch(0 0 0 / 0.08);
-  --sidebar-ring: var(--gold);
-
-  --gradient-gold: linear-gradient(135deg, var(--gold-soft), var(--gold));
-  --gradient-canopy: linear-gradient(180deg, transparent, var(--ink) 90%);
-  --gradient-radial-gold: radial-gradient(
-    circle at center,
-    color-mix(in oklab, var(--gold) 30%, transparent),
-    transparent 70%
-  );
-
-  --shadow-glow: 0 0 60px -10px
-    color-mix(in oklab, var(--gold) 40%, transparent);
-  --shadow-emerald: 0 0 80px -20px
-    color-mix(in oklab, var(--emerald) 45%, transparent);
-
-  --nav-bg-scroll: rgba(245, 240, 232, 0.88);
-  --noise-opacity: 0.025;
-}
 
 @layer base {
   * {
