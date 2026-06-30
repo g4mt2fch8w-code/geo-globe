@@ -157,7 +157,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             
             globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
             bumpImageUrl={isMobile ? undefined : "//unpkg.com/three-globe/example/img/earth-topology.png"}
-            backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
+            backgroundImageUrl={isMobile ? undefined : "//unpkg.com/three-globe/example/img/night-sky.png"}
             
             onGlobeReady={() => {
               if (globeRef.current) {
@@ -201,9 +201,11 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
               el.className = "group pointer-events-auto cursor-pointer";
               
               if (d.label) {
+                // Ruler Marker
+                const filter = isMobile ? '' : 'filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));';
                 el.innerHTML = `
                   <div style="position: relative; width: 28px; height: 38px; transform: translate(-50%, -100%);">
-                    <svg width="28" height="38" viewBox="0 0 24 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));">
+                    <svg width="28" height="38" viewBox="0 0 24 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="${filter}">
                       <path d="M12 0C5.37258 0 0 5.37258 0 12C0 21 12 34 12 34C12 34 24 21 24 12C24 5.37258 18.6274 0 12 0Z" fill="#FF9500"/>
                       <circle cx="12" cy="12" r="5" fill="white"/>
                     </svg>
@@ -211,13 +213,18 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                   </div>
                 `;
               } else {
+                // Forest Marker
                 const emoji = getEntityEmoji(d.type);
+                const textShadow = isMobile ? '' : 'text-shadow: 0 0 10px rgba(255,255,255,0.5);';
+                const backdrop = isMobile ? '' : 'backdrop-filter: blur(4px);';
+                const bg = isMobile ? 'rgba(10, 26, 16, 1)' : 'rgba(10, 26, 16, 0.9)'; // Solid bg on mobile
+                
                 // Use Tailwind group-hover for pure CSS hover
                 el.innerHTML = `
                   <div class="flex flex-col items-center justify-center transition-transform duration-200 group-hover:scale-125 relative">
-                    <div style="font-size: 20px; text-shadow: 0 0 10px rgba(255,255,255,0.5);">${emoji}</div>
+                    <div style="font-size: 20px; ${textShadow}">${emoji}</div>
                     <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 absolute top-[25px] pointer-events-none whitespace-nowrap z-50">
-                      <div style="background: rgba(10, 26, 16, 0.9); border: 1px solid rgba(201, 161, 59, 0.4); padding: 4px 8px; border-radius: 6px; color: #F0D87A; font-family: sans-serif; font-size: 10px; backdrop-filter: blur(4px);">
+                      <div style="background: ${bg}; border: 1px solid rgba(201, 161, 59, 0.4); padding: 4px 8px; border-radius: 6px; color: #F0D87A; font-family: sans-serif; font-size: 10px; ${backdrop}">
                         ${d.name}
                       </div>
                     </div>
