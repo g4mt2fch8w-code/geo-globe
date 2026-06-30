@@ -209,9 +209,9 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             pointsData={isMobile ? forestsData : []}
             pointLat="lat"
             pointLng="lng"
-            pointColor={(d: any) => getEntityColor(d.type)}
-            pointAltitude={0.01}
-            pointRadius={0.4}
+            pointColor={(d: any) => getEntityColor(d.type) + 'E6'} // 90% opacity for better blending
+            pointAltitude={(d: any) => 0.01 + (Math.abs(d.lat * d.lng) % 0.015)} // Offset altitude to kill Z-fighting (blinking)
+            pointRadius={0.15} // Make them much smaller to prevent crowding when zoomed out
             pointResolution={16}
             onPointClick={(d: any) => handleEntityClick(d)}
             
