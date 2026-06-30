@@ -494,7 +494,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             ringRepeatPeriod="repeatPeriod"
             ringColor="color"
 
-            pointsData={isMobile ? forestsData : []}
+            pointsData={isMobile && globeMode === 'standard' && activeLayer === 'none' ? forestsData : []}
             pointLat="lat"
             pointLng="lng"
             pointColor={(d: any) => getEntityColor(d?.type) + 'E6'}
@@ -506,7 +506,10 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
 
 
 
-            htmlElementsData={globeMode === 'timeline' ? [...forestsData, ...rulerHtmlData] : globeMode === 'standard' ? [...forestsData, ...rulerHtmlData, ...layerHtmlElements] : [...rulerHtmlData, ...layerHtmlElements]}
+            htmlElementsData={(() => {
+              const showReserves = globeMode === 'standard' && activeLayer === 'none';
+              return [...(showReserves ? forestsData : []), ...rulerHtmlData, ...layerHtmlElements];
+            })()}
             htmlLat="lat"
             htmlLng="lng"
             htmlElement={(d: any) => {
