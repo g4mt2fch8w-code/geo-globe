@@ -82,108 +82,108 @@ export const SyllabusCompare = () => {
       {/* Side-by-Side Comparison Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         {/* Card A */}
-        <div className="glass-card bg-[#08221a]/90 dark:bg-[#08221a]/60 border border-[#34d399]/40 p-6 rounded-3xl space-y-6 text-white">
+        <div className="glass-card bg-[#08221a]/90 dark:bg-[#08221a]/60 border border-[#34d399]/40 p-6 rounded-3xl space-y-6 text-slate-900 dark:text-white">
           <div className="border-b border-[#34d399]/20 pb-4">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-1 rounded-full bg-[#34d399]/20 text-[#34d399] border border-[#34d399]/30">
                 {resA.type || 'Tiger Reserve'}
               </span>
-              <span className="text-[11px] font-mono font-bold text-[#34d399] bg-black/40 px-2.5 py-1 rounded-md border border-[#34d399]/30">
+              <span className="text-[11px] font-mono font-bold text-[#34d399] bg-black/5 dark:bg-black/40 px-2.5 py-1 rounded-md border border-[#34d399]/30">
                 Official NTCA Year: {resA.established}
               </span>
             </div>
-            <h2 className="text-2xl font-extrabold text-white mt-2">{resA.name}</h2>
-            <p className="text-xs text-[#34d399] font-mono mt-0.5">State: {resA.state} • Source: NTCA / MoEFCC Official Gazette</p>
+            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white mt-2">{resA.name}</h2>
+            <p className="text-xs text-[#059669] dark:text-[#34d399] font-mono mt-0.5">State: {resA.state} • Source: NTCA / MoEFCC Official Gazette</p>
           </div>
 
           <div className="space-y-4 text-xs">
-            <div className="bg-black/40 p-4 rounded-2xl border border-white/10">
-              <div className="text-white/80 font-mono uppercase mb-1 flex items-center gap-1.5">
+            <div className="bg-black/5 dark:bg-black/40 p-4 rounded-2xl border border-slate-200 dark:border-white/10">
+              <div className="text-slate-600 dark:text-white/80 font-mono uppercase mb-1 flex items-center gap-1.5">
                 <Trees className="w-4 h-4 text-[#34d399]" />
                 <span>Champion & Seth Forest Type</span>
               </div>
-              <div className="text-sm font-bold text-white">{resA.forestType}</div>
+              <div className="text-sm font-bold text-slate-900 dark:text-white">{resA.forestType}</div>
             </div>
 
-            <div className="bg-black/40 p-4 rounded-2xl border border-white/10">
-              <div className="text-white/80 font-mono uppercase mb-1 flex items-center gap-1.5">
+            <div className="bg-black/5 dark:bg-black/40 p-4 rounded-2xl border border-slate-200 dark:border-white/10">
+              <div className="text-slate-600 dark:text-white/80 font-mono uppercase mb-1 flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-[#34d399]" />
                 <span>Indicator Floral & Faunal Species</span>
               </div>
-              <div className="text-sm font-semibold text-[#a7f3d0]">
+              <div className="text-sm font-semibold text-[#059669] dark:text-[#a7f3d0]">
                 {resA.keySpecies.join(', ')}
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-black/40 p-3 rounded-2xl border border-white/10">
-                <div className="text-white/80 font-mono uppercase mb-1 flex items-center gap-1">
+              <div className="bg-black/5 dark:bg-black/40 p-3 rounded-2xl border border-slate-200 dark:border-white/10">
+                <div className="text-slate-600 dark:text-white/80 font-mono uppercase mb-1 flex items-center gap-1">
                   <Mountain className="w-3.5 h-3.5 text-[#34d399]" />
                   <span>Altitude Bracket</span>
                 </div>
-                <div className="text-sm font-bold text-white">{resA.altitude}</div>
+                <div className="text-sm font-bold text-slate-900 dark:text-white">{resA.altitude}</div>
               </div>
 
-              <div className="bg-black/40 p-3 rounded-2xl border border-white/10">
-                <div className="text-white/80 font-mono uppercase mb-1 flex items-center gap-1">
+              <div className="bg-black/5 dark:bg-black/40 p-3 rounded-2xl border border-slate-200 dark:border-white/10">
+                <div className="text-slate-600 dark:text-white/80 font-mono uppercase mb-1 flex items-center gap-1">
                   <Droplets className="w-3.5 h-3.5 text-[#34d399]" />
                   <span>Rainfall (Annual)</span>
                 </div>
-                <div className="text-sm font-bold text-white">{resA.rainfall} mm</div>
+                <div className="text-sm font-bold text-slate-900 dark:text-white">{resA.rainfall} mm</div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Card B */}
-        <div className="glass-card bg-[#1e1b4b]/90 dark:bg-[#1e1b4b]/60 border border-[#818cf8]/40 p-6 rounded-3xl space-y-6 text-white">
+        <div className="glass-card bg-[#1e1b4b]/90 dark:bg-[#1e1b4b]/60 border border-[#818cf8]/40 p-6 rounded-3xl space-y-6 text-slate-900 dark:text-white">
           <div className="border-b border-[#818cf8]/20 pb-4">
             <div className="flex items-center justify-between">
               <span className="text-[10px] font-mono font-bold uppercase px-2.5 py-1 rounded-full bg-[#818cf8]/20 text-[#818cf8] border border-[#818cf8]/30">
                 {resB.type || 'Tiger Reserve'}
               </span>
-              <span className="text-[11px] font-mono font-bold text-[#818cf8] bg-black/40 px-2.5 py-1 rounded-md border border-[#818cf8]/30">
+              <span className="text-[11px] font-mono font-bold text-[#818cf8] bg-black/5 dark:bg-black/40 px-2.5 py-1 rounded-md border border-[#818cf8]/30">
                 Official NTCA Year: {resB.established}
               </span>
             </div>
-            <h2 className="text-2xl font-extrabold text-white mt-2">{resB.name}</h2>
-            <p className="text-xs text-[#818cf8] font-mono mt-0.5">State: {resB.state} • Source: NTCA / MoEFCC Official Gazette</p>
+            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white mt-2">{resB.name}</h2>
+            <p className="text-xs text-[#4f46e5] dark:text-[#818cf8] font-mono mt-0.5">State: {resB.state} • Source: NTCA / MoEFCC Official Gazette</p>
           </div>
 
           <div className="space-y-4 text-xs">
-            <div className="bg-black/40 p-4 rounded-2xl border border-white/10">
-              <div className="text-white/80 font-mono uppercase mb-1 flex items-center gap-1.5">
+            <div className="bg-black/5 dark:bg-black/40 p-4 rounded-2xl border border-slate-200 dark:border-white/10">
+              <div className="text-slate-600 dark:text-white/80 font-mono uppercase mb-1 flex items-center gap-1.5">
                 <Trees className="w-4 h-4 text-[#818cf8]" />
                 <span>Champion & Seth Forest Type</span>
               </div>
-              <div className="text-sm font-bold text-white">{resB.forestType}</div>
+              <div className="text-sm font-bold text-slate-900 dark:text-white">{resB.forestType}</div>
             </div>
 
-            <div className="bg-black/40 p-4 rounded-2xl border border-white/10">
-              <div className="text-white/80 font-mono uppercase mb-1 flex items-center gap-1.5">
+            <div className="bg-black/5 dark:bg-black/40 p-4 rounded-2xl border border-slate-200 dark:border-white/10">
+              <div className="text-slate-600 dark:text-white/80 font-mono uppercase mb-1 flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-[#818cf8]" />
                 <span>Indicator Floral & Faunal Species</span>
               </div>
-              <div className="text-sm font-semibold text-[#c7d2fe]">
+              <div className="text-sm font-semibold text-[#4f46e5] dark:text-[#c7d2fe]">
                 {resB.keySpecies.join(', ')}
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-black/40 p-3 rounded-2xl border border-white/10">
-                <div className="text-white/80 font-mono uppercase mb-1 flex items-center gap-1">
+              <div className="bg-black/5 dark:bg-black/40 p-3 rounded-2xl border border-slate-200 dark:border-white/10">
+                <div className="text-slate-600 dark:text-white/80 font-mono uppercase mb-1 flex items-center gap-1">
                   <Mountain className="w-3.5 h-3.5 text-[#818cf8]" />
                   <span>Altitude Bracket</span>
                 </div>
-                <div className="text-sm font-bold text-white">{resB.altitude}</div>
+                <div className="text-sm font-bold text-slate-900 dark:text-white">{resB.altitude}</div>
               </div>
 
-              <div className="bg-black/40 p-3 rounded-2xl border border-white/10">
-                <div className="text-white/80 font-mono uppercase mb-1 flex items-center gap-1">
+              <div className="bg-black/5 dark:bg-black/40 p-3 rounded-2xl border border-slate-200 dark:border-white/10">
+                <div className="text-slate-600 dark:text-white/80 font-mono uppercase mb-1 flex items-center gap-1">
                   <Droplets className="w-3.5 h-3.5 text-[#818cf8]" />
                   <span>Rainfall (Annual)</span>
                 </div>
-                <div className="text-sm font-bold text-white">{resB.rainfall} mm</div>
+                <div className="text-sm font-bold text-slate-900 dark:text-white">{resB.rainfall} mm</div>
               </div>
             </div>
           </div>
