@@ -87,18 +87,7 @@ const getEntityColor = (type?: string) => {
   return '#FBBF24'; // gold default
 };
 
-const getEntityShape = (type?: string) => {
-  if (!type) return '●';
-  const t = type.toLowerCase();
-  if (t.includes('tiger')) return '▲';       // triangle
-  if (t.includes('national park')) return '■'; // square
-  if (t.includes('sanctuary')) return '◆';   // diamond
-  if (t.includes('biosphere')) return '★';   // star
-  if (t.includes('elephant')) return '●';    // circle
-  if (t.includes('forest')) return '●';
-  if (t.includes('ramsar')) return '◉';      // bullseye
-  return '●';
-};
+
 
 const estimateElevation = (lat: number, lng: number, exaggeration = 1.0): number => {
   if (lat >= 27 && lat <= 36 && lng >= 73 && lng <= 96) {
