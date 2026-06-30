@@ -3,54 +3,117 @@ import { Link } from 'react-router-dom';
 
 export const Home = () => {
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-ink text-fog font-body">
+    <div className="relative w-full min-h-screen overflow-x-hidden bg-ink text-fog font-body pb-24 pt-16">
       {/* Background with noise overlay */}
       <div className="absolute inset-0 noise-overlay pointer-events-none opacity-50 z-10" />
       
       {/* Dynamic Background Gradients */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-[20%] -left-[10%] w-[70vw] h-[70vw] rounded-full bg-emerald-deep/20 blur-[120px]" />
-        <div className="absolute top-[40%] -right-[20%] w-[60vw] h-[60vw] rounded-full bg-gold/10 blur-[100px]" />
+        <div className="absolute top-10 left-[5%] w-[50vw] h-[50vw] rounded-full bg-[#10b981]/15 blur-[130px]" />
+        <div className="absolute top-[30%] right-[5%] w-[45vw] h-[45vw] rounded-full bg-[#fbbf24]/10 blur-[120px]" />
       </div>
 
       {/* Main Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center w-full h-full px-6 text-center">
+      <div className="relative z-20 flex flex-col items-center justify-center w-full max-w-5xl mx-auto px-4 sm:px-6 text-center mt-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-4xl mx-auto"
+          className="w-full"
         >
-          <div className="inline-block mb-6 px-4 py-1.5 rounded-full glass-card border border-gold/20 text-gold text-sm font-semibold tracking-wider uppercase">
-            GEO-GLOBE 3D • RUNNING 
+          <div className="inline-block mb-6 px-4 py-1.5 rounded-full glass-card border border-gold/30 text-gold text-xs sm:text-sm font-semibold tracking-wider uppercase shadow-[0_0_15px_rgba(251,191,36,0.2)]">
+            ⚡ GEO-GLOBE 3D • INTERACTIVE WILDLIFE EXPLORER
           </div>
           
-          <h1 className="text-6xl md:text-8xl font-display font-bold mb-8 leading-tight tracking-tight text-white drop-shadow-2xl">
-            Explore India's <br className="hidden md:block"/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald to-gold">Biospheres</span>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-2xl">
+            Explore India's <br className="hidden sm:block"/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#fbbf24]">Biospheres & Forests</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-fog/80 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
-            The ultimate 3D interactive globe featuring all major Tiger Reserves, National Parks, and Forests. Built for aspiring officers.
+          <p className="text-base sm:text-xl text-fog/85 mb-8 max-w-2xl mx-auto font-light leading-relaxed">
+            The ultimate interactive 3D globe featuring all major Tiger Reserves, National Parks, and Protected Forests. Built for aspiring conservationists and officers.
           </p>
           
-          <Link to="/globe">
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-10 py-5 rounded-full bg-gold text-ink font-bold text-lg shadow-glow hover:bg-gold-soft transition-colors relative overflow-hidden group"
-            >
-              <span className="relative z-10 flex items-center gap-3">
-                Launch Globe
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
+            <Link to="/globe">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-[#04120e] font-extrabold text-base sm:text-lg shadow-[0_0_25px_rgba(251,191,36,0.5)] hover:shadow-[0_0_35px_rgba(251,191,36,0.8)] transition-all relative overflow-hidden group flex items-center gap-3"
+              >
+                <span>Launch 3D Globe</span>
+                <span className="group-hover:translate-x-1.5 transition-transform font-bold">→</span>
+              </motion.button>
+            </Link>
+          </div>
+
+          {/* Quick Navigation Guide Section */}
+          <motion.div 
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="w-full text-left bg-[#08221a]/85 backdrop-blur-2xl border border-[#34d399]/30 rounded-3xl p-6 sm:p-8 shadow-[0_15px_40px_rgba(0,0,0,0.6)]"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[#34d399]/20">
+              <div>
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#34d399] block mb-1">
+                  ONBOARDING & CONTROLS
+                </span>
+                <h2 className="text-xl sm:text-2xl font-display font-bold text-[#fbbf24]">
+                  Quick Navigation Guide
+                </h2>
+              </div>
+              <span className="text-xs text-[#a7f3d0] bg-[#10b981]/20 border border-[#34d399]/40 px-3 py-1.5 rounded-full font-medium self-start sm:self-center">
+                💡 Read before launching
               </span>
-            </motion.button>
-          </Link>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              {/* Card 1 */}
+              <div className="bg-[#04120e]/80 border border-[#34d399]/20 rounded-2xl p-5 hover:border-[#34d399]/50 transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-[#10b981]/20 flex items-center justify-center text-2xl mb-4 border border-[#34d399]/30">
+                  🌍
+                </div>
+                <h3 className="text-[#fbbf24] font-bold text-base mb-1.5 flex items-center gap-2">
+                  Rotate & Orbit
+                </h3>
+                <p className="text-xs sm:text-sm text-[#d1fae5]/80 leading-relaxed font-normal">
+                  <strong className="text-white font-semibold">Drag across the screen</strong> with your mouse or finger to spin the 3D Earth smoothly with realistic natural inertia.
+                </p>
+              </div>
+
+              {/* Card 2 */}
+              <div className="bg-[#04120e]/80 border border-[#34d399]/20 rounded-2xl p-5 hover:border-[#34d399]/50 transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-[#10b981]/20 flex items-center justify-center text-2xl mb-4 border border-[#34d399]/30">
+                  🔍
+                </div>
+                <h3 className="text-[#fbbf24] font-bold text-base mb-1.5 flex items-center gap-2">
+                  Zoom & Inspect
+                </h3>
+                <p className="text-xs sm:text-sm text-[#d1fae5]/80 leading-relaxed font-normal">
+                  <strong className="text-white font-semibold">Pinch or scroll wheel</strong> to zoom in close on India's forests, wildlife corridors, and protected national reserves.
+                </p>
+              </div>
+
+              {/* Card 3 */}
+              <div className="bg-[#04120e]/80 border border-[#34d399]/20 rounded-2xl p-5 hover:border-[#34d399]/50 transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-[#10b981]/20 flex items-center justify-center text-2xl mb-4 border border-[#34d399]/30">
+                  📍
+                </div>
+                <h3 className="text-[#fbbf24] font-bold text-base mb-1.5 flex items-center gap-2">
+                  Tap Map Markers
+                </h3>
+                <p className="text-xs sm:text-sm text-[#d1fae5]/80 leading-relaxed font-normal">
+                  <strong className="text-white font-semibold">Click any glowing dot or emoji</strong> to launch deep-dive research journals, tiger census stats, and Wikipedia briefs.
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
 
-      {/* PSBS-style bottom accent */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black/80 to-transparent pointer-events-none z-10" />
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black/80 to-transparent pointer-events-none z-10" />
     </div>
   );
 };
