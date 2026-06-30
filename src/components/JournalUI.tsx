@@ -23,22 +23,15 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
       setWikiData(null);
       setWikiUrl(null);
 
-      // Check if we have hardcoded accurate data for this entity
-      if (entity.customSummary) {
-        setWikiData(entity.customSummary);
-        setWikiUrl(entity.customUrl || null);
-        setLoading(false);
-        return;
-      }
-
       const typeStr = entity.type && !entity.name.includes(entity.type) ? entity.type : '';
       const countryStr = entity.country && !entity.country.includes('India') ? entity.country : 'India';
       
-      // Extremely strict queries to guarantee we don't fetch random towns or people instead of the sanctuary.
+      // Priority order: exact type name, generic type, then just the name.
       const queriesToTry = [
-        `${entity.name} ${typeStr} ${countryStr}`.trim(), 
         `${entity.name} ${typeStr}`.trim(),
-        `${entity.name}`.trim()
+        `${entity.name} Wildlife Sanctuary`.trim(),
+        `${entity.name} National Park`.trim(),
+        entity.name
       ];
 
       try {
@@ -77,12 +70,12 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
         }
         
         if (isMounted) {
-          setWikiData(extract || "No detailed information found.");
+          setWikiData(extract || null);
           setWikiUrl(url);
         }
       } catch (err) {
         if (isMounted) {
-          setWikiData("Research data is currently unavailable for this reserve. Our field researchers are gathering more information.");
+          setWikiData(null);
         }
       } finally {
         if (isMounted) {
@@ -221,9 +214,31 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
                 </div>
               ) : (
                 <>
-                  <p className="text-sm leading-relaxed text-fog/80 whitespace-pre-wrap">
-                    {wikiData}
-                  </p>
+                  {wikiData ? (
+                    <p className="text-sm leading-relaxed text-fog/80 whitespace-pre-wrap">
+                      {wikiData}
+                    </p>
+                  ) : (
+                    <div className="bg-emerald-900/40 p-4 rounded-xl border border-emerald-500/20 mt-4">
+                      <div className="flex items-start gap-3">
+                        <BookOpen className="w-5 h-5 text-emerald-400 mt-0.5 shrink-0" />
+                        <div>
+                          <h4 className="text-emerald-100 font-medium mb-1">Research Notes</h4>
+                          <p className="text-sm text-emerald-100/70 leading-relaxed mb-4">
+                            Detailed research notes for this location are currently unavailable from our primary database.
+                          </p>
+                          <a
+                            href={`https://www.google.com/search?q=${encodeURIComponent(`${entity.name} ${entity.type || ''}`)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-xs text-emerald-400 bg-emerald-950/50 hover:bg-emerald-900/50 px-3 py-1.5 rounded-full transition-colors border border-emerald-500/30"
+                          >
+                            Search Web for Research Data <ExternalLink className="w-3 h-3" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                   {wikiUrl && (
                     <a 
                       href={wikiUrl} 
