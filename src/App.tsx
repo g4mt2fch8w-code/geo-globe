@@ -86,6 +86,7 @@ const GlobeApp = () => {
             onGlobeClick={handleGlobeClick}
             rulerPoints={rulerPoints}
             isAutoRotate={isAutoRotate}
+            setIsAutoRotate={setIsAutoRotate}
             flyTo={flyTo}
             selectedEntity={selectedEntity}
             terrainExaggeration={terrainExaggeration}

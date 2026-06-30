@@ -434,7 +434,11 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
           {/* Orbit/Pause: visible on all screens */}
           <button 
             onClick={() => setIsAutoRotate(!isAutoRotate)}
-            className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-[#08221a]/95 backdrop-blur-2xl text-white border border-[#34d399]/50 hover:border-[#34d399] shadow-2xl`}
+            className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold transition-all bg-[#08221a]/95 backdrop-blur-2xl text-white border ${
+              isAutoRotate 
+                ? 'border-[#34d399]/50 hover:border-[#34d399] shadow-2xl'
+                : 'border-[#fbbf24] shadow-[0_0_15px_rgba(251,191,36,0.6)] animate-pulse hover:bg-[#fbbf24]/20'
+            }`}
           >
             {isAutoRotate ? '⏸ Pause' : '▶ Orbit'}
           </button>

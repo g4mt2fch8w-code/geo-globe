@@ -63,6 +63,7 @@ interface GlobeViewerProps {
   onGlobeClick: (lat: number, lng: number) => void;
   rulerPoints: { lat: number, lng: number }[];
   isAutoRotate: boolean;
+  setIsAutoRotate?: (val: boolean) => void;
   flyTo?: {lat: number, lng: number} | null;
   terrainExaggeration?: number;
   activeLayer?: 'none' | 'champion' | 'watershed' | 'soil';
@@ -109,7 +110,7 @@ const estimateElevation = (lat: number, lng: number, exaggeration = 1.0): number
 };
 
 export const GlobeViewer: React.FC<GlobeViewerProps> = ({ 
-  onEntityClick, onGlobeClick, rulerPoints, isAutoRotate, flyTo, selectedEntity,
+  onEntityClick, onGlobeClick, rulerPoints, isAutoRotate, setIsAutoRotate, flyTo, selectedEntity,
   terrainExaggeration = 1.4, activeLayer = 'none',
   onHoverCoordsChange, resetNorthTrigger = 0,
   globeMode = 'standard', timelineYear = 2026
@@ -148,9 +149,17 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
     }
   };
 
-  // Handle smooth auto-rotation
+  // Handle smooth auto-rotation and pause on interaction
   useEffect(() => {
     let frameId: number;
+    let controlsInstance: any = null;
+    
+    const handleInteraction = () => {
+      if (isAutoRotate && setIsAutoRotate) {
+        setIsAutoRotate(false);
+      }
+    };
+
     const animate = () => {
       if (globeRef.current && typeof globeRef.current.controls === 'function') {
         try {
@@ -158,6 +167,13 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
           if (controls) {
             controls.autoRotate = isAutoRotate;
             controls.autoRotateSpeed = 0.35;
+            
+            // Attach event listener once if not attached
+            if (controls !== controlsInstance) {
+              if (controlsInstance) controlsInstance.removeEventListener('start', handleInteraction);
+              controlsInstance = controls;
+              controlsInstance.addEventListener('start', handleInteraction);
+            }
           }
         } catch (e) {
           // ignore
@@ -166,8 +182,13 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
       frameId = requestAnimationFrame(animate);
     };
     animate();
-    return () => cancelAnimationFrame(frameId);
-  }, [isAutoRotate]);
+    return () => {
+      cancelAnimationFrame(frameId);
+      if (controlsInstance) {
+        controlsInstance.removeEventListener('start', handleInteraction);
+      }
+    };
+  }, [isAutoRotate, setIsAutoRotate]);
 
   // Update topology bump relief dynamically when terrainExaggeration changes
   useEffect(() => {
