@@ -14,28 +14,31 @@ export function Navbar() {
       <div className="max-w-3xl mx-auto flex items-center justify-center relative">
         
         {/* Left: Back Button */}
-        <div className="absolute left-0 pointer-events-auto hidden sm:flex">
-          <button 
+        <div className="absolute left-0 pointer-events-auto flex">
+          <motion.button 
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 500, damping: 10 }}
             onClick={() => navigate(-1)}
-            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full glass-card flex items-center justify-center text-fog hover:text-white hover:bg-white/10 transition-all border border-white/10 shadow-[0_0_15px_rgba(0,0,0,0.2)]"
+            className="w-11 h-11 rounded-full glass-card flex items-center justify-center text-fog hover:text-white hover:bg-white/10 transition-colors border border-white/10 shadow-[0_0_15px_rgba(0,0,0,0.2)]"
             aria-label="Go back"
           >
             <ChevronLeft className="w-5 h-5" />
-          </button>
+          </motion.button>
         </div>
 
         {/* Center: Navigation Pill */}
-        <div className="pointer-events-auto flex items-center p-1.5 glass-card rounded-full border border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.3)] relative">
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+        <div className="pointer-events-auto flex items-center p-1.5 glass-card rounded-full border border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.3)] relative mx-14 sm:mx-0">
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} transition={{ type: "spring", stiffness: 500, damping: 10 }}>
             <Link 
               to="/" 
-              className="relative px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 transition-colors z-10 block"
+              className="relative px-3 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 transition-colors z-10 block"
             >
               {location.pathname === '/' && (
                 <motion.div
                   layoutId="nav-active"
                   className="absolute inset-0 bg-[#D4AF37]/30 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(212,175,55,0.4)]"
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 18 }}
                 />
               )}
               <img src="/logo.jpg" alt="Home Logo" className={`w-5 h-5 rounded-full object-cover relative z-10 ${location.pathname !== '/' && 'opacity-60'}`} />
@@ -43,16 +46,16 @@ export function Navbar() {
             </Link>
           </motion.div>
           
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} transition={{ type: "spring", stiffness: 500, damping: 10 }}>
             <Link 
               to="/globe" 
-              className="relative px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 transition-colors z-10 block"
+              className="relative px-3 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 transition-colors z-10 block"
             >
               {location.pathname === '/globe' && (
                 <motion.div
                   layoutId="nav-active"
                   className="absolute inset-0 bg-[#D4AF37]/30 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(212,175,55,0.4)]"
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 18 }}
                 />
               )}
               <Globe2 className={`w-5 h-5 relative z-10 ${location.pathname === '/globe' ? 'text-white' : 'text-fog hover:text-white'}`} />
@@ -60,16 +63,16 @@ export function Navbar() {
             </Link>
           </motion.div>
 
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.9 }} transition={{ type: "spring", stiffness: 500, damping: 10 }}>
             <Link 
               to="/about" 
-              className="relative px-4 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 transition-colors z-10 block"
+              className="relative px-3 sm:px-6 py-2 rounded-full text-xs sm:text-sm font-semibold flex items-center gap-2 transition-colors z-10 block"
             >
               {location.pathname === '/about' && (
                 <motion.div
                   layoutId="nav-active"
                   className="absolute inset-0 bg-[#D4AF37]/30 backdrop-blur-md rounded-full shadow-[inset_0_1px_4px_rgba(212,175,55,0.4)]"
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 18 }}
                 />
               )}
               <BookOpen className={`w-5 h-5 relative z-10 ${location.pathname === '/about' ? 'text-white' : 'text-fog hover:text-white'}`} />
@@ -79,10 +82,13 @@ export function Navbar() {
         </div>
           
         {/* Right: Actions */}
-        <div className="absolute right-0 pointer-events-auto flex items-center gap-2 sm:gap-3">
-          <button
+        <div className="absolute right-0 pointer-events-auto flex items-center gap-2">
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 500, damping: 10 }}
             onClick={toggleTheme}
-            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full glass-card flex items-center justify-center text-fog/80 hover:text-white hover:bg-white/10 transition-all border border-white/10 shadow-[0_0_15px_rgba(0,0,0,0.2)]"
+            className="w-11 h-11 rounded-full glass-card flex items-center justify-center text-fog/80 hover:text-white hover:bg-white/10 transition-colors border border-white/10 shadow-[0_0_15px_rgba(0,0,0,0.2)]"
             aria-label="Toggle theme"
           >
             {theme === 'dark' ? (
@@ -90,7 +96,7 @@ export function Navbar() {
             ) : (
               <Moon className="w-5 h-5" />
             )}
-          </button>
+          </motion.button>
           
           <GlobalSearch />
         </div>

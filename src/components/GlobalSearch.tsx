@@ -66,9 +66,9 @@ export function GlobalSearch() {
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
-          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          transition={{ type: "spring", stiffness: 500, damping: 10 }}
           onClick={() => setIsOpen(true)}
-          className="w-12 h-12 rounded-full glass-card flex items-center justify-center text-fog hover:text-white border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)] transition-colors"
+          className="w-11 h-11 rounded-full glass-card flex items-center justify-center text-fog hover:text-white border border-white/10 shadow-[0_0_15px_rgba(0,0,0,0.2)] transition-colors"
           aria-label="Global Search"
         >
           <Search className="w-5 h-5" />
