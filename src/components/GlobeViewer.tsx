@@ -462,6 +462,14 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 1.5));
                     }
                   }
+                  
+                  if (typeof globeRef.current.camera === 'function') {
+                    const camera = globeRef.current.camera();
+                    if (camera) {
+                      camera.far = 20000;
+                      camera.updateProjectionMatrix();
+                    }
+                  }
 
                   if (typeof globeRef.current.scene === 'function') {
                     const scene = globeRef.current.scene();
@@ -510,10 +518,10 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       starsGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
                       
                       const starsMaterial = new THREE.PointsMaterial({
-                          size: 1.5,
+                          size: 2.5,
                           vertexColors: true,
                           transparent: true,
-                          opacity: 0.9,
+                          opacity: 1.0,
                           sizeAttenuation: false
                       });
                       scene.add(new THREE.Points(starsGeometry, starsMaterial));
@@ -532,10 +540,10 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       }
                       deepStarsGeometry.setAttribute('position', new THREE.BufferAttribute(deepPosArray, 3));
                       const deepStarsMaterial = new THREE.PointsMaterial({
-                          size: 1.0,
-                          color: 0x888899,
+                          size: 2.0,
+                          color: 0xaaabcc,
                           transparent: true,
-                          opacity: 0.5,
+                          opacity: 0.8,
                           sizeAttenuation: false
                       });
                       scene.add(new THREE.Points(deepStarsGeometry, deepStarsMaterial));
@@ -581,10 +589,10 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       mwGeometry.setAttribute('position', new THREE.BufferAttribute(mwPosArray, 3));
                       mwGeometry.setAttribute('color', new THREE.BufferAttribute(mwColorsArray, 3));
                       const mwMaterial = new THREE.PointsMaterial({
-                          size: 1.2,
+                          size: 2.5,
                           vertexColors: true,
                           transparent: true,
-                          opacity: 0.7,
+                          opacity: 0.9,
                           sizeAttenuation: false
                       });
                       const milkyWay = new THREE.Points(mwGeometry, mwMaterial);
@@ -609,10 +617,10 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       }
                       andromedaGeometry.setAttribute('position', new THREE.BufferAttribute(andromedaPos, 3));
                       const andromedaMaterial = new THREE.PointsMaterial({
-                          size: 1.0,
-                          color: 0x99aaff,
+                          size: 3.0,
+                          color: 0xbbccff,
                           transparent: true,
-                          opacity: 0.3,
+                          opacity: 0.8,
                           sizeAttenuation: false
                       });
                       const andromeda = new THREE.Points(andromedaGeometry, andromedaMaterial);
@@ -621,8 +629,9 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       andromeda.rotation.z = 0.4; // tilt the smudge
                       scene.add(andromeda);
                       
-                      // Fix moon position to be static since cosmic motion is imperceptible
-                      moon.position.set(450, 80, -250);
+                      // Fix moon position to be static since cosmic motion is imperceptible.
+                      // Placed in front/side so it's clearly visible upon load.
+                      moon.position.set(300, 150, 250);
                     }
                   }
 
