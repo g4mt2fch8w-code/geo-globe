@@ -670,6 +670,15 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                                   universeGroup.rotation.y = (universeGroup.rotation.y + (2 * Math.PI / 3600) * (controls.autoRotateSpeed || 0)) % (2 * Math.PI);
                               }
                           }
+
+                          // Enforce far plane every frame in case react-globe.gl or OrbitControls overrides it dynamically
+                          if (globeRef.current && typeof globeRef.current.camera === 'function') {
+                              const cam = globeRef.current.camera();
+                              if (cam && cam.far < 50000) {
+                                  cam.far = 50000;
+                                  cam.updateProjectionMatrix();
+                              }
+                          }
                           
                           requestAnimationFrame(animateUniverse);
                       };

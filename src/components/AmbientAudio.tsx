@@ -34,45 +34,67 @@ export const AmbientAudio: React.FC = () => {
     audioCtxRef.current = ctx;
 
     const masterGain = ctx.createGain();
-    masterGain.gain.value = 0.05; // Very soft ambient volume
+    masterGain.gain.value = 0.03; // Very soft, gentle ambient volume
     masterGain.connect(ctx.destination);
     gainNodeRef.current = masterGain;
 
-    // Create a cosmic drone using 3 low-frequency oscillators with slight detuning
-    const frequencies = [55, 55.4, 82.4]; // A1, slight detune, E2 (perfect fifth)
+    // Create an ethereal, uplifting A Major 7th chord
+    const frequencies = [
+      110.00, // A2 (root)
+      138.59, // C#3 (major third)
+      164.81, // E3 (perfect fifth)
+      207.65  // G#3 (major seventh)
+    ]; 
     
-    frequencies.forEach(freq => {
+    frequencies.forEach((freq, index) => {
       const osc = ctx.createOscillator();
       const lfo = ctx.createOscillator();
       const lfoGain = ctx.createGain();
 
-      // The main oscillator (sine wave for deep smooth drone)
+      // The main oscillator (sine wave for deep smooth ambient)
       osc.type = 'sine';
       osc.frequency.value = freq;
 
-      // Low frequency oscillator (LFO) to create a "breathing" or "pulsing" effect
+      // Low frequency oscillator (LFO) to create a "breathing" effect
       lfo.type = 'sine';
-      lfo.frequency.value = 0.05 + Math.random() * 0.05; // Very slow pulse
+      // Each note breathes at a slightly different rate for organic feel
+      lfo.frequency.value = 0.02 + Math.random() * 0.02; 
 
-      lfoGain.gain.value = 0.5; // Amplitude of the pulse
+      lfoGain.gain.value = 0.3; // Amplitude of the frequency modulation
 
       lfo.connect(lfoGain);
       lfoGain.connect(osc.frequency);
 
-      osc.connect(masterGain);
+      // Volume modulation (Tremolo) for extra smoothness
+      const volLfo = ctx.createOscillator();
+      const volGain = ctx.createGain();
+      volLfo.type = 'sine';
+      volLfo.frequency.value = 0.03 + Math.random() * 0.02;
+      
+      const nodeGain = ctx.createGain();
+      // Higher notes should be slightly quieter
+      nodeGain.gain.value = 1.0 - (index * 0.15); 
+      
+      volGain.gain.value = 0.4;
+      volLfo.connect(volGain);
+      volGain.connect(nodeGain.gain);
+
+      osc.connect(nodeGain);
+      nodeGain.connect(masterGain);
       
       osc.start();
       lfo.start();
+      volLfo.start();
       
-      oscillatorsRef.current.push(osc, lfo);
+      oscillatorsRef.current.push(osc, lfo, volLfo);
     });
 
-    // Add a very subtle high-pitch shimmer
+    // Add a very subtle, angelic high-pitch shimmer
     const shimmerOsc = ctx.createOscillator();
-    shimmerOsc.type = 'triangle';
+    shimmerOsc.type = 'sine';
     shimmerOsc.frequency.value = 440; // A4
     const shimmerGain = ctx.createGain();
-    shimmerGain.gain.value = 0.01;
+    shimmerGain.gain.value = 0.02;
     shimmerOsc.connect(shimmerGain);
     shimmerGain.connect(masterGain);
     shimmerOsc.start();
