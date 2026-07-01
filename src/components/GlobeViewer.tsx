@@ -199,7 +199,8 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
   useEffect(() => {
     if (flyTo && globeRef.current && typeof globeRef.current.pointOfView === 'function') {
       try {
-        globeRef.current.pointOfView({ lat: flyTo.lat, lng: flyTo.lng, altitude: 2.2 }, 2000);
+        // 0.125 altitude is roughly 800km above Earth's surface
+        globeRef.current.pointOfView({ lat: flyTo.lat, lng: flyTo.lng, altitude: 0.125 }, 2000);
         setTimeout(() => {
           if (globeRef.current && typeof globeRef.current.camera === 'function') {
             const camera = globeRef.current.camera();
@@ -238,7 +239,8 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
     if (typeof navigator !== 'undefined' && navigator.vibrate) navigator.vibrate(50);
     if (globeRef.current && typeof globeRef.current.pointOfView === 'function') {
       try {
-        globeRef.current.pointOfView({ lat: entity.lat || 0, lng: entity.lng || 0, altitude: 1.5 }, 2000);
+        // 0.125 altitude is roughly 800km above Earth's surface
+        globeRef.current.pointOfView({ lat: entity.lat || 0, lng: entity.lng || 0, altitude: 0.125 }, 2000);
         setTimeout(() => {
           if (globeRef.current && typeof globeRef.current.camera === 'function') {
             const camera = globeRef.current.camera();
@@ -446,7 +448,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             
             globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
             bumpImageUrl={isMobile ? undefined : "//unpkg.com/three-globe/example/img/earth-topology.png"}
-            backgroundImageUrl={isMobile ? undefined : "//unpkg.com/three-globe/example/img/night-sky.png"}
+            backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
             
             onGlobeReady={() => {
               if (globeRef.current) {
