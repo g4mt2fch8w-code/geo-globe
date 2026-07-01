@@ -2376,5 +2376,113 @@
     "facts": [],
     "id": "ent-197",
     "color": "#22C55E"
+  },
+  {
+    "id": "ent-new-1",
+    "name": "Kuno",
+    "country": "Madhya Pradesh, India",
+    "lat": 25.6666,
+    "lng": 77.1666,
+    "color": "#10B981",
+    "type": "National Park",
+    "size": 0.8,
+    "alt": 0.02,
+    "facts": ["Known for the reintroduction of cheetahs in India."]
+  },
+  {
+    "id": "ent-new-2",
+    "name": "Bhagwan Mahaveer and Mollem",
+    "country": "Goa, India",
+    "lat": 15.3736,
+    "lng": 74.2586,
+    "color": "#10B981",
+    "type": "National Park",
+    "size": 0.8,
+    "alt": 0.02,
+    "facts": ["Located in the Western Ghats, renowned for its rich biodiversity."]
+  },
+  {
+    "id": "ent-new-3",
+    "name": "Dihing Patkai",
+    "country": "Assam, India",
+    "lat": 27.1,
+    "lng": 95.3,
+    "color": "#10B981",
+    "type": "National Park",
+    "size": 0.8,
+    "alt": 0.02,
+    "facts": ["Known as the 'Amazon of the East' for its dense rainforest."]
+  },
+  {
+    "id": "ent-new-4",
+    "name": "Raimona",
+    "country": "Assam, India",
+    "lat": 26.6597,
+    "lng": 89.9761,
+    "color": "#10B981",
+    "type": "National Park",
+    "size": 0.8,
+    "alt": 0.02,
+    "facts": ["Famous for Golden Langur and rich flora in the Bodoland Territorial Region."]
+  },
+  {
+    "id": "ent-new-5",
+    "name": "Ramgarh Vishdhari",
+    "country": "Rajasthan, India",
+    "lat": 25.98,
+    "lng": 75.31,
+    "color": "#F97316",
+    "type": "Tiger Reserve",
+    "size": 0.8,
+    "alt": 0.02,
+    "facts": ["Crucial tiger corridor connecting Ranthambore and Mukundra Hills."]
+  },
+  {
+    "id": "ent-new-6",
+    "name": "Guru Ghasidas",
+    "country": "Chhattisgarh, India",
+    "lat": 23.6,
+    "lng": 82.3,
+    "color": "#F97316",
+    "type": "Tiger Reserve",
+    "size": 0.8,
+    "alt": 0.02,
+    "facts": ["Connects Bandhavgarh and Palamau, forming an important tiger habitat."]
+  },
+  {
+    "id": "ent-new-7",
+    "name": "Ranipur",
+    "country": "Uttar Pradesh, India",
+    "lat": 25.2513,
+    "lng": 79.0617,
+    "color": "#F97316",
+    "type": "Tiger Reserve",
+    "size": 0.8,
+    "alt": 0.02,
+    "facts": ["UP's 4th tiger reserve, bolstering conservation in the Bundelkhand region."]
+  },
+  {
+    "id": "ent-new-8",
+    "name": "Dholpur-Karauli",
+    "country": "Rajasthan, India",
+    "lat": 26.7,
+    "lng": 77.9,
+    "color": "#F97316",
+    "type": "Tiger Reserve",
+    "size": 0.8,
+    "alt": 0.02,
+    "facts": ["Rajasthan's 5th tiger reserve, a critical step for tiger dispersal in the state."]
+  },
+  {
+    "id": "ent-new-9",
+    "name": "Veerangana Durgavati",
+    "country": "Madhya Pradesh, India",
+    "lat": 23.55,
+    "lng": 79.75,
+    "color": "#F97316",
+    "type": "Tiger Reserve",
+    "size": 0.8,
+    "alt": 0.02,
+    "facts": ["Madhya Pradesh's 7th tiger reserve, formed by merging Nauradehi and Veerangana Durgavati sanctuaries."]
   }
 ]
