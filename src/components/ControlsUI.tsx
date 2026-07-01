@@ -132,7 +132,7 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
   return (
     <>
       {/* Top Search & Navigation Bar */}
-      <div className="absolute top-20 left-4 right-4 md:top-24 md:left-6 md:right-auto pointer-events-auto flex flex-col md:flex-row items-start md:items-center gap-3 z-40 font-body">
+      <div className="absolute top-16 left-4 right-4 md:top-24 md:left-6 md:right-auto pointer-events-auto flex flex-col md:flex-row items-start md:items-center gap-3 z-40 font-body">
         
         <div className="flex items-center gap-2.5 w-full md:w-auto">
           <div className="relative w-full sm:w-64 md:w-80">
@@ -418,7 +418,7 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
       </div>
 
       {/* Controls (Ruler & Pause) */}
-      <div className="absolute bottom-28 right-4 sm:bottom-auto sm:top-24 sm:right-6 pointer-events-auto flex flex-col items-end gap-3 z-30 font-body">
+      <div className="absolute bottom-[5.5rem] right-4 sm:bottom-auto sm:top-24 sm:right-6 pointer-events-auto flex flex-col items-end gap-3 z-30 font-body">
         <div className="flex gap-2 sm:gap-3">
           {/* Measurement Tools: desktop only */}
           <button 
