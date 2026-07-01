@@ -635,11 +635,11 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       
                       // Moon orbital animation (slowed down for realism)
                       const animateMoon = () => {
-                          const time = Date.now() * 0.000018; // 9x speed
+                          const time = Date.now() * 0.000026; // 13x speed
                           moon.position.x = Math.cos(time) * 550;
                           moon.position.z = Math.sin(time) * 550;
                           moon.position.y = Math.sin(time * 0.5) * 100; // slight orbital inclination
-                          moon.rotation.y += 0.0009; // 9x rotation
+                          moon.rotation.y += 0.0013; // 13x rotation
                           requestAnimationFrame(animateMoon);
                       };
                       animateMoon();
