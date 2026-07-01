@@ -55,7 +55,7 @@ export const Home = () => {
             </Link>
 
             {/* Analytics Button with Psychological Banner */}
-            <Link to="/analytics" className="w-full sm:w-auto relative group">
+            <Link to="/dashboards" className="w-full sm:w-auto relative group">
               <div className="absolute -top-14 sm:-top-16 left-1/2 -translate-x-1/2 w-max animate-bounce z-50">
                 <div className="bg-gradient-to-r from-red-600 to-rose-600 text-white text-[11px] sm:text-xs font-black px-4 py-2 rounded-full border border-red-400/50 shadow-[0_0_25px_rgba(225,29,72,0.8)] uppercase tracking-widest flex items-center gap-2">
                   <span className="animate-pulse">⚠️</span> DO NOT MISS: Syllabus, Eco-Corridors & Terrain Tools!
