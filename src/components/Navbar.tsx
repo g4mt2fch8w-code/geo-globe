@@ -76,7 +76,13 @@ export function Navbar() {
               >
                 <Globe2 className={`w-4 h-4 sm:w-5 sm:h-5 ${location.pathname === '/globe' ? 'text-white' : 'text-fog hover:text-white'}`} />
               </motion.div>
-              <span className={`hidden sm:inline relative z-10 ${location.pathname === '/globe' ? 'text-white' : 'text-fog hover:text-white'}`}>Globe</span>
+              <motion.span 
+                animate={location.pathname !== '/globe' ? { opacity: [0.7, 1, 0.7], color: ['#a1a1aa', '#fbbf24', '#a1a1aa'] } : {}}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className={`hidden sm:inline relative z-10 ${location.pathname === '/globe' ? 'text-white' : 'text-fog hover:text-white'}`}
+              >
+                Globe
+              </motion.span>
             </Link>
           </motion.div>
 
@@ -99,7 +105,13 @@ export function Navbar() {
               >
                 <LayoutDashboard className={`w-4 h-4 sm:w-5 sm:h-5 ${location.pathname.startsWith('/dashboard') ? 'text-white' : 'text-fog hover:text-white'}`} />
               </motion.div>
-              <span className={`hidden sm:inline relative z-10 ${location.pathname.startsWith('/dashboard') ? 'text-white' : 'text-fog hover:text-white'}`}>Analytics</span>
+              <motion.span 
+                animate={!location.pathname.startsWith('/dashboard') ? { opacity: [0.7, 1, 0.7], color: ['#a1a1aa', '#fbbf24', '#a1a1aa'] } : {}}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+                className={`hidden sm:inline relative z-10 ${location.pathname.startsWith('/dashboard') ? 'text-white' : 'text-fog hover:text-white'}`}
+              >
+                Analytics
+              </motion.span>
             </Link>
           </motion.div>
 
@@ -122,7 +134,13 @@ export function Navbar() {
               >
                 <BookOpen className={`w-4 h-4 sm:w-5 sm:h-5 ${location.pathname === '/about' ? 'text-white' : 'text-fog hover:text-white'}`} />
               </motion.div>
-              <span className={`hidden sm:inline relative z-10 ${location.pathname === '/about' ? 'text-white' : 'text-fog hover:text-white'}`}>About</span>
+              <motion.span 
+                animate={location.pathname !== '/about' ? { opacity: [0.7, 1, 0.7], color: ['#a1a1aa', '#fbbf24', '#a1a1aa'] } : {}}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+                className={`hidden sm:inline relative z-10 ${location.pathname === '/about' ? 'text-white' : 'text-fog hover:text-white'}`}
+              >
+                About
+              </motion.span>
             </Link>
           </motion.div>
         </div>
