@@ -12,8 +12,8 @@ export const Home = () => {
       {/* Background with noise overlay */}
       <div className="absolute inset-0 noise-overlay pointer-events-none opacity-50 z-10" />
       
-      {/* Dynamic Background Gradients */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Dynamic Background Gradients - Disabled on mobile to prevent extreme GPU lag from massive blur radii */}
+      <div className="hidden md:block absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-10 left-[5%] w-[50vw] h-[50vw] rounded-full bg-[#10b981]/15 blur-[130px]" />
         <div className="absolute top-[30%] right-[5%] w-[45vw] h-[45vw] rounded-full bg-[#fbbf24]/10 blur-[120px]" />
       </div>

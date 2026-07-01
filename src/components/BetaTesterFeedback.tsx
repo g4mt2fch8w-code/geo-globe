@@ -99,8 +99,8 @@ export const BetaTesterFeedback = () => {
         animate={{ opacity: 1, y: 0 }}
         className="glass-card bg-card backdrop-blur-2xl border border-red-500/40 rounded-3xl p-6 sm:p-8 shadow-[0_15px_50px_rgba(239,68,68,0.15)] relative overflow-hidden"
       >
-        {/* Urgent Glow Background */}
-        <div className="absolute -top-24 -right-24 w-48 h-48 bg-red-500/20 blur-[80px] rounded-full pointer-events-none" />
+        {/* Urgent Glow Background - Hidden on mobile for GPU perf */}
+        <div className="hidden md:block absolute -top-24 -right-24 w-48 h-48 bg-red-500/20 blur-[80px] rounded-full pointer-events-none" />
 
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 border-b border-border pb-6 mb-6">
           <div className="flex-1">
