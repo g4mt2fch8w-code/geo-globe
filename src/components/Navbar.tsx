@@ -69,7 +69,13 @@ export function Navbar() {
                   transition={{ type: "spring", stiffness: 400, damping: 18 }}
                 />
               )}
-              <Globe2 className={`w-4 h-4 sm:w-5 sm:h-5 relative z-10 ${location.pathname === '/globe' ? 'text-white' : 'text-fog hover:text-white'}`} />
+              <motion.div
+                animate={location.pathname !== '/globe' ? { scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] } : {}}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="relative z-10 flex items-center justify-center"
+              >
+                <Globe2 className={`w-4 h-4 sm:w-5 sm:h-5 ${location.pathname === '/globe' ? 'text-white' : 'text-fog hover:text-white'}`} />
+              </motion.div>
               <span className={`hidden sm:inline relative z-10 ${location.pathname === '/globe' ? 'text-white' : 'text-fog hover:text-white'}`}>Globe</span>
             </Link>
           </motion.div>
@@ -86,7 +92,13 @@ export function Navbar() {
                   transition={{ type: "spring", stiffness: 400, damping: 18 }}
                 />
               )}
-              <LayoutDashboard className={`w-4 h-4 sm:w-5 sm:h-5 relative z-10 ${location.pathname.startsWith('/dashboard') ? 'text-white' : 'text-fog hover:text-white'}`} />
+              <motion.div
+                animate={!location.pathname.startsWith('/dashboard') ? { scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] } : {}}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+                className="relative z-10 flex items-center justify-center"
+              >
+                <LayoutDashboard className={`w-4 h-4 sm:w-5 sm:h-5 ${location.pathname.startsWith('/dashboard') ? 'text-white' : 'text-fog hover:text-white'}`} />
+              </motion.div>
               <span className={`hidden sm:inline relative z-10 ${location.pathname.startsWith('/dashboard') ? 'text-white' : 'text-fog hover:text-white'}`}>Analytics</span>
             </Link>
           </motion.div>
@@ -103,7 +115,13 @@ export function Navbar() {
                   transition={{ type: "spring", stiffness: 400, damping: 18 }}
                 />
               )}
-              <BookOpen className={`w-4 h-4 sm:w-5 sm:h-5 relative z-10 ${location.pathname === '/about' ? 'text-white' : 'text-fog hover:text-white'}`} />
+              <motion.div
+                animate={location.pathname !== '/about' ? { scale: [1, 1.15, 1], opacity: [0.6, 1, 0.6] } : {}}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+                className="relative z-10 flex items-center justify-center"
+              >
+                <BookOpen className={`w-4 h-4 sm:w-5 sm:h-5 ${location.pathname === '/about' ? 'text-white' : 'text-fog hover:text-white'}`} />
+              </motion.div>
               <span className={`hidden sm:inline relative z-10 ${location.pathname === '/about' ? 'text-white' : 'text-fog hover:text-white'}`}>About</span>
             </Link>
           </motion.div>

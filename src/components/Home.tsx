@@ -40,15 +40,26 @@ export const Home = () => {
             The ultimate interactive 3D globe featuring all major Tiger Reserves, National Parks, and Protected Forests. Built for aspiring conservationists and officers.
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
-            <Link to="/globe">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-10 sm:mt-16 relative z-10 w-full sm:w-auto max-w-md mx-auto sm:max-w-none">
+            <Link to="/globe" className="w-full sm:w-auto">
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 sm:px-10 py-4 sm:py-5 rounded-full bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-[#04120e] font-extrabold text-base sm:text-lg shadow-[0_0_25px_rgba(251,191,36,0.5)] hover:shadow-[0_0_35px_rgba(251,191,36,0.8)] transition-all relative overflow-hidden group flex items-center gap-3"
+                className="group relative px-6 py-4 sm:px-8 sm:py-5 bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-[#04120e] rounded-full font-display text-lg sm:text-xl shadow-[0_0_40px_rgba(251,191,36,0.4)] hover:shadow-[0_0_60px_rgba(251,191,36,0.6)] transition-all flex items-center justify-center gap-3 w-full sm:w-auto font-extrabold"
               >
                 <span>Launch 3D Globe</span>
                 <span className="group-hover:translate-x-1.5 transition-transform font-bold">→</span>
+              </motion.button>
+            </Link>
+            
+            <Link to="/about" className="w-full sm:w-auto">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative px-6 py-4 sm:px-8 sm:py-5 bg-white/10 backdrop-blur-md text-white border border-white/20 rounded-full font-display text-lg sm:text-xl hover:bg-white/20 transition-all flex items-center justify-center gap-3 w-full sm:w-auto"
+              >
+                <span>Developer Info</span>
+                <span className="group-hover:translate-x-1.5 transition-transform font-bold">👤</span>
               </motion.button>
             </Link>
           </div>
