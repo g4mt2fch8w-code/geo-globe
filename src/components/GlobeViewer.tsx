@@ -488,6 +488,8 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       scene.add(dirLight1);
                       scene.add(dirLight2);
 
+                      const universeGroup = new THREE.Group();
+                      
                       // 2. Add the Deep Universe! (Procedural 3D Starfield)
                       // Layer 1: Bright, close, multi-colored stars
                       const starsGeometry = new THREE.BufferGeometry();
@@ -528,7 +530,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                           opacity: 1.0,
                           sizeAttenuation: true
                       });
-                      scene.add(new THREE.Points(starsGeometry, starsMaterial));
+                      universeGroup.add(new THREE.Points(starsGeometry, starsMaterial));
                       
                       // Layer 2: Deep background galaxy dust & faint distant stars
                       const deepStarsGeometry = new THREE.BufferGeometry();
@@ -550,7 +552,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                           opacity: 0.8,
                           sizeAttenuation: true
                       });
-                      scene.add(new THREE.Points(deepStarsGeometry, deepStarsMaterial));
+                      universeGroup.add(new THREE.Points(deepStarsGeometry, deepStarsMaterial));
 
                       // 3. The Moon
                       const moonGeometry = new THREE.SphereGeometry(25, 32, 32);
@@ -562,7 +564,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                           metalness: 0
                       });
                       const moon = new THREE.Mesh(moonGeometry, moonMaterial);
-                      scene.add(moon);
+                      universeGroup.add(moon);
                       
                       // 4. Milky Way Ribbon (brilliant, dusty ribbon of light)
                       const mwGeometry = new THREE.BufferGeometry();
@@ -602,7 +604,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       const milkyWay = new THREE.Points(mwGeometry, mwMaterial);
                       milkyWay.rotation.x = 0.6; // Tilt the ribbon relative to earth
                       milkyWay.rotation.z = 0.3;
-                      scene.add(milkyWay);
+                      universeGroup.add(milkyWay);
                       
                       // 5. Andromeda Galaxy (tiny faint fuzzy smudge)
                       const andromedaGeometry = new THREE.BufferGeometry();
@@ -631,18 +633,32 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       // Position it far away
                       andromeda.position.set(-800, 500, -1400);
                       andromeda.rotation.z = 0.4; // tilt the smudge
-                      scene.add(andromeda);
+                      universeGroup.add(andromeda);
                       
-                      // Moon orbital animation (slowed down for realism)
-                      const animateMoon = () => {
+                      scene.add(universeGroup);
+                      
+                      // Moon orbital animation & Universe counter-rotation
+                      const animateUniverse = () => {
                           const time = Date.now() * 0.000026; // 13x speed
                           moon.position.x = Math.cos(time) * 550;
                           moon.position.z = Math.sin(time) * 550;
                           moon.position.y = Math.sin(time * 0.5) * 100; // slight orbital inclination
                           moon.rotation.y += 0.0013; // 13x rotation
-                          requestAnimationFrame(animateMoon);
+                          
+                          // If auto-rotate is on, counter-rotate the universe group to keep stars stationary
+                          if (globeRef.current && typeof globeRef.current.controls === 'function') {
+                              const controls = globeRef.current.controls();
+                              if (controls && controls.autoRotate) {
+                                  // OrbitControls rotates camera by 2 * PI / 3600 * autoRotateSpeed per frame (approx 60fps)
+                                  // By applying this same rotation to the universe, it stays fixed relative to the camera
+                                  // meaning the Earth spins, but the background stays still!
+                                  universeGroup.rotation.y += (2 * Math.PI / 3600) * (controls.autoRotateSpeed || 0);
+                              }
+                          }
+                          
+                          requestAnimationFrame(animateUniverse);
                       };
-                      animateMoon();
+                      animateUniverse();
                     }
                   }
 
