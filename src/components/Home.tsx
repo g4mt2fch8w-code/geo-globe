@@ -31,8 +31,8 @@ export const Home = () => {
             ⚡ GEO-GLOBE 3D • INTERACTIVE WILDLIFE EXPLORER
           </div>
           
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-bold mb-6 leading-tight tracking-tight text-white drop-shadow-2xl">
-            Explore India's <br className="hidden sm:block"/>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-bold mb-6 leading-tight tracking-tight drop-shadow-2xl">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900">Explore India's</span> <br className="hidden sm:block"/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#fbbf24]">Biospheres & Forests</span>
           </h1>
           
