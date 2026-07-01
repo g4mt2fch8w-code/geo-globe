@@ -55,10 +55,11 @@ export const Home = () => {
             </Link>
 
             {/* Analytics Button with Psychological Banner */}
-            <Link to="/dashboards" className="w-full sm:w-auto relative group">
-              <div className="absolute -top-14 sm:-top-16 left-1/2 -translate-x-1/2 w-max animate-bounce z-50">
-                <div className="bg-gradient-to-r from-red-600 to-rose-600 text-white text-[11px] sm:text-xs font-black px-4 py-2 rounded-full border border-red-400/50 shadow-[0_0_25px_rgba(225,29,72,0.8)] uppercase tracking-widest flex items-center gap-2">
-                  <span className="animate-pulse">⚠️</span> DO NOT MISS: Cross-Reference, Eco-Corridors & Terrain Tools!
+            <Link to="/dashboards" className="w-full sm:w-auto relative group mt-12 sm:mt-0">
+              <div className="absolute -top-14 sm:-top-16 left-1/2 -translate-x-1/2 w-[90vw] sm:w-max max-w-xs sm:max-w-none animate-bounce z-50">
+                <div className="bg-gradient-to-r from-red-600 to-rose-600 text-white text-[10px] sm:text-xs font-black px-3 py-2 sm:px-4 sm:py-2 rounded-xl sm:rounded-full border border-red-400/50 shadow-[0_0_25px_rgba(225,29,72,0.8)] uppercase tracking-widest flex items-center justify-center gap-2 text-center leading-snug">
+                  <span className="animate-pulse shrink-0">⚠️</span> 
+                  <span>DO NOT MISS: Cross-Reference, Eco-Corridors & Terrain Tools!</span>
                 </div>
                 <div className="w-3 h-3 bg-rose-600 rotate-45 mx-auto -mt-1.5 border-r border-b border-red-400/50 shadow-xl"></div>
               </div>
