@@ -225,12 +225,7 @@
     "type": "Tiger Reserve",
     "size": 0.8,
     "alt": 0.02,
-    "facts": [
-      "Received in-principle approval from NTCA in August 2023 to become Rajasthan's 5th Tiger Reserve.",
-      "In 2024, an expert committee recommended prey base development and voluntary village relocation.",
-      "Proposed to span ~1,397 sq km across Rajsamand, Udaipur, Pali, Ajmer, and Sirohi districts.",
-      "Declared an Eco-Sensitive Zone in early 2026 to conserve flora/fauna and support indigenous communities like the Raika pastoralists."
-    ]
+    "customSummary": "Received in-principle approval from NTCA in August 2023 to become Rajasthan's 5th Tiger Reserve. In 2024, an expert committee recommended prey base development and voluntary village relocation. Proposed to span ~1,397 sq km across Rajsamand, Udaipur, Pali, Ajmer, and Sirohi districts. Declared an Eco-Sensitive Zone in early 2026 to conserve flora/fauna and support indigenous communities like the Raika pastoralists."
   },
   {
     "id": "ent-19",

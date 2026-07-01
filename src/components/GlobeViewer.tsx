@@ -530,7 +530,9 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                           opacity: 1.0,
                           sizeAttenuation: true
                       });
-                      universeGroup.add(new THREE.Points(starsGeometry, starsMaterial));
+                      const stars = new THREE.Points(starsGeometry, starsMaterial);
+                      stars.frustumCulled = false;
+                      universeGroup.add(stars);
                       
                       // Layer 2: Deep background galaxy dust & faint distant stars
                       const deepStarsGeometry = new THREE.BufferGeometry();
@@ -552,7 +554,9 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                           opacity: 0.8,
                           sizeAttenuation: true
                       });
-                      universeGroup.add(new THREE.Points(deepStarsGeometry, deepStarsMaterial));
+                      const deepStars = new THREE.Points(deepStarsGeometry, deepStarsMaterial);
+                      deepStars.frustumCulled = false;
+                      universeGroup.add(deepStars);
 
                       // 3. The Moon
                       const moonGeometry = new THREE.SphereGeometry(25, 32, 32);
@@ -564,6 +568,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                           metalness: 0
                       });
                       const moon = new THREE.Mesh(moonGeometry, moonMaterial);
+                      moon.frustumCulled = false;
                       universeGroup.add(moon);
                       
                       // 4. Milky Way Ribbon (brilliant, dusty ribbon of light)
@@ -602,6 +607,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                           sizeAttenuation: true
                       });
                       const milkyWay = new THREE.Points(mwGeometry, mwMaterial);
+                      milkyWay.frustumCulled = false;
                       milkyWay.rotation.x = 0.6; // Tilt the ribbon relative to earth
                       milkyWay.rotation.z = 0.3;
                       universeGroup.add(milkyWay);
@@ -630,6 +636,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                           sizeAttenuation: true
                       });
                       const andromeda = new THREE.Points(andromedaGeometry, andromedaMaterial);
+                      andromeda.frustumCulled = false;
                       // Position it far away
                       andromeda.position.set(-800, 500, -1400);
                       andromeda.rotation.z = 0.4; // tilt the smudge
