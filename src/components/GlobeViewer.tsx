@@ -76,16 +76,16 @@ interface GlobeViewerProps {
 }
 
 const getEntityColor = (type?: string) => {
-  if (!type) return '#FF9500';
+  if (!type) return '#f97316';
   const t = type.toLowerCase();
-  if (t.includes('tiger')) return '#F97316';       // orange
-  if (t.includes('national park')) return '#34d399'; // emerald
-  if (t.includes('sanctuary')) return '#A855F7';    // purple
-  if (t.includes('biosphere')) return '#F472B6';    // pink
-  if (t.includes('elephant')) return '#60A5FA';     // blue
-  if (t.includes('forest reserve')) return '#FB923C'; // amber-orange
-  if (t.includes('ramsar')) return '#38BDF8';       // sky blue
-  return '#FBBF24'; // gold default
+  if (t.includes('tiger')) return '#f97316';       // orange
+  if (t.includes('national park')) return '#10b981'; // emerald
+  if (t.includes('sanctuary')) return '#a855f7';    // purple
+  if (t.includes('biosphere')) return '#ec4899';    // pink
+  if (t.includes('elephant')) return '#94a3b8';     // slate grey
+  if (t.includes('forest reserve')) return '#84cc16'; // lime
+  if (t.includes('ramsar')) return '#0ea5e9';       // sky
+  return '#f97316'; // default
 };
 
 
@@ -629,9 +629,16 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       andromeda.rotation.z = 0.4; // tilt the smudge
                       scene.add(andromeda);
                       
-                      // Fix moon position to be static since cosmic motion is imperceptible.
-                      // Placed in front/side so it's clearly visible upon load.
-                      moon.position.set(300, 150, 250);
+                      // Moon orbital animation
+                      const animateMoon = () => {
+                          const time = Date.now() * 0.0001;
+                          moon.position.x = Math.cos(time * 2) * 550;
+                          moon.position.z = Math.sin(time * 2) * 550;
+                          moon.position.y = Math.sin(time * 1.5) * 100;
+                          moon.rotation.y += 0.002;
+                          requestAnimationFrame(animateMoon);
+                      };
+                      animateMoon();
                     }
                   }
 
@@ -795,13 +802,13 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
       {/* Restored Clean Legends - Desktop */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-6 py-3 bg-black/40 backdrop-blur-[30px] rounded-[2rem] border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)] pointer-events-auto z-10 hidden lg:flex flex-col items-center min-w-max">
         <div className="flex flex-wrap justify-center gap-4 mb-2">
-          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#fbbf24'}}>🐅</span> <span style={{color: '#fbbf24', fontWeight: 'bold'}}>Tiger Reserves</span></div>
-          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#34d399'}}>🌲</span> <span style={{color: '#34d399', fontWeight: 'bold'}}>National Parks</span></div>
-          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#f87171'}}>🦌</span> <span style={{color: '#f87171', fontWeight: 'bold'}}>Sanctuaries</span></div>
-          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#a78bfa'}}>🌿</span> <span style={{color: '#a78bfa', fontWeight: 'bold'}}>Biosphere</span></div>
-          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#60a5fa'}}>🐘</span> <span style={{color: '#60a5fa', fontWeight: 'bold'}}>Elephant Reserves</span></div>
-          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#fb923c'}}>🌳</span> <span style={{color: '#fb923c', fontWeight: 'bold'}}>Forest Reserves</span></div>
-          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#38bdf8'}}>💧</span> <span style={{color: '#38bdf8', fontWeight: 'bold'}}>Ramsar Sites</span></div>
+          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#f97316'}}>🐅</span> <span style={{color: '#f97316', fontWeight: 'bold'}}>Tiger Reserves</span></div>
+          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#10b981'}}>🌲</span> <span style={{color: '#10b981', fontWeight: 'bold'}}>National Parks</span></div>
+          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#a855f7'}}>🦌</span> <span style={{color: '#a855f7', fontWeight: 'bold'}}>Sanctuaries</span></div>
+          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#ec4899'}}>🌿</span> <span style={{color: '#ec4899', fontWeight: 'bold'}}>Biosphere</span></div>
+          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#94a3b8'}}>🐘</span> <span style={{color: '#94a3b8', fontWeight: 'bold'}}>Elephant Reserves</span></div>
+          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#84cc16'}}>🌳</span> <span style={{color: '#84cc16', fontWeight: 'bold'}}>Forest Reserves</span></div>
+          <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#0ea5e9'}}>💧</span> <span style={{color: '#0ea5e9', fontWeight: 'bold'}}>Ramsar Sites</span></div>
         </div>
         <div className="text-[11px] text-white/60 text-center">
           <span className="text-gold font-semibold">💡 Controls:</span> Click any reserve icon to open journal. Drag to rotate globe.
@@ -811,14 +818,14 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
       {/* Mobile & Tablet Compact Horizontal Legend */}
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[90%] p-3 bg-black/60 backdrop-blur-[20px] rounded-2xl border border-white/10 lg:hidden z-10 flex flex-col pointer-events-auto shadow-2xl">
         <div className="flex overflow-x-auto gap-4 hide-scrollbar pb-2 mb-1 border-b border-white/10" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span>🐅</span> Tiger Reserves</div>
-          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span>🌲</span> National Parks</div>
-          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span>🦌</span> Sanctuaries</div>
-          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span>🌿</span> Biospheres</div>
-          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span>🐘</span> Elephants</div>
-          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span>🌳</span> Forests</div>
-          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span>💧</span> Ramsar Sites</div>
-          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span>🔵</span> Corridors</div>
+          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span style={{color: '#f97316'}}>🐅</span> <span style={{color: '#f97316', fontWeight: 'bold'}}>Tiger Reserves</span></div>
+          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span style={{color: '#10b981'}}>🌲</span> <span style={{color: '#10b981', fontWeight: 'bold'}}>National Parks</span></div>
+          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span style={{color: '#a855f7'}}>🦌</span> <span style={{color: '#a855f7', fontWeight: 'bold'}}>Sanctuaries</span></div>
+          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span style={{color: '#ec4899'}}>🌿</span> <span style={{color: '#ec4899', fontWeight: 'bold'}}>Biospheres</span></div>
+          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span style={{color: '#94a3b8'}}>🐘</span> <span style={{color: '#94a3b8', fontWeight: 'bold'}}>Elephants</span></div>
+          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span style={{color: '#84cc16'}}>🌳</span> <span style={{color: '#84cc16', fontWeight: 'bold'}}>Forests</span></div>
+          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span style={{color: '#0ea5e9'}}>💧</span> <span style={{color: '#0ea5e9', fontWeight: 'bold'}}>Ramsar Sites</span></div>
+          <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span style={{color: '#3b82f6'}}>🔵</span> <span style={{color: '#3b82f6', fontWeight: 'bold'}}>Corridors</span></div>
         </div>
         <div className="text-[9px] text-white/50 text-center">
           Drag to rotate • Click pin for details
