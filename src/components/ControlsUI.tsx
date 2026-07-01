@@ -46,6 +46,7 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
   const [results, setResults] = useState<GeoEntity[]>([]);
   const [showLayersMenu, setShowLayersMenu] = useState(false);
   const [showModesMenu, setShowModesMenu] = useState(false);
+  const [measureCollapsed, setMeasureCollapsed] = useState(false);
 
   useEffect(() => {
     if (searchQuery.trim().length > 1) {
@@ -445,13 +446,22 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
         </div>
 
         {rulerMode && (
-          <div className="bg-[#08221a]/95 backdrop-blur-2xl w-full sm:w-80 p-4 rounded-2xl border border-[#34d399]/40 mt-1 shadow-2xl text-left animate-in fade-in slide-in-from-top-2">
-            <div className="flex items-center justify-between border-b border-[#34d399]/20 pb-2 mb-3">
+          <div className={`bg-[#08221a]/95 backdrop-blur-2xl w-full sm:w-80 rounded-2xl border border-[#34d399]/40 mt-1 shadow-2xl text-left animate-in fade-in slide-in-from-top-2 overflow-hidden`}>
+            {/* Collapsible header for mobile */}
+            <button
+              onClick={() => setMeasureCollapsed(!measureCollapsed)}
+              className="w-full flex items-center justify-between px-4 py-2.5 sm:py-2 border-b border-[#34d399]/20 sm:pointer-events-none"
+            >
               <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#34d399]">
                 CROSS-SECTION ELEVATION PROFILE
               </span>
-              <span className="text-[10px] text-[#fbbf24] font-bold">Tool</span>
-            </div>
+              <span className="flex items-center gap-2">
+                <span className="text-[10px] text-[#fbbf24] font-bold">Tool</span>
+                <span className="sm:hidden text-[#34d399] text-xs font-bold">{measureCollapsed ? '▼' : '▲'}</span>
+              </span>
+            </button>
+
+            <div className={`${measureCollapsed ? 'hidden' : 'block'} sm:block p-4 pt-3`}>
 
             {rulerPoints.length === 0 && (
               <p className="text-xs text-[#a7f3d0]/80 leading-relaxed">
@@ -516,6 +526,7 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
                 </p>
               </div>
             )}
+            </div>
           </div>
         )}
       </div>
