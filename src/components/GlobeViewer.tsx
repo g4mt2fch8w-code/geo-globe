@@ -466,7 +466,11 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                   if (typeof globeRef.current.camera === 'function') {
                     const camera = globeRef.current.camera();
                     if (camera) {
-                      camera.far = 20000;
+                      const originalUpdate = camera.updateProjectionMatrix.bind(camera);
+                      camera.updateProjectionMatrix = () => {
+                          camera.far = 50000;
+                          originalUpdate();
+                      };
                       camera.updateProjectionMatrix();
                     }
                   }
@@ -492,8 +496,8 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       const colorsArray = new Float32Array(starsCount * 3);
                       
                       for(let i = 0; i < starsCount * 3; i+=3) {
-                          // Spherical distribution around the globe
-                          const r = 300 + Math.random() * 500;
+                          // Spherical distribution around the globe (very far out)
+                          const r = 3000 + Math.random() * 4000;
                           const theta = 2 * Math.PI * Math.random();
                           const phi = Math.acos(2 * Math.random() - 1);
                           
@@ -518,11 +522,11 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       starsGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
                       
                       const starsMaterial = new THREE.PointsMaterial({
-                          size: 2.5,
+                          size: 35,
                           vertexColors: true,
                           transparent: true,
                           opacity: 1.0,
-                          sizeAttenuation: false
+                          sizeAttenuation: true
                       });
                       scene.add(new THREE.Points(starsGeometry, starsMaterial));
                       
@@ -531,7 +535,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       const deepStarsCount = 8000;
                       const deepPosArray = new Float32Array(deepStarsCount * 3);
                       for(let i = 0; i < deepStarsCount * 3; i+=3) {
-                          const r = 800 + Math.random() * 1000;
+                          const r = 6000 + Math.random() * 5000;
                           const theta = 2 * Math.PI * Math.random();
                           const phi = Math.acos(2 * Math.random() - 1);
                           deepPosArray[i] = r * Math.sin(phi) * Math.cos(theta);
@@ -540,11 +544,11 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       }
                       deepStarsGeometry.setAttribute('position', new THREE.BufferAttribute(deepPosArray, 3));
                       const deepStarsMaterial = new THREE.PointsMaterial({
-                          size: 2.0,
+                          size: 40,
                           color: 0xaaabcc,
                           transparent: true,
                           opacity: 0.8,
-                          sizeAttenuation: false
+                          sizeAttenuation: true
                       });
                       scene.add(new THREE.Points(deepStarsGeometry, deepStarsMaterial));
 
@@ -566,12 +570,12 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       const mwPosArray = new Float32Array(mwStarsCount * 3);
                       const mwColorsArray = new Float32Array(mwStarsCount * 3);
                       for(let i=0; i<mwStarsCount*3; i+=3) {
-                          const r = 1200 + Math.random() * 400;
+                          const r = 5000 + Math.random() * 2000;
                           const theta = 2 * Math.PI * Math.random();
                           // Gaussian spread for y to make a thick ribbon
                           const u1 = Math.random(); const u2 = Math.random();
                           const z0 = Math.sqrt(-2.0 * Math.log(u1 || 0.0001)) * Math.cos(2.0 * Math.PI * u2);
-                          const spread = z0 * 100; // standard deviation
+                          const spread = z0 * 500; // standard deviation
                           
                           mwPosArray[i] = r * Math.cos(theta);
                           mwPosArray[i+1] = spread;
@@ -589,11 +593,11 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       mwGeometry.setAttribute('position', new THREE.BufferAttribute(mwPosArray, 3));
                       mwGeometry.setAttribute('color', new THREE.BufferAttribute(mwColorsArray, 3));
                       const mwMaterial = new THREE.PointsMaterial({
-                          size: 2.5,
+                          size: 50,
                           vertexColors: true,
                           transparent: true,
                           opacity: 0.9,
-                          sizeAttenuation: false
+                          sizeAttenuation: true
                       });
                       const milkyWay = new THREE.Points(mwGeometry, mwMaterial);
                       milkyWay.rotation.x = 0.6; // Tilt the ribbon relative to earth
@@ -617,11 +621,11 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       }
                       andromedaGeometry.setAttribute('position', new THREE.BufferAttribute(andromedaPos, 3));
                       const andromedaMaterial = new THREE.PointsMaterial({
-                          size: 3.0,
+                          size: 60,
                           color: 0xbbccff,
                           transparent: true,
                           opacity: 0.8,
-                          sizeAttenuation: false
+                          sizeAttenuation: true
                       });
                       const andromeda = new THREE.Points(andromedaGeometry, andromedaMaterial);
                       // Position it far away
@@ -629,13 +633,13 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       andromeda.rotation.z = 0.4; // tilt the smudge
                       scene.add(andromeda);
                       
-                      // Moon orbital animation
+                      // Moon orbital animation (slowed down for realism)
                       const animateMoon = () => {
-                          const time = Date.now() * 0.0001;
-                          moon.position.x = Math.cos(time * 2) * 550;
-                          moon.position.z = Math.sin(time * 2) * 550;
-                          moon.position.y = Math.sin(time * 1.5) * 100;
-                          moon.rotation.y += 0.002;
+                          const time = Date.now() * 0.00002; // slower orbit
+                          moon.position.x = Math.cos(time) * 550;
+                          moon.position.z = Math.sin(time) * 550;
+                          moon.position.y = Math.sin(time * 0.5) * 100; // slight orbital inclination
+                          moon.rotation.y += 0.0005; // slower rotation
                           requestAnimationFrame(animateMoon);
                       };
                       animateMoon();
