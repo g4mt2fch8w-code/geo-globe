@@ -34,7 +34,7 @@ export const AmbientAudio: React.FC = () => {
     audioCtxRef.current = ctx;
 
     const masterGain = ctx.createGain();
-    masterGain.gain.value = 0.03; // Very soft, gentle ambient volume
+    masterGain.gain.value = 0.12; // Increased ambient volume
     masterGain.connect(ctx.destination);
     gainNodeRef.current = masterGain;
 
