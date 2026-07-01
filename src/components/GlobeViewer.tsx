@@ -552,87 +552,77 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       const moon = new THREE.Mesh(moonGeometry, moonMaterial);
                       scene.add(moon);
                       
-                      // 4. Asteroid Belt
-                      const asteroidGroup = new THREE.Group();
-                      const asteroidGeom = new THREE.DodecahedronGeometry(2, 0); 
-                      const asteroidMat = new THREE.MeshStandardMaterial({ color: 0x888888, roughness: 0.9 });
-                      for(let i=0; i<400; i++) {
-                          const asteroid = new THREE.Mesh(asteroidGeom, asteroidMat);
-                          const r = 350 + Math.random() * 80; 
-                          const theta = Math.random() * Math.PI * 2;
-                          const y = (Math.random() - 0.5) * 30; 
-                          asteroid.position.set(r * Math.cos(theta), y, r * Math.sin(theta));
-                          asteroid.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, Math.random()*Math.PI);
-                          asteroid.scale.setScalar(2 + Math.random() * 6);
-                          asteroidGroup.add(asteroid);
+                      // 4. Milky Way Ribbon (brilliant, dusty ribbon of light)
+                      const mwGeometry = new THREE.BufferGeometry();
+                      const mwStarsCount = 20000;
+                      const mwPosArray = new Float32Array(mwStarsCount * 3);
+                      const mwColorsArray = new Float32Array(mwStarsCount * 3);
+                      for(let i=0; i<mwStarsCount*3; i+=3) {
+                          const r = 1200 + Math.random() * 400;
+                          const theta = 2 * Math.PI * Math.random();
+                          // Gaussian spread for y to make a thick ribbon
+                          const u1 = Math.random(); const u2 = Math.random();
+                          const z0 = Math.sqrt(-2.0 * Math.log(u1 || 0.0001)) * Math.cos(2.0 * Math.PI * u2);
+                          const spread = z0 * 100; // standard deviation
+                          
+                          mwPosArray[i] = r * Math.cos(theta);
+                          mwPosArray[i+1] = spread;
+                          mwPosArray[i+2] = r * Math.sin(theta);
+                          
+                          // Milky Way colors (dusty whites, faint yellows/blues)
+                          const colorRand = Math.random();
+                          if(colorRand > 0.8) { mwColorsArray[i] = 0.9; mwColorsArray[i+1] = 0.9; mwColorsArray[i+2] = 1.0; } // slight blue
+                          else if(colorRand > 0.6) { mwColorsArray[i] = 1.0; mwColorsArray[i+1] = 0.9; mwColorsArray[i+2] = 0.8; } // slight yellow
+                          else { mwColorsArray[i] = 0.85; mwColorsArray[i+1] = 0.85; mwColorsArray[i+2] = 0.85; } // dusty white
+                          
+                          const intensity = 0.2 + Math.random() * 0.4; // faint ribbon
+                          mwColorsArray[i] *= intensity; mwColorsArray[i+1] *= intensity; mwColorsArray[i+2] *= intensity;
                       }
-                      asteroidGroup.rotation.x = 0.3;
-                      asteroidGroup.rotation.z = 0.15;
-                      scene.add(asteroidGroup);
+                      mwGeometry.setAttribute('position', new THREE.BufferAttribute(mwPosArray, 3));
+                      mwGeometry.setAttribute('color', new THREE.BufferAttribute(mwColorsArray, 3));
+                      const mwMaterial = new THREE.PointsMaterial({
+                          size: 1.2,
+                          vertexColors: true,
+                          transparent: true,
+                          opacity: 0.7,
+                          sizeAttenuation: false
+                      });
+                      const milkyWay = new THREE.Points(mwGeometry, mwMaterial);
+                      milkyWay.rotation.x = 0.6; // Tilt the ribbon relative to earth
+                      milkyWay.rotation.z = 0.3;
+                      scene.add(milkyWay);
                       
-                      // 5. Nebulas (Glowing Space Dust)
-                      const createNebula = (colorHex: number, count: number, size: number, spread: number, position: THREE.Vector3) => {
-                          const geom = new THREE.BufferGeometry();
-                          const pos = new Float32Array(count * 3);
-                          for(let i=0; i<count*3; i+=3) {
-                              pos[i] = position.x + (Math.random() - 0.5) * spread;
-                              pos[i+1] = position.y + (Math.random() - 0.5) * spread;
-                              pos[i+2] = position.z + (Math.random() - 0.5) * spread;
-                          }
-                          geom.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+                      // 5. Andromeda Galaxy (tiny faint fuzzy smudge)
+                      const andromedaGeometry = new THREE.BufferGeometry();
+                      const andromedaCount = 800;
+                      const andromedaPos = new Float32Array(andromedaCount * 3);
+                      for(let i=0; i<andromedaCount*3; i+=3) {
+                          // Very tight gaussian cluster
+                          const u1 = Math.random(); const u2 = Math.random();
+                          const u3 = Math.random(); const u4 = Math.random();
+                          const dx = Math.sqrt(-2.0 * Math.log(u1 || 0.0001)) * Math.cos(2.0 * Math.PI * u2) * 20; // width
+                          const dy = Math.sqrt(-2.0 * Math.log(u3 || 0.0001)) * Math.cos(2.0 * Math.PI * u4) * 6;  // height
                           
-                          const canvas = document.createElement('canvas');
-                          canvas.width = 64; canvas.height = 64;
-                          const ctx = canvas.getContext('2d');
-                          if(ctx) {
-                              const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-                              gradient.addColorStop(0, 'rgba(255,255,255,1)');
-                              gradient.addColorStop(0.2, 'rgba(255,255,255,0.8)');
-                              gradient.addColorStop(0.5, 'rgba(255,255,255,0.2)');
-                              gradient.addColorStop(1, 'rgba(0,0,0,0)');
-                              ctx.fillStyle = gradient;
-                              ctx.fillRect(0, 0, 64, 64);
-                          }
-                          const texture = new THREE.CanvasTexture(canvas);
-                          const mat = new THREE.PointsMaterial({
-                              size: size, // pixel size
-                              color: colorHex,
-                              map: texture,
-                              transparent: true,
-                              opacity: 0.6,
-                              depthWrite: false,
-                              blending: THREE.AdditiveBlending,
-                              sizeAttenuation: false
-                          });
-                          return new THREE.Points(geom, mat);
-                      };
+                          andromedaPos[i] = dx;
+                          andromedaPos[i+1] = dy;
+                          andromedaPos[i+2] = (Math.random() - 0.5) * 5;
+                      }
+                      andromedaGeometry.setAttribute('position', new THREE.BufferAttribute(andromedaPos, 3));
+                      const andromedaMaterial = new THREE.PointsMaterial({
+                          size: 1.0,
+                          color: 0x99aaff,
+                          transparent: true,
+                          opacity: 0.3,
+                          sizeAttenuation: false
+                      });
+                      const andromeda = new THREE.Points(andromedaGeometry, andromedaMaterial);
+                      // Position it far away
+                      andromeda.position.set(-800, 500, -1400);
+                      andromeda.rotation.z = 0.4; // tilt the smudge
+                      scene.add(andromeda);
                       
-                      const n1 = createNebula(0x8844aa, 400, 25, 600, new THREE.Vector3(-500, 300, -600));
-                      const n2 = createNebula(0x4488aa, 300, 30, 500, new THREE.Vector3(600, -200, -400));
-                      const n3 = createNebula(0xaa5555, 250, 35, 700, new THREE.Vector3(200, -400, 700));
-                      scene.add(n1); scene.add(n2); scene.add(n3);
-                      
-                      // 6. Animation Loop for orbits
-                      const animateUniverse = () => {
-                          const time = Date.now() * 0.0001;
-                          
-                          // Orbit the moon
-                          moon.position.x = Math.cos(time * 2) * 550;
-                          moon.position.z = Math.sin(time * 2) * 550;
-                          moon.position.y = Math.sin(time * 1.5) * 100;
-                          moon.rotation.y += 0.002;
-                          
-                          // Rotate asteroid belt
-                          asteroidGroup.rotation.y += 0.0005;
-                          
-                          // Slowly rotate nebulas
-                          n1.rotation.z += 0.0002;
-                          n2.rotation.z -= 0.0003;
-                          n3.rotation.y += 0.0001;
-                          
-                          requestAnimationFrame(animateUniverse);
-                      };
-                      animateUniverse();
+                      // Fix moon position to be static since cosmic motion is imperceptible
+                      moon.position.set(450, 80, -250);
                     }
                   }
 
