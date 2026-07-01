@@ -160,6 +160,20 @@ export const AnalyticalHub = () => {
               ))}
             </div>
             <div className="text-[10px] text-slate-500 dark:text-white/50 mt-4 text-right">Source: NTCA 2022 Tiger Census Report</div>
+            
+            {/* Expandable Section for NTCA Methodology */}
+            <details className="mt-4 group border border-slate-200 dark:border-white/10 rounded-xl overflow-hidden cursor-pointer">
+              <summary className="text-xs font-semibold text-slate-700 dark:text-white/80 p-3 bg-slate-50 dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors flex justify-between items-center">
+                <span>📊 How is this data measured? (NTCA Methodology)</span>
+                <span className="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <div className="p-3 text-[11px] text-slate-600 dark:text-white/70 space-y-2 bg-white/50 dark:bg-transparent">
+                <p><strong>Camera Trapping (SECR):</strong> The NTCA deploys thousands of camera traps. Individual tigers are identified by their unique stripe patterns (like human fingerprints) using the CaTRAT AI software.</p>
+                <p><strong>M-STrIPES App:</strong> Forest guards patrol on foot, collecting rigorous ecological data on carnivore signs (scat, pugmarks), prey density, and habitat quality.</p>
+                <p><strong>Statistical Approximation:</strong> The state figures above represent the median of a statistical range. Due to the elusive nature of tigers, mathematical models are used to estimate populations in areas where camera trapping is impossible.</p>
+                <p><strong>Why it matters:</strong> India is home to over 75% of the world's wild tigers. These robust, quadrennial scientific census exercises are considered the gold standard for global wildlife monitoring.</p>
+              </div>
+            </details>
           </div>
 
 
@@ -167,16 +181,16 @@ export const AnalyticalHub = () => {
       </div>
 
       {/* Official Credits Footer Banner */}
-      <div className="glass-card bg-slate-800 dark:bg-[#08221a]/90 border border-slate-700 dark:border-[#34d399]/30 p-6 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="glass-card bg-slate-100 dark:bg-[#08221a]/90 border border-slate-200 dark:border-[#34d399]/30 p-6 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
-          <h4 className="text-sm font-bold text-white flex items-center gap-2">
+          <h4 className="text-sm font-bold text-slate-800 dark:text-white flex items-center gap-2">
             <span>🏛️ Official Data & Research Citations</span>
           </h4>
-          <p className="text-xs text-white/80 mt-1">
+          <p className="text-xs text-slate-600 dark:text-white/80 mt-1">
             Forest Survey of India (FSI) Van Agni Alert System (Removed) • Champion & Seth (1968) Forest Typology • Rodgers & Panwar (1988) Biogeographic Classification • Wildlife (Protection) Act, 1972 & NTCA Protocols.
           </p>
         </div>
-        <div className="text-[11px] font-mono text-[#34d399] bg-black/40 px-4 py-2 rounded-xl border border-[#34d399]/30 whitespace-nowrap">
+        <div className="text-[11px] font-mono text-emerald-700 dark:text-[#34d399] bg-emerald-100 dark:bg-black/40 px-4 py-2 rounded-xl border border-emerald-300 dark:border-[#34d399]/30 whitespace-nowrap">
           MoEFCC Compliant Analytics
         </div>
       </div>
