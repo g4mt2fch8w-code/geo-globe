@@ -15,16 +15,16 @@ export const BetaTesterFeedback = () => {
 
   useEffect(() => {
     // Anti-annoyance guard
-    const hasRated = localStorage.getItem('geoGlobe_beta_rated');
+    const hasRated = localStorage.getItem('geoGlobe_beta_rated_v2');
     if (hasRated) return;
 
     // Initialize 24-hour timer
     const DURATION = 24 * 60 * 60 * 1000;
-    let startTime = localStorage.getItem('geoGlobe_beta_start');
+    let startTime = localStorage.getItem('geoGlobe_beta_start_v2');
     
     if (!startTime) {
       startTime = Date.now().toString();
-      localStorage.setItem('geoGlobe_beta_start', startTime);
+      localStorage.setItem('geoGlobe_beta_start_v2', startTime);
     }
 
     const endTime = parseInt(startTime) + DURATION;
@@ -85,7 +85,7 @@ export const BetaTesterFeedback = () => {
     } finally {
       setIsSubmitting(false);
       // Mark as completed
-      localStorage.setItem('geoGlobe_beta_rated', 'true');
+      localStorage.setItem('geoGlobe_beta_rated_v2', 'true');
       setIsVisible(false);
     }
   };
@@ -114,7 +114,7 @@ export const BetaTesterFeedback = () => {
               </h2>
             </div>
             <p className="text-sm sm:text-base text-fog/80">
-              Welcome students! Thank you for testing this platform. This is my very first web app built specifically for Forest Services aspirants, and I would love to hear feedback from those of you who are already students. Your insights are invaluable!
+              Welcome! Thanks for checking out this temporary beta testing platform. Besides the wildlife tech, for the first time I have created something specifically for students. I hope as a student you will feel this connection, and please do leave your ratings and feedback!
             </p>
           </div>
 
