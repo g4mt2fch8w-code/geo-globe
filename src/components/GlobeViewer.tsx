@@ -650,7 +650,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
       </div>
 
       {/* Mobile & Tablet Compact Horizontal Legend */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[90%] p-3 bg-black/60 backdrop-blur-[20px] rounded-2xl border border-white/10 lg:hidden z-10 flex flex-col pointer-events-auto shadow-2xl">
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-[90%] p-3 bg-black/60 backdrop-blur-[20px] rounded-2xl border border-white/10 lg:hidden z-10 flex flex-col pointer-events-auto shadow-2xl">
         <div className="flex overflow-x-auto gap-4 hide-scrollbar pb-2 mb-1 border-b border-white/10" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span>🐅</span> Tiger Reserves</div>
           <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span>🌲</span> National Parks</div>
