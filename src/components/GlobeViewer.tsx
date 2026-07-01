@@ -448,7 +448,6 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             
             globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
             bumpImageUrl={isMobile ? undefined : "//unpkg.com/three-globe/example/img/earth-topology.png"}
-            backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
             
             onGlobeReady={() => {
               if (globeRef.current) {
@@ -511,11 +510,11 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       starsGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
                       
                       const starsMaterial = new THREE.PointsMaterial({
-                          size: 1.2,
+                          size: 1.5,
                           vertexColors: true,
                           transparent: true,
                           opacity: 0.9,
-                          sizeAttenuation: true
+                          sizeAttenuation: false
                       });
                       scene.add(new THREE.Points(starsGeometry, starsMaterial));
                       
@@ -533,11 +532,11 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       }
                       deepStarsGeometry.setAttribute('position', new THREE.BufferAttribute(deepPosArray, 3));
                       const deepStarsMaterial = new THREE.PointsMaterial({
-                          size: 0.6,
+                          size: 1.0,
                           color: 0x888899,
                           transparent: true,
                           opacity: 0.5,
-                          sizeAttenuation: true
+                          sizeAttenuation: false
                       });
                       scene.add(new THREE.Points(deepStarsGeometry, deepStarsMaterial));
 
@@ -564,7 +563,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                           const y = (Math.random() - 0.5) * 30; 
                           asteroid.position.set(r * Math.cos(theta), y, r * Math.sin(theta));
                           asteroid.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, Math.random()*Math.PI);
-                          asteroid.scale.setScalar(0.2 + Math.random() * 2);
+                          asteroid.scale.setScalar(2 + Math.random() * 6);
                           asteroidGroup.add(asteroid);
                       }
                       asteroidGroup.rotation.x = 0.3;
@@ -583,33 +582,34 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                           geom.setAttribute('position', new THREE.BufferAttribute(pos, 3));
                           
                           const canvas = document.createElement('canvas');
-                          canvas.width = 32; canvas.height = 32;
+                          canvas.width = 64; canvas.height = 64;
                           const ctx = canvas.getContext('2d');
                           if(ctx) {
-                              const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
+                              const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
                               gradient.addColorStop(0, 'rgba(255,255,255,1)');
                               gradient.addColorStop(0.2, 'rgba(255,255,255,0.8)');
                               gradient.addColorStop(0.5, 'rgba(255,255,255,0.2)');
                               gradient.addColorStop(1, 'rgba(0,0,0,0)');
                               ctx.fillStyle = gradient;
-                              ctx.fillRect(0, 0, 32, 32);
+                              ctx.fillRect(0, 0, 64, 64);
                           }
                           const texture = new THREE.CanvasTexture(canvas);
                           const mat = new THREE.PointsMaterial({
-                              size: size,
+                              size: size, // pixel size
                               color: colorHex,
                               map: texture,
                               transparent: true,
-                              opacity: 0.4,
+                              opacity: 0.6,
                               depthWrite: false,
-                              blending: THREE.AdditiveBlending
+                              blending: THREE.AdditiveBlending,
+                              sizeAttenuation: false
                           });
                           return new THREE.Points(geom, mat);
                       };
                       
-                      const n1 = createNebula(0x8844aa, 400, 60, 600, new THREE.Vector3(-500, 300, -600));
-                      const n2 = createNebula(0x4488aa, 300, 70, 500, new THREE.Vector3(600, -200, -400));
-                      const n3 = createNebula(0xaa5555, 250, 80, 700, new THREE.Vector3(200, -400, 700));
+                      const n1 = createNebula(0x8844aa, 400, 25, 600, new THREE.Vector3(-500, 300, -600));
+                      const n2 = createNebula(0x4488aa, 300, 30, 500, new THREE.Vector3(600, -200, -400));
+                      const n3 = createNebula(0xaa5555, 250, 35, 700, new THREE.Vector3(200, -400, 700));
                       scene.add(n1); scene.add(n2); scene.add(n3);
                       
                       // 6. Animation Loop for orbits
