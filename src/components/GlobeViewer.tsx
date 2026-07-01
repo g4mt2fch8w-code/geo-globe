@@ -646,11 +646,11 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       
                       // Moon orbital animation & Universe counter-rotation
                       const animateUniverse = () => {
-                          const time = Date.now() * 0.000026; // 13x speed
+                          const time = Date.now() * 0.000060; // 30x speed
                           moon.position.x = Math.cos(time) * 550;
                           moon.position.z = Math.sin(time) * 550;
                           moon.position.y = Math.sin(time * 0.5) * 100; // slight orbital inclination
-                          moon.rotation.y += 0.0013; // 13x rotation
+                          moon.rotation.y += 0.0030; // 30x rotation
                           
                           // If auto-rotate is on, counter-rotate the universe group to keep stars stationary
                           if (globeRef.current && typeof globeRef.current.controls === 'function') {
