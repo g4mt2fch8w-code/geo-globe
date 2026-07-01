@@ -9,6 +9,7 @@ import forestsData from '../data/forestsData.json';
 import { SplashScreen } from '../components/SplashScreen';
 import { AnimatePresence } from 'framer-motion';
 import { AmbientAudio } from '../components/AmbientAudio';
+import { JoyTour } from '../components/JoyTour';
 
 export default function GlobeApp() {
   const [showSplash, setShowSplash] = useState(true);
@@ -30,6 +31,8 @@ export default function GlobeApp() {
   const [hoverCoords, setHoverCoords] = useState<{ lat: number, lng: number, altMeters: number } | null>(null);
   const [globeMode, setGlobeMode] = useState<'standard' | 'timeline' | 'biogeo' | 'threats'>('standard');
   const [timelineYear, setTimelineYear] = useState<number>(2026);
+
+  const [runTour, setRunTour] = useState(false);
 
   // Check for search query in URL on mount
   useEffect(() => {
@@ -65,6 +68,7 @@ export default function GlobeApp() {
 
   return (
     <>
+      <JoyTour run={runTour} onFinish={() => setRunTour(false)} />
       <AnimatePresence>
         {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
       </AnimatePresence>
@@ -101,7 +105,7 @@ export default function GlobeApp() {
           isAutoRotate={isAutoRotate}
           setIsAutoRotate={setIsAutoRotate}
           onSearchSelect={handleSearchSelect}
-          onOpenHelp={() => setShowSplash(true)}
+          onOpenHelp={() => setRunTour(true)}
           terrainExaggeration={terrainExaggeration}
           setTerrainExaggeration={setTerrainExaggeration}
           activeLayer={activeLayer}

@@ -855,8 +855,10 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
           <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#84cc16'}}>🌳</span> <span style={{color: '#84cc16', fontWeight: 'bold'}}>Forest Reserves</span></div>
           <div className="flex items-center gap-2 text-sm text-white/90"><span style={{color: '#0ea5e9'}}>💧</span> <span style={{color: '#0ea5e9', fontWeight: 'bold'}}>Ramsar Sites</span></div>
         </div>
-        <div className="text-[11px] text-white/60 text-center">
-          <span className="text-gold font-semibold">💡 Controls:</span> Click any reserve icon to open journal. Drag to rotate globe.
+        <div className="text-[11px] text-white/60 text-center mt-1 flex justify-center items-center gap-4">
+          <span><span className="text-gold font-semibold">💡 Controls:</span> Click any reserve icon to open journal. Drag to rotate globe.</span>
+          <span className="opacity-50">|</span>
+          <span className="opacity-70 font-semibold tracking-wider">Powered by sangaiwild</span>
         </div>
       </div>
 
@@ -872,8 +874,9 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
           <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span style={{color: '#0ea5e9'}}>💧</span> <span style={{color: '#0ea5e9', fontWeight: 'bold'}}>Ramsar Sites</span></div>
           <div className="flex items-center gap-1.5 whitespace-nowrap text-xs text-white/90"><span style={{color: '#3b82f6'}}>🔵</span> <span style={{color: '#3b82f6', fontWeight: 'bold'}}>Corridors</span></div>
         </div>
-        <div className="text-[9px] text-white/50 text-center">
-          Drag to rotate • Click pin for details
+        <div className="text-[9px] text-white/50 text-center flex justify-between items-center px-2">
+          <span>Drag to rotate • Click pin for details</span>
+          <span className="opacity-70 font-semibold">Powered by sangaiwild</span>
         </div>
       </div>
     </div>

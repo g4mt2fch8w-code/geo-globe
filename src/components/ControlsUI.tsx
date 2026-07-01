@@ -135,7 +135,7 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
       <div className="absolute top-14 left-4 right-4 md:top-24 md:left-6 md:right-auto pointer-events-auto flex flex-col md:flex-row items-start md:items-center gap-3 z-40 font-body">
         
         <div className="flex items-center gap-2.5 w-full md:w-auto">
-          <div className="relative w-full sm:w-64 md:w-80">
+          <div className="relative w-full sm:w-64 md:w-80 tour-search">
             <div className="relative glass-card rounded-full flex items-center px-4 py-2.5 border border-white/10 shadow-emerald w-full">
               <Search className="w-4 h-4 text-gold mr-2.5 shrink-0" />
               <input 
@@ -191,7 +191,7 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
         <div className="flex flex-wrap items-center gap-2 md:gap-3 w-full md:w-auto">
 {/* Interactive Globe Modes Selector */}
         {setGlobeMode && (
-          <div className="relative pointer-events-auto">
+          <div className="relative pointer-events-auto tour-modes">
             <button
               onClick={() => setShowModesMenu(!showModesMenu)}
               className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-full text-[10px] sm:text-xs font-bold transition-all border shadow-lg ${
@@ -268,7 +268,7 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
         )}
 
         {/* Forestry Syllabus Overlays Menu Toggle */}
-        <div className="relative pointer-events-auto">
+        <div className="relative pointer-events-auto tour-layers">
             <button
               onClick={() => setShowLayersMenu(!showLayersMenu)}
               className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-full text-[10px] sm:text-xs font-bold transition-all border shadow-lg ${
@@ -366,13 +366,22 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
       {/* Interactive Timeline Range Slider when in timeline mode */}
       {globeMode === 'timeline' && setTimelineYear && (
         <div className="absolute top-24 sm:top-24 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-xl glass-card bg-[#08221a]/95 border border-[#fbbf24]/50 p-4 rounded-3xl shadow-[0_10px_40px_rgba(251,191,36,0.3)] pointer-events-auto">
-          <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center justify-between mb-2 gap-2">
             <div>
               <span className="text-xs font-bold uppercase tracking-wider text-[#fbbf24]">Project Tiger Chronology</span>
               <p className="text-[10px] text-white/70">Drag slider to see official notifications across decades</p>
             </div>
-            <div className="text-2xl font-extrabold font-mono text-[#fbbf24] bg-black/40 px-3 py-1 rounded-xl border border-[#fbbf24]/30">
-              {timelineYear}
+            <div className="flex items-center gap-2 sm:gap-4">
+              <div className="text-xl sm:text-2xl font-extrabold font-mono text-[#fbbf24] bg-black/40 px-3 py-1 rounded-xl border border-[#fbbf24]/30">
+                {timelineYear}
+              </div>
+              <button 
+                onClick={() => setGlobeMode?.('standard')}
+                className="bg-red-500/10 hover:bg-red-500/30 border border-red-500/30 text-red-400 rounded-full p-2 transition-colors flex-shrink-0"
+                title="Exit Timeline Mode"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
             </div>
           </div>
           <input

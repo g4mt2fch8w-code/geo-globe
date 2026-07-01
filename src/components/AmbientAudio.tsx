@@ -111,7 +111,7 @@ export const AmbientAudio: React.FC = () => {
   };
 
   return (
-    <div className="fixed bottom-24 right-4 z-50">
+    <div className="fixed bottom-24 right-4 z-50 tour-audio">
       <button
         onClick={toggleAudio}
         className={`p-3 rounded-full border transition-all duration-300 shadow-[0_0_20px_rgba(0,0,0,0.5)] ${
