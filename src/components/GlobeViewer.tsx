@@ -488,7 +488,10 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       scene.add(dirLight1);
                       scene.add(dirLight2);
 
+                      if (scene.getObjectByName('universeGroup')) return;
                       const universeGroup = new THREE.Group();
+                      universeGroup.name = 'universeGroup';
+                      universeGroup.frustumCulled = false;
                       
                       // 2. Add the Deep Universe! (Procedural 3D Starfield)
                       // Layer 1: Bright, close, multi-colored stars
@@ -523,6 +526,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       starsGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
                       starsGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
                       
+                      starsGeometry.computeBoundingSphere();
                       const starsMaterial = new THREE.PointsMaterial({
                           size: 35,
                           vertexColors: true,
@@ -547,6 +551,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                           deepPosArray[i+2] = r * Math.cos(phi);
                       }
                       deepStarsGeometry.setAttribute('position', new THREE.BufferAttribute(deepPosArray, 3));
+                      deepStarsGeometry.computeBoundingSphere();
                       const deepStarsMaterial = new THREE.PointsMaterial({
                           size: 40,
                           color: 0xaaabcc,
@@ -560,6 +565,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
 
                       // 3. The Moon
                       const moonGeometry = new THREE.SphereGeometry(25, 32, 32);
+                      moonGeometry.computeBoundingSphere();
                       const textureLoader = new THREE.TextureLoader();
                       const moonTexture = textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/moon_1024.jpg');
                       const moonMaterial = new THREE.MeshStandardMaterial({
@@ -599,6 +605,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       }
                       mwGeometry.setAttribute('position', new THREE.BufferAttribute(mwPosArray, 3));
                       mwGeometry.setAttribute('color', new THREE.BufferAttribute(mwColorsArray, 3));
+                      mwGeometry.computeBoundingSphere();
                       const mwMaterial = new THREE.PointsMaterial({
                           size: 50,
                           vertexColors: true,
@@ -628,6 +635,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                           andromedaPos[i+2] = (Math.random() - 0.5) * 5;
                       }
                       andromedaGeometry.setAttribute('position', new THREE.BufferAttribute(andromedaPos, 3));
+                      andromedaGeometry.computeBoundingSphere();
                       const andromedaMaterial = new THREE.PointsMaterial({
                           size: 60,
                           color: 0xbbccff,
@@ -646,11 +654,11 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       
                       // Moon orbital animation & Universe counter-rotation
                       const animateUniverse = () => {
-                          const time = Date.now() * 0.000060; // 30x speed
+                          const time = performance.now() * 0.000060; // 30x speed
                           moon.position.x = Math.cos(time) * 550;
                           moon.position.z = Math.sin(time) * 550;
                           moon.position.y = Math.sin(time * 0.5) * 100; // slight orbital inclination
-                          moon.rotation.y += 0.0030; // 30x rotation
+                          moon.rotation.y = (moon.rotation.y + 0.0030) % (2 * Math.PI); // 30x rotation
                           
                           // If auto-rotate is on, counter-rotate the universe group to keep stars stationary
                           if (globeRef.current && typeof globeRef.current.controls === 'function') {
@@ -659,7 +667,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                                   // OrbitControls rotates camera by 2 * PI / 3600 * autoRotateSpeed per frame (approx 60fps)
                                   // By applying this same rotation to the universe, it stays fixed relative to the camera
                                   // meaning the Earth spins, but the background stays still!
-                                  universeGroup.rotation.y += (2 * Math.PI / 3600) * (controls.autoRotateSpeed || 0);
+                                  universeGroup.rotation.y = (universeGroup.rotation.y + (2 * Math.PI / 3600) * (controls.autoRotateSpeed || 0)) % (2 * Math.PI);
                               }
                           }
                           

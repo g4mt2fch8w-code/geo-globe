@@ -8,6 +8,7 @@ import { ErrorBoundary } from '../components/ErrorBoundary';
 import forestsData from '../data/forestsData.json';
 import { SplashScreen } from '../components/SplashScreen';
 import { AnimatePresence } from 'framer-motion';
+import { AmbientAudio } from '../components/AmbientAudio';
 
 export default function GlobeApp() {
   const [showSplash, setShowSplash] = useState(true);
@@ -118,6 +119,8 @@ export default function GlobeApp() {
         entity={selectedEntity} 
         onClose={() => setSelectedEntity(null)} 
       />
+      
+      <AmbientAudio />
       </div>
     </>
   );
