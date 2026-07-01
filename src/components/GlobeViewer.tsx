@@ -467,6 +467,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                   if (typeof globeRef.current.scene === 'function') {
                     const scene = globeRef.current.scene();
                     if (scene) {
+                      // 1. Existing Lighting Setup
                       const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
                       const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.8);
                       dirLight1.position.set(200, 300, 400);
@@ -475,6 +476,70 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       scene.add(ambientLight);
                       scene.add(dirLight1);
                       scene.add(dirLight2);
+
+                      // 2. Add the Deep Universe! (Procedural 3D Starfield)
+                      // Layer 1: Bright, close, multi-colored stars
+                      const starsGeometry = new THREE.BufferGeometry();
+                      const starsCount = 4000;
+                      const posArray = new Float32Array(starsCount * 3);
+                      const colorsArray = new Float32Array(starsCount * 3);
+                      
+                      for(let i = 0; i < starsCount * 3; i+=3) {
+                          // Spherical distribution around the globe
+                          const r = 300 + Math.random() * 500;
+                          const theta = 2 * Math.PI * Math.random();
+                          const phi = Math.acos(2 * Math.random() - 1);
+                          
+                          posArray[i] = r * Math.sin(phi) * Math.cos(theta);
+                          posArray[i+1] = r * Math.sin(phi) * Math.sin(theta);
+                          posArray[i+2] = r * Math.cos(phi);
+                      
+                          // Mix of white, blue-white, and orange/red dwarfs
+                          const starType = Math.random();
+                          const color = new THREE.Color();
+                          if (starType > 0.85) color.setHex(0xaaaaee); // Blueish
+                          else if (starType > 0.7) color.setHex(0xeeaaaa); // Reddish
+                          else color.setHex(0xffffff); // White
+                          
+                          const intensity = 0.5 + Math.random() * 0.5;
+                          colorsArray[i] = color.r * intensity;
+                          colorsArray[i+1] = color.g * intensity;
+                          colorsArray[i+2] = color.b * intensity;
+                      }
+                      
+                      starsGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+                      starsGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
+                      
+                      const starsMaterial = new THREE.PointsMaterial({
+                          size: 1.2,
+                          vertexColors: true,
+                          transparent: true,
+                          opacity: 0.9,
+                          sizeAttenuation: true
+                      });
+                      scene.add(new THREE.Points(starsGeometry, starsMaterial));
+                      
+                      // Layer 2: Deep background galaxy dust & faint distant stars
+                      const deepStarsGeometry = new THREE.BufferGeometry();
+                      const deepStarsCount = 8000;
+                      const deepPosArray = new Float32Array(deepStarsCount * 3);
+                      for(let i = 0; i < deepStarsCount * 3; i+=3) {
+                          const r = 800 + Math.random() * 1000;
+                          const theta = 2 * Math.PI * Math.random();
+                          const phi = Math.acos(2 * Math.random() - 1);
+                          deepPosArray[i] = r * Math.sin(phi) * Math.cos(theta);
+                          deepPosArray[i+1] = r * Math.sin(phi) * Math.sin(theta);
+                          deepPosArray[i+2] = r * Math.cos(phi);
+                      }
+                      deepStarsGeometry.setAttribute('position', new THREE.BufferAttribute(deepPosArray, 3));
+                      const deepStarsMaterial = new THREE.PointsMaterial({
+                          size: 0.6,
+                          color: 0x888899,
+                          transparent: true,
+                          opacity: 0.5,
+                          sizeAttenuation: true
+                      });
+                      scene.add(new THREE.Points(deepStarsGeometry, deepStarsMaterial));
                     }
                   }
 
