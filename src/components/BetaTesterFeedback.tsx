@@ -20,11 +20,11 @@ export const BetaTesterFeedback = () => {
 
     // Initialize 24-hour timer
     const DURATION = 24 * 60 * 60 * 1000;
-    let startTime = localStorage.getItem('geoGlobe_beta_start_v2');
+    let startTime = localStorage.getItem('geoGlobe_beta_start_v3'); // Changed key to v3 to reset the timer
     
     if (!startTime) {
       startTime = Date.now().toString();
-      localStorage.setItem('geoGlobe_beta_start_v2', startTime);
+      localStorage.setItem('geoGlobe_beta_start_v3', startTime);
     }
 
     const endTime = parseInt(startTime) + DURATION;
@@ -114,7 +114,7 @@ export const BetaTesterFeedback = () => {
               </h2>
             </div>
             <p className="text-sm sm:text-base text-fog/80">
-              Welcome! Thanks for checking out this temporary beta testing platform. Besides the wildlife tech, for the first time I have created something specifically for students. I hope as a student you will feel this connection, and please do leave your ratings and feedback!
+              Welcome! Thanks for checking out this temporary beta testing platform. Besides the wildlife tech, for the first time I have created something specifically for students. I hope as a student you will feel this connection, and please do leave your ratings and feedback so that I can launch it for actual forest aspirants!
             </p>
           </div>
 

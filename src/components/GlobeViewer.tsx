@@ -144,7 +144,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
         globeRef.current.globeMaterial.shininess = 3;
         globeRef.current.globeMaterial.needsUpdate = true;
       }
-    } catch (e) {
+    } catch {
       // ignore
     }
   };
@@ -175,7 +175,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
               controlsInstance.addEventListener('start', handleInteraction);
             }
           }
-        } catch (e) {
+        } catch {
           // ignore
         }
       }
@@ -207,7 +207,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             if (camera && camera.up) camera.up.set(0, 1, 0);
           }
         }, 50);
-      } catch (e) {
+      } catch {
         // ignore
       }
     }
@@ -228,7 +228,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             if (controls && controls.update) controls.update();
           }
         }, 50);
-      } catch (e) {
+      } catch {
         // ignore
       }
     }
@@ -247,7 +247,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             if (camera && camera.up) camera.up.set(0, 1, 0);
           }
         }, 50);
-      } catch (e) {
+      } catch {
         // ignore
       }
     }
@@ -262,7 +262,8 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
     mousePosRef.current = { x, y };
 
     const now = performance.now();
-    if (now - lastRaycastTimeRef.current > 50 && onHoverCoordsChange && globeRef.current) {
+    // Throttle to 200ms to prevent massive React re-render lag (5 updates/sec instead of 20)
+    if (now - lastRaycastTimeRef.current > 200 && onHoverCoordsChange && globeRef.current) {
       lastRaycastTimeRef.current = now;
       try {
         const scene = typeof globeRef.current.scene === 'function' ? globeRef.current.scene() : null;
@@ -306,7 +307,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
             }
           }
         }
-      } catch (err) {
+      } catch {
         // ignore
       }
     }
@@ -701,7 +702,7 @@ export const GlobeViewer: React.FC<GlobeViewerProps> = ({
                       controls.minPolarAngle = 0.05;
                     }
                   }
-                } catch (err) {
+                } catch {
                   // ignore
                 }
               }

@@ -88,7 +88,7 @@ export const JournalUI: React.FC<JournalUIProps> = ({ entity, onClose }) => {
           setWikiData(extract || null);
           setWikiUrl(url);
         }
-      } catch (err) {
+      } catch {
         if (isMounted) {
           setWikiData(null);
         }

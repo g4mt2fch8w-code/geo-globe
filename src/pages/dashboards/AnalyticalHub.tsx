@@ -187,7 +187,7 @@ export const AnalyticalHub = () => {
             <span>🏛️ Official Data & Research Citations</span>
           </h4>
           <p className="text-xs text-slate-600 dark:text-white/80 mt-1">
-            Forest Survey of India (FSI) Van Agni Alert System (Removed) • Champion & Seth (1968) Forest Typology • Rodgers & Panwar (1988) Biogeographic Classification • Wildlife (Protection) Act, 1972 & NTCA Protocols.
+            • Champion & Seth (1968) Forest Typology • Rodgers & Panwar (1988) Biogeographic Classification • Wildlife (Protection) Act, 1972 & NTCA Protocols.
           </p>
         </div>
         <div className="text-[11px] font-mono text-emerald-700 dark:text-[#34d399] bg-emerald-100 dark:bg-black/40 px-4 py-2 rounded-xl border border-emerald-300 dark:border-[#34d399]/30 whitespace-nowrap">

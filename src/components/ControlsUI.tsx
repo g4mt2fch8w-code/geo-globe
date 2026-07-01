@@ -71,7 +71,7 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
     } else {
       setResults([]);
     }
-  }, [searchQuery, forestsData]);
+  }, [searchQuery]);
 
   let polygonAreaStr = null;
   let distanceStr = null;
