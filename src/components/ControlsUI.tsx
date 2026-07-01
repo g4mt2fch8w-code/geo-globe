@@ -394,24 +394,24 @@ export const ControlsUI: React.FC<ControlsUIProps> = ({
         </div>
       )}
 
-      {/* Real-Time Coordinate Mouse HUD (Bottom Right Corner) */}
-      <div className="absolute bottom-6 right-6 pointer-events-auto z-40 hidden sm:flex items-center gap-4 bg-[#04120e]/85 backdrop-blur-xl border border-[#34d399]/30 px-4 py-2 rounded-2xl shadow-[0_5px_25px_rgba(0,0,0,0.7)] text-xs font-mono text-[#a7f3d0]">
+      {/* Real-Time Coordinate Mouse HUD (Bottom Left on Mobile, Bottom Right on Desktop) */}
+      <div className="absolute bottom-[4.5rem] left-4 sm:bottom-6 sm:left-auto sm:right-6 pointer-events-auto z-40 flex flex-col sm:flex-row items-start sm:items-center gap-1 sm:gap-4 bg-[#04120e]/85 backdrop-blur-xl border border-[#34d399]/30 p-2 sm:px-4 sm:py-2 rounded-xl sm:rounded-2xl shadow-[0_5px_25px_rgba(0,0,0,0.7)] text-[9px] sm:text-xs font-mono text-[#a7f3d0]">
         <div className="flex items-center gap-1.5">
           <span className="text-[#34d399]">LAT:</span>
           <span className="text-white font-bold">{hoverCoords ? `${hoverCoords.lat > 0 ? '+' : ''}${hoverCoords.lat.toFixed(2)}°` : '22.35°'}</span>
         </div>
-        <div className="w-[1px] h-3 bg-[#34d399]/30" />
+        <div className="hidden sm:block w-[1px] h-3 bg-[#34d399]/30" />
         <div className="flex items-center gap-1.5">
           <span className="text-[#34d399]">LNG:</span>
           <span className="text-white font-bold">{hoverCoords ? `${hoverCoords.lng > 0 ? '+' : ''}${hoverCoords.lng.toFixed(2)}°` : '78.96°'}</span>
         </div>
-        <div className="w-[1px] h-3 bg-[#34d399]/30" />
-        <div className="flex items-center gap-1.5" title="Distance from camera down to surface (decreases when zooming in)">
-          <span className="text-[#38bdf8]">CAM ALT:</span>
+        <div className="hidden sm:block w-[1px] h-3 bg-[#34d399]/30" />
+        <div className="flex items-center gap-1.5" title="Distance from camera down to surface">
+          <span className="text-[#38bdf8]">CAM:</span>
           <span className="text-white font-bold">{hoverCoords?.camAltKm ? (hoverCoords.camAltKm < 10 ? `${hoverCoords.camAltKm * 1000}m` : `${hoverCoords.camAltKm.toLocaleString()}km`) : '11,460km'}</span>
         </div>
-        <div className="w-[1px] h-3 bg-[#34d399]/30" />
-        <div className="flex items-center gap-1.5" title="Physical DEM ground relief elevation above sea level">
+        <div className="hidden sm:block w-[1px] h-3 bg-[#34d399]/30" />
+        <div className="flex items-center gap-1.5" title="Physical ground relief elevation">
           <span className="text-[#fbbf24]">TERRAIN:</span>
           <span className="text-white font-bold">{hoverCoords ? `${hoverCoords.altMeters}m` : '420m'}</span>
         </div>
