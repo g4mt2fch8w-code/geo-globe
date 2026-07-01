@@ -40,9 +40,22 @@ export const Home = () => {
             The ultimate interactive 3D globe featuring all major Tiger Reserves, National Parks, and Protected Forests. Built for aspiring conservationists and officers.
           </p>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mt-10 sm:mt-16 relative z-10 w-full sm:w-auto max-w-md mx-auto sm:max-w-none">
-            <Link to="/globe" className="w-full sm:w-auto relative group">
-              {/* Psychological Nudge / Curiosity Gap */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-10 sm:mt-16 relative z-10 w-full max-w-4xl mx-auto flex-wrap">
+            
+            {/* Globe Button */}
+            <Link to="/globe" className="w-full sm:w-auto">
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group relative px-6 py-4 sm:px-8 sm:py-5 bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-[#04120e] rounded-full font-display text-lg sm:text-xl shadow-[0_0_40px_rgba(251,191,36,0.4)] hover:shadow-[0_0_60px_rgba(251,191,36,0.8)] hover:from-[#fcd34d] hover:to-[#fbbf24] transition-all flex items-center justify-center gap-3 w-full sm:w-auto font-extrabold"
+              >
+                <span>Launch 3D Globe</span>
+                <span className="group-hover:translate-x-2 transition-transform font-bold">→</span>
+              </motion.button>
+            </Link>
+
+            {/* Analytics Button with Psychological Banner */}
+            <Link to="/analytics" className="w-full sm:w-auto relative group">
               <div className="absolute -top-14 sm:-top-16 left-1/2 -translate-x-1/2 w-max animate-bounce z-50">
                 <div className="bg-gradient-to-r from-red-600 to-rose-600 text-white text-[11px] sm:text-xs font-black px-4 py-2 rounded-full border border-red-400/50 shadow-[0_0_25px_rgba(225,29,72,0.8)] uppercase tracking-widest flex items-center gap-2">
                   <span className="animate-pulse">⚠️</span> DO NOT MISS: Syllabus, Eco-Corridors & Terrain Tools!
@@ -53,13 +66,14 @@ export const Home = () => {
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-6 py-4 sm:px-8 sm:py-5 bg-gradient-to-r from-[#fbbf24] to-[#f59e0b] text-[#04120e] rounded-full font-display text-lg sm:text-xl shadow-[0_0_40px_rgba(251,191,36,0.4)] hover:shadow-[0_0_60px_rgba(251,191,36,0.8)] hover:from-[#fcd34d] hover:to-[#fbbf24] transition-all flex items-center justify-center gap-3 w-full sm:w-auto font-extrabold"
+                className="group relative px-6 py-4 sm:px-8 sm:py-5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-full font-display text-lg sm:text-xl shadow-[0_0_35px_rgba(139,92,246,0.4)] hover:shadow-[0_0_55px_rgba(139,92,246,0.8)] transition-all flex items-center justify-center gap-3 w-full sm:w-auto font-extrabold"
               >
-                <span>Launch 3D Globe</span>
-                <span className="group-hover:translate-x-2 transition-transform font-bold">→</span>
+                <span>Analytics Hub</span>
+                <span className="group-hover:translate-y-[-2px] transition-transform font-bold">📊</span>
               </motion.button>
             </Link>
             
+            {/* About Button */}
             <Link to="/about" className="w-full sm:w-auto">
               <motion.button 
                 whileHover={{ scale: 1.05 }}
