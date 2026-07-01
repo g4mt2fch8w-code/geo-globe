@@ -32,7 +32,7 @@ export const Home = () => {
           </div>
           
           <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-bold mb-6 leading-tight tracking-tight drop-shadow-2xl">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900">Explore India's</span> <br className="hidden sm:block"/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 dark:from-slate-50 dark:via-slate-200 dark:to-slate-400">Explore India's</span> <br className="hidden sm:block"/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#34d399] via-[#10b981] to-[#fbbf24]">Biospheres & Forests</span>
           </h1>
           
