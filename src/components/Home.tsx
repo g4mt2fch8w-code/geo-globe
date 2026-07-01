@@ -58,7 +58,7 @@ export const Home = () => {
             <Link to="/dashboards" className="w-full sm:w-auto relative group">
               <div className="absolute -top-14 sm:-top-16 left-1/2 -translate-x-1/2 w-max animate-bounce z-50">
                 <div className="bg-gradient-to-r from-red-600 to-rose-600 text-white text-[11px] sm:text-xs font-black px-4 py-2 rounded-full border border-red-400/50 shadow-[0_0_25px_rgba(225,29,72,0.8)] uppercase tracking-widest flex items-center gap-2">
-                  <span className="animate-pulse">⚠️</span> DO NOT MISS: Syllabus, Eco-Corridors & Terrain Tools!
+                  <span className="animate-pulse">⚠️</span> DO NOT MISS: Cross-Reference, Eco-Corridors & Terrain Tools!
                 </div>
                 <div className="w-3 h-3 bg-rose-600 rotate-45 mx-auto -mt-1.5 border-r border-b border-red-400/50 shadow-xl"></div>
               </div>

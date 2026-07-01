@@ -5,12 +5,12 @@ export const AnalyticalHub = () => {
   const tools = [
     {
       id: 'syllabus-compare',
-      title: '1. Cross-Reference Syllabus Dashboard',
+      title: '1. Cross-Reference Dashboard',
       category: 'Standalone Analytics Page',
       desc: 'Side-by-side comparison matrix of two reserves analyzing Champion & Seth forest types, indicator species, altitude brackets, and rainfall charts.',
       path: '/dashboard/syllabus-compare',
       icon: <BarChart3 className="w-6 h-6 text-[#fbbf24]" />,
-      badge: 'Core Syllabus',
+      badge: 'Core Analytics',
       isStandalone: true,
       accent: 'from-[#fbbf24]/20 to-[#d97706]/10 border-[#fbbf24]/40 text-[#fbbf24]'
     },
@@ -84,7 +84,7 @@ export const AnalyticalHub = () => {
           Forest Services Analytical Hub
         </h1>
         <p className="text-slate-600 dark:text-fog/80 max-w-3xl mx-auto text-sm sm:text-base leading-relaxed">
-          Explore all 6 advanced forest management, pedagogical syllabus tools, and interactive spatial overlays. Standalone tools operate at lightning speed devoid of heavy 3D rendering, while spatial modes integrate seamlessly into our North-headed globe.
+          Explore all 6 advanced forest management, pedagogical cross-reference tools, and interactive spatial overlays. Standalone tools operate at lightning speed devoid of heavy 3D rendering, while spatial modes integrate seamlessly into our North-headed globe.
         </p>
       </div>
 

@@ -35,7 +35,7 @@ export const SyllabusCompare = () => {
       <div className="mb-10">
         <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-fog flex items-center gap-3 mb-2">
           <GitCompare className="w-8 h-8 text-[#fbbf24]" />
-          <span>Cross-Reference Syllabus Analytical Matrix</span>
+          <span>Cross-Reference Analytical Matrix</span>
         </h1>
         <p className="text-sm text-slate-600 dark:text-fog/80 max-w-2xl font-medium">
           Compare two protected areas side-by-side across Champion & Seth forest classifications, official NTCA/MoEFCC notification year, indicator floral/faunal species, altitude brackets, and annual precipitation levels.
