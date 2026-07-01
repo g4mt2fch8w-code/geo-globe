@@ -67,7 +67,7 @@ export default function GlobeApp() {
       <AnimatePresence>
         {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
       </AnimatePresence>
-      <div className="relative w-full h-[100dvh] bg-ink overflow-hidden font-body">
+      <div className="relative w-full h-[100vh] bg-black overflow-hidden font-body">
       <div className="absolute inset-0 z-0">
         <ErrorBoundary>
           <GlobeViewer 
