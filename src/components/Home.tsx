@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { BetaTesterFeedback } from './BetaTesterFeedback';
 import { ChevronDown, ChevronUp, Clock, Layers, Ruler } from 'lucide-react';
 
 export const Home = () => {
@@ -20,7 +19,6 @@ export const Home = () => {
 
       {/* Main Content */}
       <div className="relative z-20 flex flex-col items-center justify-center w-full max-w-5xl mx-auto px-4 sm:px-6 text-center mt-2 sm:mt-6">
-        <BetaTesterFeedback />
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
